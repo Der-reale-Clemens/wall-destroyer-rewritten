@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import wallIconImg from "../images/wall.svg";
@@ -13,6 +14,8 @@ import statsIconImg from "../images/chart-bar.svg";
 import settingsIconImg from "../images/cog.svg";
 import upgradesIconImg from "../images/arrow-up-bold-hexagon-outline.svg";
 import buildingsIconImg from "../images/factory.svg";
+import { Buildings } from './Buildings';
+import { Resources } from './Resources';
 
 const closedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
@@ -30,7 +33,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
+    //padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
 }));
@@ -95,8 +98,12 @@ export const Sidebar: FC = () => {
                 </List>
                 <Divider/>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
+            <Box component="main" sx={{ flexGrow: 1, p: 3, display: "flex", justifyContent: "center"}}>
+            <DrawerHeader/>
+                <Stack>
+                    <Resources/>
+                    <Buildings/>
+                </Stack>
             </Box>
         </Box>
     );
