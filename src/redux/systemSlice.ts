@@ -5,7 +5,6 @@ import { resources } from "../data/resources";
 
 const system = createSystem(producers, resources)
 
-
 const systemSlice = createSlice({
     name: "system",
     initialState: system,
