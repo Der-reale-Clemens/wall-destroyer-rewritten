@@ -4,6 +4,7 @@ import { useAppSelector } from "../redux/hooks";
 import moneyImg from "../images/money.png"
 import brickImg from "../images/brick.png"
 import imaginaryImg from "../images/imaginaryBrick.png"
+import { prettify } from "../functions";
 
 export const Resources: FC = () => {
     const theme = useTheme()
@@ -25,7 +26,7 @@ export const Resources: FC = () => {
             <Stack direction="row" spacing={4} sx={style}>
                 <Box sx={{display: "flex", alignItems:"center", width:"15vw", padding:"0px"}}>
                     <img src={moneyImg} style={{width: "36px", height:"36px", margin: "3px"}}/>
-                    {money}
+                    {prettify(money)}
                 </Box>
                 <Box sx={{display: "flex", alignItems:"center", width:"15vw", margin:"0px"}}>
                     <img src={brickImg}/>

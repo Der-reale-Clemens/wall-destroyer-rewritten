@@ -26,13 +26,11 @@ const BuildingRow: FC<Props> = ({name}) => {
 
     const style = {
         background: theme.extra.resourceBackgroundColor,
-        //background: theme.palette.background.default,
         marginBottom:2,
         borderRadius:"10px",
         border:"1px",
         borderStyle:"solid",
         borderColor: theme.extra.resourceBorderColor,
-        //borderColor: theme.palette.divider
     }
 
     return (

@@ -3,6 +3,9 @@ import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
 import { increaseResource } from "./redux/systemSlice"
 
+
+const numberformat = require("swarm-numberformat")
+
 export const update = (dispatch: AppDispatch) => {
     const state = store.getState()
     //Calculate passed time
@@ -17,4 +20,14 @@ export const update = (dispatch: AppDispatch) => {
     dispatch(increaseResource(["money", productions.money]))
     dispatch(increaseResource(["bricks", productions.bricks]))
     
+}
+
+export const prettify = (num: number): string => {
+    if (num <= 100) {
+        return (Math.round(num * 1000) / 1000).toString();
+    }
+    const format = store.getState().appReducer.format
+    //const format = "standard";
+    //return (Math.round(num*1000)/1000).toString();
+    return numberformat.format(num, {format, sigfigs: 4});
 }

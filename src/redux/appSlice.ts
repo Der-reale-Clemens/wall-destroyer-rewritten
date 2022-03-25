@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
     lastUpdate: 0,
-    theme: "light"
+    theme: "light",
+    format: "standard"
 }
 
 const appSlice = createSlice({
@@ -14,6 +15,9 @@ const appSlice = createSlice({
         },
         setTheme: (state, {payload: theme}: PayloadAction<string>) => {
             state.theme = theme
+        },
+        setFormat: (state, {payload: format}: PayloadAction<string>) => {
+            state.format = format
         }
     }
 })
@@ -22,5 +26,6 @@ export const appReducer = appSlice.reducer
 
 export const {
     setLastUpdate,
-    setTheme
+    setTheme,
+    setFormat
 } = appSlice.actions
