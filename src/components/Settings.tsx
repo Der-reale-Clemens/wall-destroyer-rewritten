@@ -11,10 +11,14 @@ export const Settings: FC = () => {
         dispatch(setTheme(e.target.value))
     }
 
-    return <div>
-        <Select value={theme} onChange={onThemeChange}>
-            <MenuItem value="light">Light</MenuItem>
-            <MenuItem value="dark">Dark</MenuItem>
-        </Select>
-    </div>
+    return (
+    <div style={{display: "flex", justifyContent: "center"}}>
+        <div style={{display: "inline"}}>
+            Theme:
+            <Select value={theme} onChange={onThemeChange} style={{marginLeft: "10px"}}>
+                <MenuItem value="light">Light</MenuItem>
+                <MenuItem value="dark">Dark</MenuItem>
+            </Select>
+        </div>
+    </div>)
 }
