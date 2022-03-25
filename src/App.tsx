@@ -1,22 +1,17 @@
 import {FC, useEffect} from 'react';
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Window } from './components/Window';
-import { useAppDispatch } from './redux/hooks';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { update } from './functions';
 import { setLastUpdate } from './redux/appSlice';
 import { increaseResource } from './redux/systemSlice';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'light',
-  }
-})
-
+import { themes } from './data/themes';
 
 export const App: FC = () => {
+  const theme = useAppSelector(s => s.appReducer.theme) as keyof typeof themes
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  useEffect(() => { 
     const interval = setInterval(() => {
       update(dispatch)
     }, 100)
@@ -29,7 +24,7 @@ export const App: FC = () => {
   }, [])
 
   return (
-  <ThemeProvider theme={darkTheme}>
+  <ThemeProvider theme={themes[theme]}>
     <CssBaseline/>
     <Window/>
   </ThemeProvider>)

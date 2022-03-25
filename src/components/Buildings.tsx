@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, Typography, Box, Grid} from "@mui/material";
+import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, Typography, Box, useTheme} from "@mui/material";
 import { buyProducer } from "../redux/systemSlice";
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -21,15 +21,18 @@ type Props = {
 }
 
 const BuildingRow: FC<Props> = ({name}) => {
+    const theme = useTheme()
     const amount = useAppSelector(s => s.systemReducer.player.producers[name])
 
     const style = {
-        background:"#eeeeee",
+        background: theme.extra.resourceBackgroundColor,
+        //background: theme.palette.background.default,
         marginBottom:2,
         borderRadius:"10px",
         border:"1px",
         borderStyle:"solid",
-        borderColor: "#cccccc"
+        borderColor: theme.extra.resourceBorderColor,
+        //borderColor: theme.palette.divider
     }
 
     return (

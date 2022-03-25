@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useTheme} from "@mui/material";
 import { FC } from "react";
 import { useAppSelector } from "../redux/hooks";
 import moneyImg from "../images/money.png"
@@ -6,16 +6,17 @@ import brickImg from "../images/brick.png"
 import imaginaryImg from "../images/imaginaryBrick.png"
 
 export const Resources: FC = () => {
+    const theme = useTheme()
     const money = useAppSelector(s => s.systemReducer.player.resources.money)
     const bricks = useAppSelector(s => s.systemReducer.player.resources.bricks)
 
     const style = {
-        background:"#eeeeee",
-        marginBottom:1,
+        background: theme.extra.resourceBackgroundColor,
+        marginBottom:1, 
         borderRadius:"5px",
         border:"1px",
         borderStyle:"solid",
-        borderColor: "#cccccc",
+        borderColor: theme.extra.resourceBorderColor,
         width: "50vw",
     }
 
@@ -36,6 +37,5 @@ export const Resources: FC = () => {
                 </Box>
             </Stack>
         </Box>
-        
     )
 }

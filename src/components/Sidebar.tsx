@@ -8,14 +8,9 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import wallIconImg from "../images/wall.svg";
-import achievementsIconImg from "../images/crown-outline.svg";
-import statsIconImg from "../images/chart-bar.svg";
-import settingsIconImg from "../images/cog.svg";
-import upgradesIconImg from "../images/arrow-up-bold-hexagon-outline.svg";
-import buildingsIconImg from "../images/factory.svg";
-import { Buildings } from './Buildings';
+import { Panels } from './Panels';
 import { Resources } from './Resources';
+import { WallIcon, BuildingsIcon, UpgradesIcon, AchievementsIcon, StatsIcon, SettingsIcon } from './Icons';
 
 const closedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
@@ -65,34 +60,34 @@ export const Sidebar: FC = () => {
         <Box sx={{ display: 'flex'}}>
             <Drawer variant="permanent">
                 <List>
+                    <ListItem button onClick={() => setPanel(0)}>
+                        <ListItemIcon>
+                            <WallIcon/>
+                        </ListItemIcon>
+                    </ListItem>
                     <ListItem button onClick={() => setPanel(1)}>
                         <ListItemIcon>
-                            <img src={wallIconImg} alt="W"/>
+                            <BuildingsIcon/>
                         </ListItemIcon>
                     </ListItem>
                     <ListItem button onClick={() => setPanel(2)}>
                         <ListItemIcon>
-                            <img src={buildingsIconImg} alt="B"/>
+                            <UpgradesIcon/>
                         </ListItemIcon>
                     </ListItem>
                     <ListItem button onClick={() => setPanel(3)}>
                         <ListItemIcon>
-                            <img src={upgradesIconImg} alt="U"/>
+                            <AchievementsIcon/>
                         </ListItemIcon>
                     </ListItem>
                     <ListItem button onClick={() => setPanel(4)}>
                         <ListItemIcon>
-                            <img src={achievementsIconImg} alt="A"/>
+                            <StatsIcon/>
                         </ListItemIcon>
                     </ListItem>
                     <ListItem button onClick={() => setPanel(5)}>
                         <ListItemIcon>
-                            <img src={statsIconImg} alt="S"/>
-                        </ListItemIcon>
-                    </ListItem>
-                    <ListItem button onClick={() => setPanel(0)}>
-                        <ListItemIcon>
-                            <img src={settingsIconImg} alt="S"/>
+                            <SettingsIcon/>
                         </ListItemIcon>
                     </ListItem>
                 </List>
@@ -102,7 +97,7 @@ export const Sidebar: FC = () => {
             <DrawerHeader/>
                 <Stack>
                     <Resources/>
-                    <Buildings/>
+                    <Panels panel={panel}/>
                 </Stack>
             </Box>
         </Box>
