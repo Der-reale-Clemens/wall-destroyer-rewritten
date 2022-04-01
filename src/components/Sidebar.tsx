@@ -54,7 +54,7 @@ const Drawer = styled(MuiDrawer)(({ theme }) => ({
 
 
 export const Sidebar: FC = () => {
-    const [panel, setPanel] = useState(1);
+    const [panel, setPanel] = useState(0);
 
     return (
         <Box sx={{ display: 'flex'}}>

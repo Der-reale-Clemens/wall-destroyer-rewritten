@@ -2,19 +2,19 @@ import { createTheme } from "@mui/material/styles";
 
 declare module '@mui/material/styles' {
     interface Theme {
-      extra: {
-        resourceBackgroundColor: string;
-        resourceBorderColor: string;
-      };
+        extra: {
+            resourceBackgroundColor: string;
+            resourceBorderColor: string;
+        };
     }
     // allow configuration using `createTheme`
     interface ThemeOptions {
-      extra: {
-        resourceBackgroundColor: string;
-        resourceBorderColor: string;
-      };
+        extra: {
+            resourceBackgroundColor: string;
+            resourceBorderColor: string;
+        };
     }
-  }
+}
 
 export const themes = {
     light: createTheme({

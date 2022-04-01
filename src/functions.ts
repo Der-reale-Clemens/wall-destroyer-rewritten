@@ -27,7 +27,5 @@ export const prettify = (num: number): string => {
         return (Math.round(num * 1000) / 1000).toString();
     }
     const format = store.getState().appReducer.format
-    //const format = "standard";
-    //return (Math.round(num*1000)/1000).toString();
     return numberformat.format(num, {format, sigfigs: 4});
 }
