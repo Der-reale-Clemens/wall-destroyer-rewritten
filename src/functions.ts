@@ -17,9 +17,9 @@ export const update = (dispatch: AppDispatch) => {
     const productionsFull = calculateProductions(state.systemReducer, deltaTime)
     const productions = calculateProductionsPerResource(state.systemReducer, productionsFull)
 
+    dispatch(increaseResource(["damage", productions.damage]))
     dispatch(increaseResource(["money", productions.money]))
     dispatch(increaseResource(["bricks", productions.bricks]))
-    
 }
 
 export const prettify = (num: number): string => {

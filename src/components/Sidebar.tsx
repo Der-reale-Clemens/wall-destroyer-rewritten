@@ -93,12 +93,9 @@ export const Sidebar: FC = () => {
                 </List>
                 <Divider/>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3, display: "flex", justifyContent: "center"}}>
-            <DrawerHeader/>
-                <Stack>
-                    <Resources/>
-                    <Panels panel={panel}/>
-                </Stack>
+            <Box component="main" sx={{ flexGrow: 1, p: 3, display: "flex", alignItems: "center", flexDirection: "column"}}>
+                <Resources/>
+                <Panels panel={panel}/>
             </Box>
         </Box>
     );

@@ -3,9 +3,7 @@ import { buyProducer } from "../redux/systemSlice";
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { producersExtra } from "../data/mappings";
-import moneyImg from "../images/money.png"
-import brickImg from "../images/brick.png"
-import imaginaryBrickImg from "../images/imaginaryBrick.png"
+import { BrickIcon, MoneyIcon, ImaginaryBrickIcon } from "./Icons";
 
 export const Buildings: FC = () => {
     return <List sx={{width: "80vw"}}>
@@ -60,9 +58,9 @@ const CostProgresses: FC<Props> = ({name}) => {
     const progress = (n) => (resources[n]/costs[n])*100 >= 100 ? 100 : (resources[n]/costs[n])*100
 
     return <>
-        <CostProgess icon={<img style={{width: "21px", height:"21px", marginTop: "5px"}}src={moneyImg}/>} value={progress("money")}/>
-        <CostProgess icon={<img style={{width: "28px", height:"28px", marginTop: "5px"}}src={brickImg}/>} value={progress("bricks")}/>
-        <CostProgess icon={<img style={{width: "28px", height:"28px", marginTop: "5px"}}src={imaginaryBrickImg}/>} value={progress("bricks")}/>
+        <CostProgess icon={<MoneyIcon size="medium" style={{paddingTop: "4px"}}/>} value={progress("money")}/>
+        <CostProgess icon={<BrickIcon size="medium" style={{paddingTop: "5px"}}/>} value={progress("bricks")}/>
+        <CostProgess icon={<ImaginaryBrickIcon size="medium" style={{paddingTop: "5px"}}/>} value={progress("bricks")}/>
     </>
 }
 

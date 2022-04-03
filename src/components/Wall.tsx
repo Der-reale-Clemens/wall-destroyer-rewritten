@@ -1,12 +1,10 @@
 import { Box, Divider, Grid } from "@mui/material"
 import { FC } from "react"
-import brick from "../images/brick.png"
-import cosmic from "../images/cosmicKnowledge.png"
-import cash from "../images/money.png"
 import { Pane } from "./Pane"
 import { keyframes } from "@emotion/react";
 import { walls } from "../data/walls"
 import { prettify } from "../functions"
+import { BrickIcon, CosmicKnowledgeIcon, MoneyIcon } from "./Icons";
 
 export const Wall: FC = () => {
     const wall = 1
@@ -66,13 +64,13 @@ const RewardsGrid: FC<{wall: number}> = ({wall}) => {
     return (
         <Grid container>
             <GridItem>
-                {prettify(rewards.money)} <img src={cash} style={{width: "15%"}}/>
+                {prettify(rewards.money)} <MoneyIcon size="small"/>
             </GridItem>
             <GridItem>
-                {prettify(rewards.bricks)} <img src={brick} style={{width: "15%"}}/>
+                {prettify(rewards.bricks)} <BrickIcon size="small"/>
             </GridItem>
             <GridItem>
-                1 <img src={cosmic}/>
+                {prettify(10)} <CosmicKnowledgeIcon size="small"/>
             </GridItem>
         </Grid>
     )
