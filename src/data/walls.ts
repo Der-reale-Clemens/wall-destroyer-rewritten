@@ -11,7 +11,7 @@ type Wall = {
 
 export const walls: Array<Wall> = [
     {
-        requirement: 1e3,
+        requirement: 1e9,
         reward: {
             damage: 0,
             money: 2.5e8,

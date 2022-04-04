@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
     lastUpdate: 0,
-    theme: "light",
+    theme: "dark",
     format: "standard"
 }
 

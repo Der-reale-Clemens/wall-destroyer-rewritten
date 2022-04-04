@@ -1,7 +1,10 @@
 import { calculateProductions, calculateProductionsPerResource } from "idle-game-creation-library"
+import { walls } from "./data/walls"
 import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
-import { increaseResource } from "./redux/systemSlice"
+import { decreaseResource, increaseResource } from "./redux/systemSlice"
+import { increaseWall } from "./redux/systemAdditionsSlice"
+import { objectKeys } from "./util"
 
 
 const numberformat = require("swarm-numberformat")
@@ -20,6 +23,24 @@ export const update = (dispatch: AppDispatch) => {
     dispatch(increaseResource(["damage", productions.damage]))
     dispatch(increaseResource(["money", productions.money]))
     dispatch(increaseResource(["bricks", productions.bricks]))
+}
+
+export const destroyWall = (dispatch: AppDispatch) => {
+    const state = store.getState()
+    const wallNum = state.systemAdditionsReducer.wall
+    const damage = state.systemReducer.player.resources.damage
+
+    const wall = walls[wallNum]
+
+    if(damage <= wall.requirement) {
+        return;
+    }
+    dispatch(decreaseResource(["damage", wall.requirement]))
+
+    objectKeys(wall.reward)
+        .forEach(reward => dispatch(increaseResource([reward, wall.reward[reward]])))
+
+    dispatch(increaseWall())
 }
 
 export const prettify = (num: number): string => {

@@ -3,8 +3,9 @@ import { FC } from "react"
 import { Pane } from "./Pane"
 import { keyframes } from "@emotion/react";
 import { walls } from "../data/walls"
-import { prettify } from "../functions"
+import { destroyWall, prettify } from "../functions"
 import { BrickIcon, CosmicKnowledgeIcon, MoneyIcon } from "./Icons";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 export const Wall: FC = () => {
     const wall = 1
@@ -30,25 +31,31 @@ export const Wall: FC = () => {
 }
 
 const WallImage: FC = () => {
+    const damage = useAppSelector(s => s.systemReducer.player.resources.damage)
+    const wallNum = useAppSelector(s => s.systemAdditionsReducer.wall)
+    const dispatch = useAppDispatch()
+
+    const wall = walls[wallNum]
+
     const glow = keyframes`
         0% {box-shadow: 0 0 1px 1px #58c4b1}
         40% {box-shadow: 0 0 20px 10px #A2CFC4}
         100% {box-shadow: 0 0 1px 1px #58c4b1}
     `
 
-    return true ? 
-        <Box component="img" src={"http://i.imgur.com/M88cRwn.png"} sx={{
+    return damage <= wall.requirement ? 
+        <Box component="img" src={wall.img} sx={{
             width: "70vw", 
             backgroundColor: "#a2cfc4",
             marginBottom: "10px",
             cursor: "not-allowed"
         }}/> : 
-        <Box component="img" src={"http://i.imgur.com/VDKRDeM.png"} sx={{
+        <Box component="img" src={wall.img} onClick={() => destroyWall(dispatch)} sx={{
             width: "70vw", 
             backgroundColor: "#a2cfc4",
             animation: `${glow} 3.5s infinite`,
             marginBottom: "10px",
-            cursor: "pointer"
+            cursor: "pointer",
         }}/>
 }
 

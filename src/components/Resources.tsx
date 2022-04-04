@@ -12,18 +12,6 @@ export const Resources: FC = () => {
     const money = useAppSelector(s => s.systemReducer.player.resources.money)
     const bricks = useAppSelector(s => s.systemReducer.player.resources.bricks)
 
-
-
-    const style = {
-        background: theme.extra.resourceBackgroundColor,
-        marginBottom:1, 
-        borderRadius:"5px",
-        border:"1px",
-        borderStyle:"solid",
-        borderColor: theme.extra.resourceBorderColor,
-        width: "50vw",
-    }
-
     return (
         <Pane>
             <Stack direction="row" spacing={4} sx={{marginBottom: "5px"}}>
@@ -51,8 +39,9 @@ export const Resources: FC = () => {
 
 const WallProgress: FC = () => {
     const damage = useAppSelector(s => s.systemReducer.player.resources.damage)
+    const wall = useAppSelector(s => s.systemAdditionsReducer.wall)
     
-    const wallProgress = (damage/walls[0].requirement) * 100 >= 100 ? 100 : (damage/walls[0].requirement) * 100
+    const wallProgress = (damage/walls[wall].requirement) * 100 >= 100 ? 100 : (damage/walls[wall].requirement) * 100
 
     return (
         <Box sx={{width: "100%"}}>
