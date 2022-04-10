@@ -19,7 +19,7 @@ export const walls: Array<Wall> = [
         },
         unlocks: ["http://i.imgur.com/3C1bIXe.png", "http://i.imgur.com/zqNeRti.png", "http://i.imgur.com/93tCmIj.png"],
         name: "Wall",
-        description: "Something feels off about this wall",
+        description: "Destroy the wall and move on to a bigger one",
         img: "https://i.imgur.com/KfG2xNP.png",
     },
     {

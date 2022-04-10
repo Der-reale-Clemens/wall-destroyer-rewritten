@@ -3,12 +3,13 @@ import { FC } from "react"
 import { Pane } from "./Pane"
 import { keyframes } from "@emotion/react";
 import { walls } from "../data/walls"
-import { destroyWall, prettify } from "../functions"
-import { BrickIcon, CosmicKnowledgeIcon, MoneyIcon } from "./Icons";
+import { destroyWall } from "../functions"
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { ResourceCard } from "./ResourceCard";
+import { objectKeys } from "../util";
 
 export const Wall: FC = () => {
-    const wall = 1
+    const wall = useAppSelector(s => s.systemAdditionsReducer.wall)
 
     return (
         <div style={{alignItems: "center", display: "flex", flexDirection: "column"}}>
@@ -24,7 +25,8 @@ export const Wall: FC = () => {
                 <RewardsGrid wall={wall}/>
                 Unlocks:
                 <Divider style={{marginBottom: "5px"}}/>
-                {walls[wall].unlocks.map((src) => <img alt="" key={src} style={{filter:"grayscale(100%)", margin: "2px"}} src={src}/>)}
+                {walls[wall].unlocks
+                    .map((src) => <img alt="" key={src} style={{filter:"grayscale(100%)", margin: "2px"}} src={src}/>)}
             </Pane>
         </div>
     )
@@ -63,22 +65,11 @@ const WallImage: FC = () => {
 const RewardsGrid: FC<{wall: number}> = ({wall}) => {
     const rewards = walls[wall].reward
 
-    const GridItem: FC = (props) => (
-        <Grid item xs={4} sx={{display:"flex", justifyContent:"center", alignItems: "center"}}>
-            {props.children}
-        </Grid>)
-
     return (
-        <Grid container>
-            <GridItem>
-                {prettify(rewards.money)} <MoneyIcon size="small"/>
-            </GridItem>
-            <GridItem>
-                {prettify(rewards.bricks)} <BrickIcon size="small"/>
-            </GridItem>
-            <GridItem>
-                {prettify(10)} <CosmicKnowledgeIcon size="small"/>
-            </GridItem>
-        </Grid>
-    )
+        <Box sx={{display: "flex"}}>
+            {objectKeys(rewards)
+                .filter(name => rewards[name] !== 0)
+                .map(name => <ResourceCard key={name} name={name} amount={rewards[name]}/>)}
+        </Box>
+    ) 
 }

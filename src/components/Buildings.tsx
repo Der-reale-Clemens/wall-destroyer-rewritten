@@ -3,15 +3,16 @@ import { buyProducer } from "../redux/systemSlice";
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { producersExtra } from "../data/mappings";
-import { BrickIcon, MoneyIcon, ImaginaryBrickIcon } from "./Icons";
+import { BrickIcon, MoneyIcon, ImaginaryBrickIcon} from "./Icons";
+import { BuildingMoreInfoButton } from "./BuildingMoreInfoButton";
 
 export const Buildings: FC = () => {
     return <List sx={{width: "80vw"}}>
         <BuildingRow name="puncher"/>
         <BuildingRow name="clubber"/>
         <BuildingRow name="swordsman"/>
+        <BuildingRow name="blackObliterator"/>
     </List>
-
 }
 
 type Props = {
@@ -46,9 +47,14 @@ const BuyButton: FC<Props> = ({name}) => {
     const dispatch = useAppDispatch()
     const onClick = () => dispatch(buyProducer(name))
 
-    return <Button variant="contained" onClick={onClick}>
-        Buy
-    </Button>
+    return (
+        <Box>
+            <BuildingMoreInfoButton name={name}/>
+            <Button variant="contained" onClick={onClick}>
+                Buy
+            </Button>
+        </Box>
+    )
 }
 
 const CostProgresses: FC<Props> = ({name}) => {

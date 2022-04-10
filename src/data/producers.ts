@@ -34,5 +34,17 @@ export const producers = {
             money: 2.5,
             bricks: 0
         }
+    },
+    blackObliterator: {
+        cost: {
+            damage: 0,
+            money: 100,
+            bricks: 0
+        },
+        production: {
+            damage: 1e8,
+            money: 1e8,
+            bricks: 10,
+        }
     }
 }

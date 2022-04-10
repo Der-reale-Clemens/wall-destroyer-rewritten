@@ -48,5 +48,5 @@ export const prettify = (num: number): string => {
         return (Math.round(num * 1000) / 1000).toString();
     }
     const format = store.getState().appReducer.format
-    return numberformat.format(num, {format, sigfigs: 4});
+    return numberformat.format(num, {format, sigfigs: 4, flavor: "short"});
 }
