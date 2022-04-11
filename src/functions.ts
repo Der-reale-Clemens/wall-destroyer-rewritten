@@ -5,9 +5,8 @@ import { AppDispatch, store } from "./redux/store"
 import { decreaseResource, increaseResource } from "./redux/systemSlice"
 import { increaseWall } from "./redux/systemAdditionsSlice"
 import { objectKeys } from "./util"
-
-
-const numberformat = require("swarm-numberformat")
+//@ts-ignore
+import * as swarmNumberformat from "swarm-numberformat"
 
 export const update = (dispatch: AppDispatch) => {
     const state = store.getState()
@@ -48,5 +47,5 @@ export const prettify = (num: number): string => {
         return (Math.round(num * 1000) / 1000).toString();
     }
     const format = store.getState().appReducer.format
-    return numberformat.format(num, {format, sigfigs: 4, flavor: "short"});
+    return swarmNumberformat.numberformat.format(num, {format, sigfigs: 4, flavor: "short"});
 }
