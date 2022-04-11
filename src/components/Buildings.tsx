@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { producersExtra } from "../data/mappings";
 import { BrickIcon, MoneyIcon, ImaginaryBrickIcon} from "./Icons";
 import { BuildingMoreInfoButton } from "./BuildingMoreInfoButton";
+import { calculateBuildingCost } from "../functions";
 
 export const Buildings: FC = () => {
     return <List sx={{width: "80vw"}}>
@@ -43,6 +44,7 @@ const BuildingRow: FC<Props> = ({name}) => {
     </ListItem>)
 }
 
+
 const BuyButton: FC<Props> = ({name}) => {
     const dispatch = useAppDispatch()
     const onClick = () => dispatch(buyProducer(name))
@@ -58,8 +60,9 @@ const BuyButton: FC<Props> = ({name}) => {
 }
 
 const CostProgresses: FC<Props> = ({name}) => {
-    const costs = useAppSelector(s => s.systemReducer.data.producers[name].cost)
     const resources = useAppSelector(s => s.systemReducer.player.resources)
+    const costs = calculateBuildingCost(name)
+    
     //@ts-ignore
     const progress = (n) => (resources[n]/costs[n])*100 >= 100 ? 100 : (resources[n]/costs[n])*100
 

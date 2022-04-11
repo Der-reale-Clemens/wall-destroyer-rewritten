@@ -1,5 +1,6 @@
 export const producers = {
     puncher: {
+        costScaling: 1.1,
         cost: {
             damage: 0,
             money: 20,
@@ -12,6 +13,7 @@ export const producers = {
         }
     },
     clubber: {
+        costScaling: 1.1,
         cost: {
             damage: 0,
             money: 100,
@@ -24,6 +26,7 @@ export const producers = {
         }
     },
     swordsman: {
+        costScaling: 1.1,
         cost: {
             damage: 0,
             money: 1100,
@@ -36,6 +39,7 @@ export const producers = {
         }
     },
     blackObliterator: {
+        costScaling: 1.1,
         cost: {
             damage: 0,
             money: 100,

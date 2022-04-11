@@ -4,9 +4,11 @@ import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
 import { decreaseResource, increaseResource } from "./redux/systemSlice"
 import { increaseWall } from "./redux/systemAdditionsSlice"
-import { objectKeys } from "./util"
+import { createObjectFromKeys, objectKeys } from "./util"
 //@ts-ignore
 import * as swarmNumberformat from "swarm-numberformat"
+import { producers } from "./data/producers"
+import { resources } from "./data/resources"
 
 export const update = (dispatch: AppDispatch) => {
     const state = store.getState()
@@ -40,6 +42,13 @@ export const destroyWall = (dispatch: AppDispatch) => {
         .forEach(reward => dispatch(increaseResource([reward, wall.reward[reward]])))
 
     dispatch(increaseWall())
+}
+
+export const calculateBuildingCost = (producer: keyof typeof producers) => {
+    const state = store.getState()
+    const producerAmount = state.systemReducer.player.producers[producer]
+
+    return createObjectFromKeys(resources, r => producers[producer].cost[r]*Math.pow(producers[producer].costScaling, producerAmount))
 }
 
 export const prettify = (num: number): string => {
