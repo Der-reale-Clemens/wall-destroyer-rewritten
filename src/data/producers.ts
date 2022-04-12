@@ -4,12 +4,14 @@ export const producers = {
         cost: {
             damage: 0,
             money: 20,
-            bricks: 0
+            bricks: 0,
+            cosmicKnowledge: 0
         },
         production: {
             damage: 0.1,
             money: 0.1,
-            bricks: 0
+            bricks: 0,
+            cosmicKnowledge: 0
         }
     },
     clubber: {
@@ -17,12 +19,14 @@ export const producers = {
         cost: {
             damage: 0,
             money: 100,
-            bricks: 0
+            bricks: 0,
+            cosmicKnowledge: 0
         },
         production: {
             damage: 1,
             money: 1,
-            bricks: 0
+            bricks: 0,
+            cosmicKnowledge: 0
         }
     },
     swordsman: {
@@ -30,12 +34,14 @@ export const producers = {
         cost: {
             damage: 0,
             money: 1100,
-            bricks: 0
+            bricks: 0,
+            cosmicKnowledge: 0
         },
         production: {
             damage: 2.5,
             money: 2.5,
-            bricks: 0
+            bricks: 0,
+            cosmicKnowledge: 0
         }
     },
     blackObliterator: {
@@ -43,12 +49,14 @@ export const producers = {
         cost: {
             damage: 0,
             money: 100,
-            bricks: 0
+            bricks: 0,
+            cosmicKnowledge: 0
         },
         production: {
             damage: 1e8,
             money: 1e8,
             bricks: 10,
+            cosmicKnowledge: 0
         }
     }
 }

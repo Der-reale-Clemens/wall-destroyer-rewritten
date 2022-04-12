@@ -15,7 +15,8 @@ export const walls: Array<Wall> = [
         reward: {
             damage: 0,
             money: 2.5e8,
-            bricks: 25
+            bricks: 25,
+            cosmicKnowledge: 1
         },
         unlocks: ["http://i.imgur.com/3C1bIXe.png", "http://i.imgur.com/zqNeRti.png", "http://i.imgur.com/93tCmIj.png"],
         name: "Wall",
@@ -27,7 +28,8 @@ export const walls: Array<Wall> = [
         reward: {
             damage: 0,
             money: 2.5e10,
-            bricks: 100
+            bricks: 100,
+            cosmicKnowledge: 1
         },
         unlocks: ["http://i.imgur.com/F4FwhJe.png", "http://i.imgur.com/3C1bIXe.png", "http://i.imgur.com/YYCAyYr.png"],
         name: "Big 2nd Wall",
@@ -39,7 +41,8 @@ export const walls: Array<Wall> = [
         reward: {
             damage: 0,
             money: 2.5e11,
-            bricks: 10000
+            bricks: 10000,
+            cosmicKnowledge: 0
         },
         unlocks: ["http://i.imgur.com/tHUohS4.png", "http://i.imgur.com/Z4p4G7T.png"],
         name: "Huge 3rd Wall",

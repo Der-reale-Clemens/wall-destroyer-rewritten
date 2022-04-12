@@ -1,12 +1,11 @@
 import { Box, Typography, useTheme } from "@mui/material"
 import { FC } from "react"
-import { resourcesExtra } from "../data/mappings"
-import { Resources } from "../data/resources"
+import { resources, Resources } from "../data/resources"
 import { prettify } from "../functions"
 import { BrickIcon, CosmicKnowledgeIcon, DamageIcon, MoneyIcon } from "./Icons"
 
 type Props = {
-    name: Resources | "cosmicKnowledge",
+    name: Resources,
     amount: number
 }
 
@@ -21,7 +20,7 @@ export const ResourceCard: FC<Props> = ({name, amount}) => {
 
     return (
         <Box sx={{
-            background: resourcesExtra[name].backgroundColor,
+            background: resources[name].extra.backgroundColor,
             borderRadius: "10px",
             border: `2px solid ${theme.extra.resourceBorderColor}`,
             width: "5em",
