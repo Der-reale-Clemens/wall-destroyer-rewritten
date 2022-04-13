@@ -2,8 +2,10 @@ import { Dialog, DialogContent, DialogTitle, IconButton, Chip, Typography, Divid
 import { FC, useState } from "react";
 import { producersExtra } from "../data/mappings";
 import { producers } from "../data/producers";
+import { calculateBuildingCost } from "../functions";
 import { useAppSelector } from "../redux/hooks";
-import {InfoIcon} from "./Icons"
+import { objectKeys } from "../util";
+import {InfoIcon } from "./Icons"
 import { ResourceCard } from "./ResourceCard";
 
 type Props = {name: keyof typeof producersExtra }
@@ -33,6 +35,15 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
                     {building.description}
                 </Typography>
                 <Typography>
+                    Cost
+                </Typography>
+                <Divider/>
+                <Box sx={{display: "flex"}}>
+                    {objectKeys(producers[name].cost)
+                        .filter(r => producers[name].cost[r] !== 0)
+                        .map(r => <ResourceCard name={r} amount={calculateBuildingCost(name)[r]}/>)}
+                </Box>
+                <Typography>
                     Production(/s)
                 </Typography>
                 <Divider/>
@@ -41,16 +52,18 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
                         One {building.name}
                         <br/>
                         <Box sx={{display: "flex"}}>
-                            <ResourceCard name="damage" amount={producers[name].production.damage}/>
-                            <ResourceCard name="money" amount={producers[name].production.money}/>
+                            {objectKeys(producers[name].production)
+                                .filter(r => producers[name].production[r] !== 0)
+                                .map(r => <ResourceCard name={r} amount={producers[name].production[r]}/>)}
                         </Box>
                     </Box>
                     <Box>
                         All {building.name}s
                         <br/>
                         <Box sx={{display: "flex"}}>
-                            <ResourceCard name="damage" amount={producers[name].production.damage * amount}/>
-                            <ResourceCard name="money" amount={producers[name].production.money * amount}/>
+                            {objectKeys(producers[name].production)
+                                .filter(r => producers[name].production[r] !== 0)
+                                .map(r => <ResourceCard name={r} amount={producers[name].production[r] * amount}/>)}
                         </Box>
                     </Box>
                 </Box>

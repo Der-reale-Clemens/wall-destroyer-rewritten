@@ -2,7 +2,6 @@ import { Box, Typography, useTheme } from "@mui/material"
 import { FC } from "react"
 import { resources, Resources } from "../data/resources"
 import { prettify } from "../functions"
-import { BrickIcon, CosmicKnowledgeIcon, DamageIcon, MoneyIcon } from "./Icons"
 
 type Props = {
     name: Resources,
@@ -12,11 +11,7 @@ type Props = {
 export const ResourceCard: FC<Props> = ({name, amount}) => {
     const theme = useTheme()
 
-    const icon = "damage" === name ? <DamageIcon size="large" style={{marginBottom: "0.5em", marginTop: "0.5em"}}/>
-                :("money" === name ? <MoneyIcon size="large" style={{marginBottom: "0.5em", marginTop: "0.5em"}}/>
-                :("bricks" === name ? <BrickIcon size="large" style={{marginBottom: "0.5em", marginTop: "0.5em"}}/>
-                :("cosmicKnowledge" === name ? <CosmicKnowledgeIcon size="large" style={{marginBottom: "0.5em", marginTop: "0.5em"}}/>
-                : null)))
+    const icon = resources[name].extra.icon({size:"large", style:{marginBottom: "0.5em", marginTop: "0.5em"}})
 
     return (
         <Box sx={{

@@ -47,10 +47,10 @@ export const producers = {
     blackObliterator: {
         costScaling: 1.1,
         cost: {
-            damage: 0,
+            damage: 1,
             money: 100,
-            bricks: 0,
-            cosmicKnowledge: 0
+            bricks: 1,
+            cosmicKnowledge: 1
         },
         production: {
             damage: 1e8,
