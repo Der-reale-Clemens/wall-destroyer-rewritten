@@ -1,8 +1,8 @@
-import { calculateProductions, calculateProductionsPerResource } from "idle-game-creation-library"
+import { calculateAchievements, calculateProductions, calculateProductionsPerResource } from "idle-game-creation-library"
 import { walls } from "./data/walls"
 import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
-import { decreaseResource, increaseResource } from "./redux/systemSlice"
+import { addAchievements, decreaseResource, increaseResource } from "./redux/systemSlice"
 import { increaseWall } from "./redux/systemAdditionsSlice"
 import { createObjectFromKeys, objectKeys } from "./util"
 //@ts-ignore
@@ -24,6 +24,9 @@ export const update = (dispatch: AppDispatch) => {
     dispatch(increaseResource(["damage", productions.damage]))
     dispatch(increaseResource(["money", productions.money]))
     dispatch(increaseResource(["bricks", productions.bricks]))
+
+    const newAchievements = calculateAchievements(state.systemReducer)
+    dispatch(addAchievements(newAchievements))
 }
 
 export const destroyWall = (dispatch: AppDispatch) => {

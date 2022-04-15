@@ -24,3 +24,26 @@ export const producersExtra = {
         img: "http://i.imgur.com/mSWDezW.png"
     }
 }
+
+export const achievementsExtra = {
+    overnab: {
+        name: "Overnab",
+        description: "Damage the wall.",
+        img: "http://i.imgur.com/OasIKlg.png",
+    },
+    scrub: {
+        name: "Scrub",
+        description: "Deal 100 Damage to the wall",
+        img: "http://i.imgur.com/YU4cmkc.png"
+    },
+    lessScrub: {
+        name: "Less of a Scrub",
+        description: "Deal 1000 Damage to the wall",
+        img: "http://i.imgur.com/PIqpwX7.png"
+    },
+    wallTapper: {
+        name: "Wall Tapper",
+        description: "Deal 10,000 Damage to the wall",
+        img: "http://i.imgur.com/aBSHBRg.png"
+    }
+}

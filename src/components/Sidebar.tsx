@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import Stack from '@mui/material/Stack';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { Panels } from './Panels';
@@ -23,15 +22,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
         width: `calc(${theme.spacing(8)} + 1px)`,
     },
 });
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    //padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-}));
 
 const Drawer = styled(MuiDrawer)(({ theme }) => ({
         flexShrink: 0,
