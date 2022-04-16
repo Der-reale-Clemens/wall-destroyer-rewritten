@@ -4,18 +4,19 @@ import { Buildings } from "./Buildings";
 import { Settings } from "./Settings";
 import { Wall } from "./Wall";
 
-type Props = {
-    panel: 0|1|2|3|4|5
+export type PanelsProps = {
+    panel: "wall" | "buildings" | "upgrades" | "lab" | "achievements" | "stats" | "settings"
 }
 
-export const Panels: FC<Props> = ({panel}) => {
+export const Panels: FC<PanelsProps> = ({panel}) => {
     switch(panel) {
-        case 0: return <Wall/>
-        case 1: return <Buildings/>
-        case 2: return null
-        case 3: return <Achievements/>
-        case 4: return null
-        case 5: return <Settings/>
+        case "wall": return <Wall/>
+        case "buildings": return <Buildings/>
+        case "upgrades": return null
+        case "lab": return null
+        case "achievements": return <Achievements/>
+        case "stats": return null
+        case "settings": return <Settings/>
     }
     
     

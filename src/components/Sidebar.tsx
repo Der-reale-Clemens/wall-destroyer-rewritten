@@ -1,4 +1,3 @@
-//@ts-nocheck
 import {FC, useState} from 'react';
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -7,9 +6,9 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { Panels } from './Panels';
+import { Panels, PanelsProps } from './Panels';
 import { Resources } from './Resources';
-import { WallIcon, BuildingsIcon, UpgradesIcon, AchievementsIcon, StatsIcon, SettingsIcon } from './Icons';
+import { WallIcon, BuildingsIcon, UpgradesIcon, AchievementsIcon, StatsIcon, SettingsIcon, LabIcon} from './Icons';
 
 const closedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
@@ -44,38 +43,43 @@ const Drawer = styled(MuiDrawer)(({ theme }) => ({
 
 
 export const Sidebar: FC = () => {
-    const [panel, setPanel] = useState(0);
+    const [panel, setPanel] = useState<PanelsProps["panel"]>("wall");
 
     return (
         <Box sx={{ display: 'flex'}}>
             <Drawer variant="permanent">
                 <List>
-                    <ListItem button onClick={() => setPanel(0)}>
+                    <ListItem button onClick={() => setPanel("wall")}>
                         <ListItemIcon>
                             <WallIcon/>
                         </ListItemIcon>
                     </ListItem>
-                    <ListItem button onClick={() => setPanel(1)}>
+                    <ListItem button onClick={() => setPanel("buildings")}>
                         <ListItemIcon>
                             <BuildingsIcon/>
                         </ListItemIcon>
                     </ListItem>
-                    <ListItem button onClick={() => setPanel(2)}>
+                    <ListItem button onClick={() => setPanel("upgrades")}>
                         <ListItemIcon>
                             <UpgradesIcon/>
                         </ListItemIcon>
                     </ListItem>
-                    <ListItem button onClick={() => setPanel(3)}>
+                    <ListItem button onClick={() => setPanel("lab")}>
+                        <ListItemIcon>
+                            <LabIcon/>
+                        </ListItemIcon>
+                    </ListItem>
+                    <ListItem button onClick={() => setPanel("achievements")}>
                         <ListItemIcon>
                             <AchievementsIcon/>
                         </ListItemIcon>
                     </ListItem>
-                    <ListItem button onClick={() => setPanel(4)}>
+                    <ListItem button onClick={() => setPanel("stats")}>
                         <ListItemIcon>
                             <StatsIcon/>
                         </ListItemIcon>
                     </ListItem>
-                    <ListItem button onClick={() => setPanel(5)}>
+                    <ListItem button onClick={() => setPanel("settings")}>
                         <ListItemIcon>
                             <SettingsIcon/>
                         </ListItemIcon>
