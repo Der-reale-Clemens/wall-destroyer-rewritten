@@ -1,3 +1,17 @@
+import { Producers } from "idle-game-creation-library"
+import { createObjectFromKeys } from "../util"
+import { resourcesTrimmed } from "./resources"
+
+type ProducersExtra = {
+    [Property in keyof Producers<typeof resourcesTrimmed>]:
+        Producers<typeof resourcesTrimmed>[Property] & {
+            name: string,
+            type: string,
+            description: string
+            img: string
+        }
+}
+
 export const producers = {
     puncher: {
         costScaling: 1.1,
@@ -12,7 +26,11 @@ export const producers = {
             money: 0.1,
             bricks: 0,
             cosmicKnowledge: 0
-        }
+        },
+        name: "Puncher",
+        type: "Meele",
+        description: "Punches the wall for you",
+        img: "http://i.imgur.com/amBI8wT.png"
     },
     clubber: {
         costScaling: 1.1,
@@ -27,7 +45,11 @@ export const producers = {
             money: 1,
             bricks: 0,
             cosmicKnowledge: 0
-        }
+        },
+        name: "Clubber",
+        type: "Meele",
+        description: "Not to be confused with the other kind of clubbing.",
+        img: "http://i.imgur.com/HVaisVj.png"
     },
     swordsman: {
         costScaling: 1.1,
@@ -42,7 +64,11 @@ export const producers = {
             money: 2.5,
             bricks: 0,
             cosmicKnowledge: 0
-        }
+        },
+        name: "Swordsman",
+        type: "Meele",
+        description: "Some question the use of swords on a brick wall. Those guys are lame.",
+        img: "http://i.imgur.com/aPQuEKp.png"
     },
     blackObliterator: {
         costScaling: 1.1,
@@ -57,6 +83,16 @@ export const producers = {
             money: 1e8,
             bricks: 10,
             cosmicKnowledge: 0
-        }
+        },
+        name: "Black Obliterator",
+        type: "Dream",
+        description: "Robots covered in The Black. They're really cool, so no one questions mixing the most dangerous & evil thing ever with cold, unfeeling robots.",
+        img: "http://i.imgur.com/mSWDezW.png"
     }
 }
+
+export const producersTrimmed = createObjectFromKeys(producers, p => ({
+    costScaling: producers[p].costScaling,
+    cost: producers[p].cost,
+    production: producers[p].production
+}))

@@ -1,6 +1,5 @@
 import { Dialog, DialogContent, DialogTitle, IconButton, Chip, Typography, Divider, Box } from "@mui/material";
 import { FC, useState } from "react";
-import { producersExtra } from "../data/mappings";
 import { producers } from "../data/producers";
 import { calculateBuildingCost } from "../functions";
 import { useAppSelector } from "../redux/hooks";
@@ -8,11 +7,11 @@ import { objectKeys } from "../util";
 import {InfoIcon } from "./Icons"
 import { ResourceCard } from "./ResourceCard";
 
-type Props = {name: keyof typeof producersExtra }
+type Props = {name: keyof typeof producers}
 
 export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
     const [open, setOpen] = useState(false)
-    const building = producersExtra[name]
+    const building = producers[name]
     const amount = useAppSelector(s => s.systemReducer.player.producers[name])
 
     return (

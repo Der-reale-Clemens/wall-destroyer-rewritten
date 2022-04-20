@@ -1,8 +1,8 @@
-import { Resources } from "./resources"
+import { resources } from "./resources"
 
 type Wall = {
     requirement: number,
-    reward: Record<Resources, number>,
+    reward: Record<keyof typeof resources, number>,
     unlocks: Array<string>
     name: string,
     description: string,

@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {buyProducer as buyProducerSystem, createSystem} from "idle-game-creation-library"
-import { achievements } from "../data/achievements";
-import { producers } from "../data/producers";
-import { Resources, resources } from "../data/resources";
+import {buyProducer as buyProducerSystem, createSystem, Resources} from "idle-game-creation-library"
+import { achievementsTrimmed } from "../data/achievements";
+import { producersTrimmed } from "../data/producers";
+import { resourcesTrimmed } from "../data/resources";
 
-const system = createSystem(producers, resources, achievements)
+
+const system = createSystem(producersTrimmed, resourcesTrimmed, achievementsTrimmed )
 
 const systemSlice = createSlice({
     name: "system",
@@ -15,11 +16,11 @@ const systemSlice = createSlice({
             state.player.producers = newProducers
             state.player.resources = newResources
         },
-        increaseResource: (state, {payload}: PayloadAction<[Resources, number]>) => {
+        increaseResource: (state, {payload}: PayloadAction<[keyof typeof resourcesTrimmed, number]>) => {
             const [resource, amount] = payload
             state.player.resources[resource] += amount
         },
-        decreaseResource: (state, {payload}: PayloadAction<[Resources, number]>) => {
+        decreaseResource: (state, {payload}: PayloadAction<[keyof typeof resourcesTrimmed, number]>) => {
             const [resource, amount] = payload
             state.player.resources[resource] -= amount
         },

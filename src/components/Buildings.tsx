@@ -2,10 +2,10 @@ import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, T
 import { buyProducer } from "../redux/systemSlice";
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { producersExtra } from "../data/mappings";
 import { BrickIcon, MoneyIcon, ImaginaryBrickIcon} from "./Icons";
 import { BuildingMoreInfoButton } from "./BuildingMoreInfoButton";
 import { calculateBuildingCost } from "../functions";
+import { producers } from "../data/producers";
 
 export const Buildings: FC = () => {
     return <List sx={{width: "80vw"}}>
@@ -17,7 +17,7 @@ export const Buildings: FC = () => {
 }
 
 type Props = {
-    name: keyof typeof producersExtra
+    name: keyof typeof producers
 }
 
 const BuildingRow: FC<Props> = ({name}) => {
@@ -36,9 +36,9 @@ const BuildingRow: FC<Props> = ({name}) => {
     return (
     <ListItem sx={style} secondaryAction={<BuyButton name={name}/>}>
         <ListItemIcon>
-            <img src={producersExtra[name].img} alt=""/>
+            <img src={producers[name].img} alt=""/>
         </ListItemIcon>
-        <ListItemText sx={{width: "13vw"}} primary={<b>{producersExtra[name].name}</b>} secondary={amount}/>
+        <ListItemText sx={{width: "13vw"}} primary={<b>{producers[name].name}</b>} secondary={amount}/>
         <ListItemText primary={<CostProgresses name={name}/>}/>
         <ListItemText/>
     </ListItem>)
