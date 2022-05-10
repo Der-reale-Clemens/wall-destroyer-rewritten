@@ -22,7 +22,7 @@ type Props = {
 
 const BuildingRow: FC<Props> = ({name}) => {
     const theme = useTheme()
-    const amount = useAppSelector(s => s.systemReducer.player.producers[name])
+    const amount = useAppSelector(s => s.systemReducer.producers[name])
 
     const style = {
         background: theme.extra.resourceBackgroundColor,
@@ -60,7 +60,7 @@ const BuyButton: FC<Props> = ({name}) => {
 }
 
 const CostProgresses: FC<Props> = ({name}) => {
-    const resources = useAppSelector(s => s.systemReducer.player.resources)
+    const resources = useAppSelector(s => s.systemReducer.resources)
     const costs = calculateBuildingCost(name)
     
     //@ts-ignore

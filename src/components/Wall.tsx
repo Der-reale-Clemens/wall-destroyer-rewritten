@@ -33,7 +33,7 @@ export const Wall: FC = () => {
 }
 
 const WallImage: FC = () => {
-    const damage = useAppSelector(s => s.systemReducer.player.resources.damage)
+    const damage = useAppSelector(s => s.systemReducer.resources.damage)
     const wallNum = useAppSelector(s => s.systemAdditionsReducer.wall)
     const dispatch = useAppDispatch()
 

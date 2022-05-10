@@ -8,9 +8,9 @@ import { walls } from "../data/walls";
 
 export const Resources: FC = () => {
     const theme = useTheme()
-    const damage = useAppSelector(s => s.systemReducer.player.resources.damage)
-    const money = useAppSelector(s => s.systemReducer.player.resources.money)
-    const bricks = useAppSelector(s => s.systemReducer.player.resources.bricks)
+    const damage = useAppSelector(s => s.systemReducer.resources.damage)
+    const money = useAppSelector(s => s.systemReducer.resources.money)
+    const bricks = useAppSelector(s => s.systemReducer.resources.bricks)
 
     return (
         <Pane>
@@ -38,7 +38,7 @@ export const Resources: FC = () => {
 }
 
 const WallProgress: FC = () => {
-    const damage = useAppSelector(s => s.systemReducer.player.resources.damage)
+    const damage = useAppSelector(s => s.systemReducer.resources.damage)
     const wall = useAppSelector(s => s.systemAdditionsReducer.wall)
     
     const wallProgress = (damage/walls[wall].requirement) * 100 >= 100 ? 100 : (damage/walls[wall].requirement) * 100

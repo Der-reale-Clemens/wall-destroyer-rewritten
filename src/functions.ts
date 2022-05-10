@@ -2,7 +2,7 @@ import { calculateAchievements, calculateProductions, calculateProductionsPerRes
 import { walls } from "./data/walls"
 import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
-import { addAchievements, decreaseResource, increaseResource } from "./redux/systemSlice"
+import { addAchievements, createSystemObject, decreaseResource, increaseResource } from "./redux/systemSlice"
 import { increaseWall } from "./redux/systemAdditionsSlice"
 import { createObjectFromKeys, objectKeys } from "./util"
 //@ts-ignore
@@ -18,21 +18,21 @@ export const update = (dispatch: AppDispatch) => {
     const deltaTime = currentTime - oldTime
     dispatch(setLastUpdate(currentTime))
 
-    const productionsFull = calculateProductions(state.systemReducer, deltaTime)
-    const productions = calculateProductionsPerResource(state.systemReducer, productionsFull)
+    const productionsFull = calculateProductions(createSystemObject(state.systemReducer), deltaTime)
+    const productions = calculateProductionsPerResource(createSystemObject(state.systemReducer), productionsFull)
 
     dispatch(increaseResource(["damage", productions.damage]))
     dispatch(increaseResource(["money", productions.money]))
     dispatch(increaseResource(["bricks", productions.bricks]))
 
-    const newAchievements = calculateAchievements(state.systemReducer)
+    const newAchievements = calculateAchievements(createSystemObject(state.systemReducer))
     dispatch(addAchievements(newAchievements))
 }
 
 export const destroyWall = (dispatch: AppDispatch) => {
     const state = store.getState()
     const wallNum = state.systemAdditionsReducer.wall
-    const damage = state.systemReducer.player.resources.damage
+    const damage = state.systemReducer.resources.damage
 
     const wall = walls[wallNum]
 
@@ -49,7 +49,7 @@ export const destroyWall = (dispatch: AppDispatch) => {
 
 export const calculateBuildingCost = (producer: keyof typeof producers) => {
     const state = store.getState()
-    const producerAmount = state.systemReducer.player.producers[producer]
+    const producerAmount = state.systemReducer.producers[producer]
 
     return createObjectFromKeys(resources, r => producers[producer].cost[r]*Math.pow(producers[producer].costScaling, producerAmount))
 }

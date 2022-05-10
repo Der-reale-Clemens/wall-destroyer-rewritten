@@ -5,7 +5,7 @@ import { useAppSelector } from "../redux/hooks";
 import { Pane } from "./Pane";
 
 export const Achievements: FC = () => {
-    const achievementsUnlocked = useAppSelector(s => s.systemReducer.player.achievements) as Array<keyof typeof achievements>
+    const achievementsUnlocked = useAppSelector(s => s.systemReducer.achievements) as Array<keyof typeof achievements>
     const [current, setCurrent] = useState<keyof typeof achievements>()
     return (
         <Box sx={{display: "flex", flexDirection :"column", alignItems: "center"}}>

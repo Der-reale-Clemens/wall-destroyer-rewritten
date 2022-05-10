@@ -12,7 +12,7 @@ type Props = {name: keyof typeof producers}
 export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
     const [open, setOpen] = useState(false)
     const building = producers[name]
-    const amount = useAppSelector(s => s.systemReducer.player.producers[name])
+    const amount = useAppSelector(s => s.systemReducer.producers[name])
 
     return (
         <>
@@ -40,7 +40,7 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
                 <Box sx={{display: "flex"}}>
                     {objectKeys(producers[name].cost)
                         .filter(r => producers[name].cost[r] !== 0)
-                        .map(r => <ResourceCard name={r} amount={calculateBuildingCost(name)[r]}/>)}
+                        .map(r => <ResourceCard key={r} name={r} amount={calculateBuildingCost(name)[r]}/>)}
                 </Box>
                 <Typography>
                     Production(/s)
@@ -53,7 +53,7 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
                         <Box sx={{display: "flex"}}>
                             {objectKeys(producers[name].production)
                                 .filter(r => producers[name].production[r] !== 0)
-                                .map(r => <ResourceCard name={r} amount={producers[name].production[r]}/>)}
+                                .map(r => <ResourceCard key={r} name={r} amount={producers[name].production[r]}/>)}
                         </Box>
                     </Box>
                     <Box>
@@ -62,7 +62,7 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
                         <Box sx={{display: "flex"}}>
                             {objectKeys(producers[name].production)
                                 .filter(r => producers[name].production[r] !== 0)
-                                .map(r => <ResourceCard name={r} amount={producers[name].production[r] * amount}/>)}
+                                .map(r => <ResourceCard key={r} name={r} amount={producers[name].production[r] * amount}/>)}
                         </Box>
                     </Box>
                 </Box>
