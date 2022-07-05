@@ -1,19 +1,9 @@
-import { Achievements } from "idle-game-creation-library"
+import type { AchievementExtended } from "../system/types"
 import { createObjectFromKeys } from "../util"
-import { producersTrimmed } from "./producers"
-import { resourcesTrimmed } from "./resources"
 
-type AchievementsExtra = {
-    [Property in keyof Achievements<typeof producersTrimmed, typeof resourcesTrimmed>]: 
-        Achievements<typeof producersTrimmed, typeof resourcesTrimmed>[Property] & {
-            name: string,
-            description: string,
-            img: string
-        }
-}
+const asType = <T extends {[key: string]: AchievementExtended}>(arg: T): T => arg;
 
-
-export const achievements: AchievementsExtra = {
+export const achievements = asType({
     overnab: {
         isUnlocked: (system) => system.player.resources.damage >= 1,
         name: "Overnab",
@@ -38,7 +28,7 @@ export const achievements: AchievementsExtra = {
         description: "Deal 10,000 Damage to the wall",
         img: "http://i.imgur.com/aBSHBRg.png"
     }
-}
+})
 
 export const achievementsTrimmed = createObjectFromKeys(achievements, a => ({
     isUnlocked: achievements[a].isUnlocked

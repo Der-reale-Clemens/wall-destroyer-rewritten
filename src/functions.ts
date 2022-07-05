@@ -1,4 +1,4 @@
-import { calculateAchievements, calculateProductions, calculateProductionsPerResource } from "idle-game-creation-library"
+import { calculateAchievements, calculateProductions, calculateProductionsPerResource } from "./system/updateFunctions"
 import { walls } from "./data/walls"
 import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
