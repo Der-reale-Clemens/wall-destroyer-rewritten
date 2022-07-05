@@ -1,18 +1,9 @@
-import { Producers } from "idle-game-creation-library"
+import type { ProducerExtended } from "../system/types"
 import { createObjectFromKeys } from "../util"
-import { resourcesTrimmed } from "./resources"
 
-type ProducersExtra = {
-    [Property in keyof Producers<typeof resourcesTrimmed>]:
-        Producers<typeof resourcesTrimmed>[Property] & {
-            name: string,
-            type: string,
-            description: string
-            img: string
-        }
-}
+const asType = <T extends {[key: string]: ProducerExtended}>(arg: T): T =>arg;
 
-export const producers = {
+export const producers = asType({
     puncher: {
         costScaling: 1.1,
         cost: {
@@ -89,7 +80,7 @@ export const producers = {
         description: "Robots covered in The Black. They're really cool, so no one questions mixing the most dangerous & evil thing ever with cold, unfeeling robots.",
         img: "http://i.imgur.com/mSWDezW.png"
     }
-}
+})
 
 export const producersTrimmed = createObjectFromKeys(producers, p => ({
     costScaling: producers[p].costScaling,

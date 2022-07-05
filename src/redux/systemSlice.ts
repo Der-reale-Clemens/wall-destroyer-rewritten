@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {buyProducer as buyProducerSystem, createSystem } from "idle-game-creation-library"
 import { achievementsTrimmed } from "../data/achievements";
 import { producersTrimmed } from "../data/producers";
 import { resourcesTrimmed } from "../data/resources";
+import { createSystem } from "../system/system";
+import { buyProducer as buyProducerSystem } from "../system/updateFunctions"
 
 
 const system = createSystem(producersTrimmed, resourcesTrimmed, achievementsTrimmed)
-const systemData = system.data
+export const systemData = system.data
 
 export const createSystemObject = (player: typeof system.player) => ({
     data: system.data,
