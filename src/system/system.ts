@@ -1,17 +1,20 @@
-import { AchievementsTrimmed, ProducersTrimmed, ResourcesTrimmed, SystemType } from "./types"
+import { AchievementsTrimmed, ProducersTrimmed, ResourcesTrimmed, SystemType, UpgradesTrimmed } from "./types"
 import { addResources, calculateProductions, calculateProductionsPerResource, calculateAchievements } from "./updateFunctions"
 import { createObjectFromKeys } from "../util"
 
-export const createSystem = (producers: ProducersTrimmed, resources: ResourcesTrimmed, achievements: AchievementsTrimmed): SystemType => {
+export const createSystem = (producers: ProducersTrimmed, resources: ResourcesTrimmed, upgrades: UpgradesTrimmed, achievements: AchievementsTrimmed): SystemType => {
     return {
         data: {
             producers,
             resources,
+            upgrades,
             achievements
         },
         player: {
             resources: createObjectFromKeys(resources, () => 0),
             producers: createObjectFromKeys(producers, () => 0),
+            unlockedUpgrades: [],
+            boughtUpgrades: [],
             achievements: [],
         }
     }

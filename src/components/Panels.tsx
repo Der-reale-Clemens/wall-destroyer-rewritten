@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Achievements } from "./Achievements";
 import { Buildings } from "./Buildings";
 import { Settings } from "./Settings";
+import { Upgrades } from "./Upgrades";
 import { Wall } from "./Wall";
 
 export type PanelsProps = {
@@ -12,7 +13,7 @@ export const Panels: FC<PanelsProps> = ({panel}) => {
     switch(panel) {
         case "wall": return <Wall/>
         case "buildings": return <Buildings/>
-        case "upgrades": return null
+        case "upgrades": return <Upgrades/>
         case "lab": return null
         case "achievements": return <Achievements/>
         case "stats": return null

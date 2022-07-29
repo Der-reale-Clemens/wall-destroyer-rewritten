@@ -2,11 +2,14 @@ import { achievements, achievementsTrimmed } from "../data/achievements"
 import { producers, producersTrimmed } from "../data/producers"
 import { resources, resourcesTrimmed } from "../data/resources"
 import { DamageIcon } from "../components/Icons"
+import { upgrades, upgradesTrimmed } from "../data/upgrades"
 
 export type Resources = typeof resources
 export type ResourcesTrimmed = typeof resourcesTrimmed
 export type Producers = typeof producers
 export type ProducersTrimmed = typeof producersTrimmed
+export type Upgrades = typeof upgrades
+export type UpgradesTrimmed = typeof upgradesTrimmed
 export type Achievements = typeof achievements
 export type AchievementsTrimmed = typeof achievementsTrimmed
 
@@ -14,13 +17,16 @@ export type AchievementsTrimmed = typeof achievementsTrimmed
 
 export type SystemType = {
     data: {
-        producers: ProducersTrimmed
         resources: ResourcesTrimmed
+        producers: ProducersTrimmed
+        upgrades: UpgradesTrimmed
         achievements: AchievementsTrimmed
     },
     player: {
         resources: Record<keyof ResourcesTrimmed, number>
         producers: Record<keyof ProducersTrimmed, number>
+        unlockedUpgrades: Array<keyof UpgradesTrimmed>
+        boughtUpgrades: Array<keyof UpgradesTrimmed>
         achievements: Array<keyof AchievementsTrimmed>
     }
 }
@@ -35,25 +41,37 @@ export type Producer = {
     production: Record<keyof Resources, number>
 }
 
+export type Upgrade = {
+    isUnlocked: (system: SystemType) => boolean
+    cost: Record<keyof Resources, number>
+    effect: () => Record<keyof Producers, number>
+}
+
 export type Achievement = {
     isUnlocked: (system: SystemType) => boolean
 }
 
 export type ResourceExtended = Resource & {
-    backgroundColor: string,
+    backgroundColor: string
     icon: typeof DamageIcon
 }
 
 export type ProducerExtended = Producer & {
-    name: string,
-    type: string,
+    name: string
+    type: string
+    description: string
+    img: string
+}
+
+export type UpgradeExtended = Upgrade & {
+    name: string
     description: string
     img: string
 }
 
 export type AchievementExtended = Achievement & {
-    name: string,
-    description: string,
+    name: string
+    description: string
     img: string
 }
 

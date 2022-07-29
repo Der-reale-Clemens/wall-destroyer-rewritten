@@ -1,8 +1,8 @@
-import { calculateAchievements, calculateProductions, calculateProductionsPerResource } from "./system/updateFunctions"
+import { calculateAchievements, calculateProductions, calculateProductionsPerResource, calculateUnlockedUpgrades } from "./system/updateFunctions"
 import { walls } from "./data/walls"
 import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
-import { addAchievements, createSystemObject, decreaseResource, increaseResource } from "./redux/systemSlice"
+import { addAchievements, addUnlockedUpgrades, createSystemObject, decreaseResource, increaseResource } from "./redux/systemSlice"
 import { increaseWall } from "./redux/systemAdditionsSlice"
 import { createObjectFromKeys, objectKeys } from "./util"
 //@ts-ignore
@@ -24,6 +24,9 @@ export const update = (dispatch: AppDispatch) => {
     dispatch(increaseResource(["damage", productions.damage]))
     dispatch(increaseResource(["money", productions.money]))
     dispatch(increaseResource(["bricks", productions.bricks]))
+
+    const newUnlockedUpgrades = calculateUnlockedUpgrades(createSystemObject(state.systemReducer))
+    dispatch(addUnlockedUpgrades(newUnlockedUpgrades))
 
     const newAchievements = calculateAchievements(createSystemObject(state.systemReducer))
     dispatch(addAchievements(newAchievements))
