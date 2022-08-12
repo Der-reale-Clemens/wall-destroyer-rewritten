@@ -1,9 +1,9 @@
-import { calculateAchievements, calculateProductions, calculateProductionsPerResource, calculateUnlockedUpgrades } from "./system/updateFunctions"
+import { calculateAchievements, calculateProductions, calculateProductionsPerResource, calculateProductionsWithUpgrades, calculateUnlockedUpgrades } from "./system/updateFunctions"
 import { walls } from "./data/walls"
 import { setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
 import { addAchievements, addUnlockedUpgrades, createSystemObject, decreaseResource, increaseResource } from "./redux/systemSlice"
-import { increaseWall } from "./redux/systemAdditionsSlice"
+import { increaseWall, updateResourcesPerSecond } from "./redux/systemAdditionsSlice"
 import { createObjectFromKeys, objectKeys } from "./util"
 //@ts-ignore
 import * as swarmNumberformat from "swarm-numberformat"
@@ -19,7 +19,8 @@ export const update = (dispatch: AppDispatch) => {
     dispatch(setLastUpdate(currentTime))
 
     const productionsFull = calculateProductions(createSystemObject(state.systemReducer), deltaTime)
-    const productions = calculateProductionsPerResource(createSystemObject(state.systemReducer), productionsFull)
+    const productionsWithUpgrades = calculateProductionsWithUpgrades(createSystemObject(state.systemReducer), productionsFull)
+    const productions = calculateProductionsPerResource(createSystemObject(state.systemReducer), productionsWithUpgrades)
 
     dispatch(increaseResource(["damage", productions.damage]))
     dispatch(increaseResource(["money", productions.money]))
@@ -30,6 +31,12 @@ export const update = (dispatch: AppDispatch) => {
 
     const newAchievements = calculateAchievements(createSystemObject(state.systemReducer))
     dispatch(addAchievements(newAchievements))
+
+
+    //Stats
+    dispatch(updateResourcesPerSecond(["damage", productions.damage/deltaTime*1000]))
+    dispatch(updateResourcesPerSecond(["money", productions.money/deltaTime*1000]))
+    dispatch(updateResourcesPerSecond(["bricks", productions.bricks/deltaTime*1000]))
 }
 
 export const destroyWall = (dispatch: AppDispatch) => {

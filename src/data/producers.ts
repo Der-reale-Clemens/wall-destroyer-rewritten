@@ -32,7 +32,7 @@ export const producers = asType({
             cosmicKnowledge: 0
         },
         production: {
-            damage: 1,
+            damage: 10000,
             money: 1,
             bricks: 0,
             cosmicKnowledge: 0

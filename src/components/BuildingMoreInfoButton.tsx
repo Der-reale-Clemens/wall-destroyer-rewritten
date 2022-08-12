@@ -1,10 +1,12 @@
 import { Dialog, DialogContent, DialogTitle, IconButton, Chip, Typography, Divider, Box } from "@mui/material";
 import { FC, useState } from "react";
 import { producers } from "../data/producers";
+import { upgrades } from "../data/upgrades";
 import { calculateBuildingCost } from "../functions";
 import { useAppSelector } from "../redux/hooks";
-import { objectKeys } from "../util";
-import {InfoIcon } from "./Icons"
+import { Resources } from "../system/types";
+import { createObjectFromKeys, objectKeys } from "../util";
+import { InfoIcon } from "./Icons"
 import { ResourceCard } from "./ResourceCard";
 
 type Props = {name: keyof typeof producers}
@@ -13,6 +15,16 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
     const [open, setOpen] = useState(false)
     const building = producers[name]
     const amount = useAppSelector(s => s.systemReducer.producers[name])
+    const boughtUpgrades = useAppSelector(s => s.systemReducer.boughtUpgrades)
+
+    // Probably needs to move once this gets more complicated
+    const calculateProduction = () => {
+        const baseProduction = building.production
+        const upgradesMultiplier = boughtUpgrades.reduce((acc, cur) => acc * upgrades[cur].effect()[name], 1)
+
+        return createObjectFromKeys(baseProduction, (r) => baseProduction[r] * upgradesMultiplier)
+    }
+    const production = calculateProduction()
 
     return (
         <>
@@ -38,8 +50,8 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
                 </Typography>
                 <Divider/>
                 <Box sx={{display: "flex"}}>
-                    {objectKeys(producers[name].cost)
-                        .filter(r => producers[name].cost[r] !== 0)
+                    {objectKeys(building.cost)
+                        .filter(r => building.cost[r] !== 0)
                         .map(r => <ResourceCard key={r} name={r} amount={calculateBuildingCost(name)[r]}/>)}
                 </Box>
                 <Typography>
@@ -51,18 +63,18 @@ export const BuildingMoreInfoButton: FC<Props> = ({name}) => {
                         One {building.name}
                         <br/>
                         <Box sx={{display: "flex"}}>
-                            {objectKeys(producers[name].production)
-                                .filter(r => producers[name].production[r] !== 0)
-                                .map(r => <ResourceCard key={r} name={r} amount={producers[name].production[r]}/>)}
+                            {objectKeys(production)
+                                .filter(r => production[r] !== 0)
+                                .map(r => <ResourceCard key={r} name={r} amount={production[r]}/>)}
                         </Box>
                     </Box>
                     <Box>
                         All {building.name}s
                         <br/>
                         <Box sx={{display: "flex"}}>
-                            {objectKeys(producers[name].production)
-                                .filter(r => producers[name].production[r] !== 0)
-                                .map(r => <ResourceCard key={r} name={r} amount={producers[name].production[r] * amount}/>)}
+                            {objectKeys(production)
+                                .filter(r => production[r] !== 0)
+                                .map(r => <ResourceCard key={r} name={r} amount={production[r] * amount}/>)}
                         </Box>
                     </Box>
                 </Box>

@@ -13,7 +13,7 @@ export const upgrades = asType({
             cosmicKnowledge: 0
         },
         effect: () => ({
-            puncher: 1.5,
+            puncher: 10.5,
             clubber: 1,
             swordsman: 1,
             blackObliterator: 1,

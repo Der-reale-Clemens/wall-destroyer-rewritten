@@ -47,9 +47,10 @@ const Upgrade: FC<Props> = ({name}) => {
         >
             <DialogTitle sx={{display: "flex", justifyContent: "space-between"}}>
                 {upgrade.name}
-                <Button variant="contained" onClick={() => dispatch(buyUpgrade(name))}>
-                    Buy
-                </Button>
+                {!isBought && 
+                    <Button variant="contained" onClick={() => dispatch(buyUpgrade(name))}>
+                        Buy
+                    </Button>}
             </DialogTitle>
             <DialogContent dividers>
                 <Typography gutterBottom>

@@ -1,7 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { resources } from "../data/resources"
+import { Resources } from "../system/types";
+import { createObjectFromKeys } from "../util"
 
 const initialState = {
     wall: 0,
+    resourcesPerSecond: createObjectFromKeys(resources, () => 0)
 }
 
 const systemAdditionsSlice = createSlice({
@@ -10,6 +14,10 @@ const systemAdditionsSlice = createSlice({
     reducers: {
         increaseWall: (state) => {
             state.wall += 1
+        },
+        updateResourcesPerSecond: (state, {payload}: PayloadAction<[keyof Resources, number]>) => {
+            const [resource, production] = payload;
+            state.resourcesPerSecond[resource] = production
         }
     }
 })
@@ -17,5 +25,6 @@ const systemAdditionsSlice = createSlice({
 export const systemAdditionsReducer = systemAdditionsSlice.reducer
 
 export const {
-    increaseWall
+    increaseWall,
+    updateResourcesPerSecond
 } = systemAdditionsSlice.actions

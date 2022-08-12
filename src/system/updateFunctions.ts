@@ -16,6 +16,20 @@ export const calculateProductions = (system: SystemType, deltaTime: number): Pro
     return createObjectFromKeys(system.data.producers, oneProducer)
 }
 
+export const calculateProductionsWithUpgrades = (system: SystemType, productions: Productions): Productions => {
+    const upgrades = system.player.boughtUpgrades;
+    //Calculate all producer multipliers
+    const producerMultiplier = (producer: keyof Producers) => 
+        upgrades.reduce((acc, u) => acc * system.data.upgrades[u].effect()[producer], 1)
+    const multipliers = createObjectFromKeys(system.data.producers, producerMultiplier)
+    
+
+    const applyMultipliersToProducer = (producer: keyof Productions) => 
+        createObjectFromKeys(productions[producer], (r) => productions[producer][r] * multipliers[producer])
+
+    return createObjectFromKeys(system.data.producers, applyMultipliersToProducer)
+}
+
 export const calculateProductionsPerResource = (system: SystemType, productions: Productions) => {
     const oneResource = (res: keyof Resources) => 
         sum(Object.values(createObjectFromKeys(system.data.producers, (prod) => 
