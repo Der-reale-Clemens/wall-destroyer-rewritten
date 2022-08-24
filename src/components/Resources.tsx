@@ -1,4 +1,4 @@
-import { Box, LinearProgress, Stack, Typography, useTheme} from "@mui/material";
+import { Box, LinearProgress, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { prettify } from "../functions";
@@ -16,7 +16,7 @@ export const Resources: FC = () => {
     return (
         <Pane>
             <Stack direction="row" spacing={4} sx={{marginBottom: "5px"}}>
-                <Box sx={{display: "flex", alignItems:"center", justifyContent:"center", width:"15vw", padding:"0px"}}>
+                <Box sx={{display: "flex", alignItems:"center", justifyContent:"left", width:"15vw", padding:"0px", marginLeft: "10px"}}>
                     <DamageIcon size="large"/>
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
@@ -27,7 +27,7 @@ export const Resources: FC = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{display: "flex", alignItems:"center", justifyContent:"center", width:"15vw", padding:"0px"}}>
+                <Box sx={{display: "flex", alignItems:"center", justifyContent:"left", width:"15vw", padding:"0px"}}>
                     {wall >=1 ? <MoneyIcon size="large"/> : <UnknownIcon/>}
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
@@ -38,7 +38,7 @@ export const Resources: FC = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{display: "flex", alignItems:"center", justifyContent:"center", width:"15vw", margin:"0px"}}>
+                <Box sx={{display: "flex", alignItems:"center", justifyContent:"left", width:"15vw", margin:"0px"}}>
                     {wall >= 2 ? <BrickIcon size="large"/> : <UnknownIcon/>}
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
@@ -49,7 +49,7 @@ export const Resources: FC = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{display: "flex", alignItems:"center", justifyContent:"center", width:"15vw", padding:"0px"}}>
+                <Box sx={{display: "flex", alignItems:"center", justifyContent:"left", width:"15vw", padding:"0px"}}>
                     {false ? <ImaginaryBrickIcon size="large"/> : <UnknownIcon/>}
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
