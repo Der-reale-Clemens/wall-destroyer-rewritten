@@ -71,11 +71,11 @@ export const Sidebar: FC = () => {
                             <LabIcon/>
                         </ListItemIcon>
                     </ListItem>}
-                    <ListItem button onClick={() => setPanel("achievements")}>
+                    {wall >= 1 && <ListItem button onClick={() => setPanel("achievements")}>
                         <ListItemIcon>
                             <AchievementsIcon/>
                         </ListItemIcon>
-                    </ListItem>
+                    </ListItem>}
                     <ListItem button onClick={() => setPanel("stats")}>
                         <ListItemIcon>
                             <StatsIcon/>
