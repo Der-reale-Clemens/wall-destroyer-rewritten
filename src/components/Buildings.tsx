@@ -2,19 +2,17 @@ import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, T
 import { buyProducer } from "../redux/systemSlice";
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { BrickIcon, MoneyIcon, ImaginaryBrickIcon} from "./Icons";
 import { BuildingMoreInfoButton } from "./BuildingMoreInfoButton";
 import { calculateBuildingCost } from "../functions";
 import { producers } from "../data/producers";
+import { resources } from "../data/resources"
+import { objectKeys } from "../util";
 
-export const Buildings: FC = () => {
-    return <List sx={{width: "80vw"}}>
-        <BuildingRow name="puncher"/>
-        <BuildingRow name="clubber"/>
-        <BuildingRow name="swordsman"/>
-        <BuildingRow name="blackObliterator"/>
+export const Buildings: FC = () => (
+    <List sx={{width: "80vw"}}>
+        {objectKeys(producers).map(p => <BuildingRow name={p}/>)}
     </List>
-}
+)
 
 type Props = {
     name: keyof typeof producers
@@ -67,17 +65,19 @@ const CostProgresses: FC<Props> = ({name}) => {
     const progress = (n) => (resources[n]/costs[n])*100 >= 100 ? 100 : (resources[n]/costs[n])*100
 
     return <>
-        <CostProgess icon={<MoneyIcon size="medium" style={{paddingTop: "4px"}}/>} value={progress("money")}/>
-        <CostProgess icon={<BrickIcon size="medium" style={{paddingTop: "5px"}}/>} value={progress("bricks")}/>
-        <CostProgess icon={<ImaginaryBrickIcon size="medium" style={{paddingTop: "5px"}}/>} value={progress("bricks")}/>
+        {objectKeys(costs).map(r => costs[r] > 0 ? <CostProgess resource={r} value={progress(r)}/> : <EmptyProgrss/>)} 
     </>
 }
 
-const CostProgess = (props: any) => {
-    const icon = props.icon
+const EmptyProgrss = () => 
+    <Box sx={{ position: 'relative', display: 'inline-flex', width: '40px'}}/>
 
-    return <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      <CircularProgress variant="determinate" {...props} />
+
+type ProgressProps = {resource: keyof typeof resources, value: number}
+
+const CostProgess: FC<ProgressProps> = ({resource, value}) => (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" value={value} />
       <Box
         sx={{
           top: 0,
@@ -91,7 +91,7 @@ const CostProgess = (props: any) => {
         }}
       >
         <Typography variant="caption" component="div" color="text.secondary">
-          {icon}
+          {resources[resource].icon({size: "medium", style:{paddingTop: "4px"}})}
         </Typography>
       </Box>
-    </Box>}
+    </Box>)

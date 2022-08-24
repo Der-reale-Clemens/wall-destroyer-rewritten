@@ -18,6 +18,7 @@ export const App: FC = () => {
 
     dispatch(increaseResource(["money", 1000]))
     dispatch(increaseResource(["damage", 1]))
+    dispatch(increaseResource(["bricks", 100]))
     dispatch(setLastUpdate(new Date().getTime()))
 
     return () => clearInterval(interval)
