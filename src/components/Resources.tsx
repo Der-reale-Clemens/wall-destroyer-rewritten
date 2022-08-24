@@ -2,7 +2,7 @@ import { Box, LinearProgress, Stack, Typography, useTheme} from "@mui/material";
 import { FC } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { prettify } from "../functions";
-import { BrickIcon, ImaginaryBrickIcon, MoneyIcon, DamageIcon} from "./Icons";
+import { BrickIcon, ImaginaryBrickIcon, MoneyIcon, DamageIcon, UnknownIcon} from "./Icons";
 import { Pane } from "./Pane";
 import { walls } from "../data/walls";
 
@@ -10,6 +10,7 @@ export const Resources: FC = () => {
     const damage = useAppSelector(s => s.systemReducer.resources.damage)
     const money = useAppSelector(s => s.systemReducer.resources.money)
     const bricks = useAppSelector(s => s.systemReducer.resources.bricks)
+    const wall = useAppSelector(s => s.systemAdditionsReducer.wall)
     const resourcesPerSecond = useAppSelector(s => s.systemAdditionsReducer.resourcesPerSecond)
 
     return (
@@ -27,7 +28,7 @@ export const Resources: FC = () => {
                     </Box>
                 </Box>
                 <Box sx={{display: "flex", alignItems:"center", justifyContent:"center", width:"15vw", padding:"0px"}}>
-                    <MoneyIcon size="large"/>
+                    {wall >=1 ? <MoneyIcon size="large"/> : <UnknownIcon/>}
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
                             {prettify(money)}
@@ -38,7 +39,7 @@ export const Resources: FC = () => {
                     </Box>
                 </Box>
                 <Box sx={{display: "flex", alignItems:"center", justifyContent:"center", width:"15vw", margin:"0px"}}>
-                    <BrickIcon size="large"/>
+                    {wall >= 2 ? <BrickIcon size="large"/> : <UnknownIcon/>}
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
                             {prettify(bricks)}
@@ -49,13 +50,13 @@ export const Resources: FC = () => {
                     </Box>
                 </Box>
                 <Box sx={{display: "flex", alignItems:"center", justifyContent:"center", width:"15vw", padding:"0px"}}>
-                    <ImaginaryBrickIcon size="large"/>
+                    {false ? <ImaginaryBrickIcon size="large"/> : <UnknownIcon/>}
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
-                            {prettify(10000)}
+                            {prettify(0)}
                         </Typography>
                         <Typography variant="body2">
-                            (+10/s)
+                            (+0/s)
                         </Typography>
                     </Box>
                 </Box>

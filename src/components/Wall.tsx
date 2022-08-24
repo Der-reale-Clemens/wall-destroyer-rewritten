@@ -26,7 +26,7 @@ export const Wall: FC = () => {
                 Unlocks:
                 <Divider style={{marginBottom: "5px"}}/>
                 {walls[wall].unlocks
-                    .map((src) => <img alt="" key={src} style={{filter:"grayscale(100%)", margin: "2px"}} src={src}/>)}
+                    .map((src) => <img alt="" key={src} style={{filter:"grayscale(100%)", margin: "2px", width: "50px", height: "50px"}} src={src}/>)}
             </Pane>
         </div>
     )

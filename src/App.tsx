@@ -14,9 +14,10 @@ export const App: FC = () => {
   useEffect(() => { 
     const interval = setInterval(() => {
       update(dispatch)
-    }, 100)
+    }, 66)
 
     dispatch(increaseResource(["money", 1000]))
+    dispatch(increaseResource(["damage", 1]))
     dispatch(setLastUpdate(new Date().getTime()))
 
     return () => clearInterval(interval)

@@ -9,6 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import { Panels, PanelsProps } from './Panels';
 import { Resources } from './Resources';
 import { WallIcon, BuildingsIcon, UpgradesIcon, AchievementsIcon, StatsIcon, SettingsIcon, LabIcon} from './Icons';
+import { useAppSelector } from '../redux/hooks';
 
 const closedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
@@ -43,7 +44,8 @@ const Drawer = styled(MuiDrawer)(({ theme }) => ({
 
 
 export const Sidebar: FC = () => {
-    const [panel, setPanel] = useState<PanelsProps["panel"]>("wall");
+    const [panel, setPanel] = useState<PanelsProps["panel"]>("wall")
+    const wall = useAppSelector(s => s.systemAdditionsReducer.wall)
 
     return (
         <Box sx={{ display: 'flex'}}>
@@ -54,21 +56,21 @@ export const Sidebar: FC = () => {
                             <WallIcon/>
                         </ListItemIcon>
                     </ListItem>
-                    <ListItem button onClick={() => setPanel("buildings")}>
+                    {wall >= 1 && <ListItem button onClick={() => setPanel("buildings")}>
                         <ListItemIcon>
                             <BuildingsIcon/>
                         </ListItemIcon>
-                    </ListItem>
-                    <ListItem button onClick={() => setPanel("upgrades")}>
+                    </ListItem>}
+                    {wall >= 2 && <ListItem button onClick={() => setPanel("upgrades")}>
                         <ListItemIcon>
                             <UpgradesIcon/>
                         </ListItemIcon>
-                    </ListItem>
-                    <ListItem button onClick={() => setPanel("lab")}>
+                    </ListItem>}
+                    {wall >= 3 && <ListItem button onClick={() => setPanel("lab")}>
                         <ListItemIcon>
                             <LabIcon/>
                         </ListItemIcon>
-                    </ListItem>
+                    </ListItem>}
                     <ListItem button onClick={() => setPanel("achievements")}>
                         <ListItemIcon>
                             <AchievementsIcon/>
