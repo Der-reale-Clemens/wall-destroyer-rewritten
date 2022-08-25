@@ -5,16 +5,16 @@ const asType = <T extends {[key: string]: ProducerExtended}>(arg: T): T =>arg;
 
 export const producers = asType({
     puncher: {
-        costScaling: 1.1,
+        costScaling: 1.2,
         cost: {
             damage: 0,
-            money: 20,
+            money: 10,
             bricks: 0,
             cosmicKnowledge: 0
         },
         production: {
-            damage: 0.1,
-            money: 0.1,
+            damage: 1,
+            money: 0.2,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -24,15 +24,15 @@ export const producers = asType({
         img: "http://i.imgur.com/amBI8wT.png"
     },
     clubber: {
-        costScaling: 1.1,
+        costScaling: 1.2,
         cost: {
             damage: 0,
-            money: 100,
+            money: 50,
             bricks: 0,
             cosmicKnowledge: 0
         },
         production: {
-            damage: 10000,
+            damage: 2,
             money: 1,
             bricks: 0,
             cosmicKnowledge: 0
@@ -43,16 +43,16 @@ export const producers = asType({
         img: "http://i.imgur.com/HVaisVj.png"
     },
     swordsman: {
-        costScaling: 1.1,
+        costScaling: 1.2,
         cost: {
             damage: 0,
-            money: 1100,
+            money: 400,
             bricks: 0,
             cosmicKnowledge: 0
         },
         production: {
-            damage: 2.5,
-            money: 2.5,
+            damage: 7.5,
+            money: 5,
             bricks: 0,
             cosmicKnowledge: 0
         },

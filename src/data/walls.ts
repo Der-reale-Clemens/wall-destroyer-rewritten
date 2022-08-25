@@ -30,7 +30,7 @@ export const walls: Array<Wall> = [
         requirement: 0.99999999999999,
         reward: {
             damage: 0,
-            money: 20,
+            money: 15,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -40,10 +40,10 @@ export const walls: Array<Wall> = [
         img: paperWallImg
     },
     {
-        requirement: 1000,
+        requirement: 5000,
         reward: {
             damage: 0,
-            money: 500,
+            money: 1000,
             bricks: 1,
             cosmicKnowledge: 0
         },
