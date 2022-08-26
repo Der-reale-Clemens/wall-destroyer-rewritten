@@ -1,5 +1,5 @@
 // It's literally just Object.keys, but this is necessary since it doesn't have proper typing 
-export const objectKeys = <T>(obj: T): Array<keyof T> => 
+export const objectKeys = <T extends {}>(obj: T): Array<keyof T> => 
     Object.keys(obj) as Array<keyof T>
 
 export const createObjectFromKeys = <T extends {[key:string]: any}, R>(keys: T, initilizer: (_:keyof T) => R): Record<keyof T, R> => 
