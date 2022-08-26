@@ -2,6 +2,7 @@ import {Box, useTheme} from '@mui/material'
 import { FC } from 'react'
 
 interface Props {
+    children: any
     style?: React.CSSProperties
 }
 
