@@ -3,8 +3,8 @@ name: Deploy to to the gh-pages branch
 # Controls when the workflow will run
 on:
   push:
-    branches:
-      - bugfix/failing-tsc
+    branches: "master"
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -15,15 +15,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-        with:
-          ref: 'bugfix/failing-tsc'
-
+    
       - name: Install Node.js 18
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
           cache: npm
-
       - name: Install Dependencies and build
         run: |
           npm ci
@@ -51,4 +48,3 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
