@@ -1,5 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Wall Destroyer:Rewritten
 
+## Motivation
+The goal of this rewritte is to create an idle game based on the original Wall Destroyer by Tellurium, with a modern and clean UI as well as bring the gameplay and flow more in line with other current titles in the genre, e.g. mutliple resources that need to be balanced, no clicking and different upgrade systems. A secondary goal is make the game open for modding and easy to read game data definitions. This should be achieved by creating a resuable functional programming API that at a later date could be released as a standalone idle game creation library.
+
+## Structure
+
+The `system` folder holds all the actual business logic, it is a defacto idle game engine. The original goal was to have this as a seperate package that can easily be imported and configured, but this has been shelved for the moment as the scope of this library can be best defined by first building a full game with it.
+
+All game defining data is stored in the `Data` folder, where the definitions are simple objects to allow even people without extensive programming experience to edit the objects.
+
+The other folders follow the general React project layout style.
 ## Available Scripts
 
 In the project directory, you can run:
@@ -7,38 +17,33 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The page will reload if you make edits.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
+Builds the app for production to the `dist` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The build is minified and the filenames include the hashes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm run serve`
 
-### `npm run eject`
+Runs the app in production mode.<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Open [http://localhost:4173](http://localhost:4173) to view it in the browser.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Be aware that you need to run `npm run build` first as this simply hosts the `dist` folder
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `npm run check`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Runs the typescript linter to check for error, it is **not** run automatically at any point as there seems to be some type errors in the material ui library that I am not able to fix.
 
-## Learn More
+## Branching strategy
+`master` holds the production build deployed to cloudflare
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`dev` hold the non-prod build available on github pages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+All features and bugfixes have to be branched of the `dev` branch and will be merged upon approval, where then on release after testing the `dev` branch will be merged into `master` for general availability. The `vite.config.ts` file will never be merged as the `base` parameter needs to stay different for github pages and cloudflare deploys.
