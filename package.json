@@ -6,6 +6,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
+    "build:prod": "vite --config vite.prod.config.ts build",
     "serve": "vite preview",
     "check": "tsc"
   },
