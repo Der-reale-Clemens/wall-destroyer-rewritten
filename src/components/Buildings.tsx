@@ -1,12 +1,13 @@
-import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, Typography, Box, useTheme} from "@mui/material";
+import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, Typography, Box, useTheme, Tooltip} from "@mui/material";
 import { buyProducer } from "../redux/systemSlice";
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { BuildingMoreInfoButton } from "./BuildingMoreInfoButton";
-import { calculateBuildingCost } from "../functions";
+import { calculateBuildingCost, prettify } from "../functions";
 import { producers } from "../data/producers";
 import { resources } from "../data/resources"
 import { objectKeys } from "../util";
+import { Resources } from "../system/types";
 
 export const Buildings: FC = () => (
     <List sx={{width: "80vw"}}>
@@ -65,7 +66,7 @@ const CostProgresses: FC<Props> = ({name}) => {
     const progress = (n) => (resources[n]/costs[n])*100 >= 100 ? 100 : (resources[n]/costs[n])*100
 
     return <>
-        {objectKeys(costs).map(r => costs[r] > 0 ? <CostProgess resource={r} value={progress(r)}/> : <EmptyProgrss/>)} 
+        {objectKeys(costs).map(r => costs[r] > 0 ? <CostProgess resource={r} value={progress(r)} cost={costs[r]}/> : <EmptyProgrss/>)} 
     </>
 }
 
@@ -73,9 +74,14 @@ const EmptyProgrss = () =>
     <Box sx={{ position: 'relative', display: 'inline-flex', width: '40px'}}/>
 
 
-type ProgressProps = {resource: keyof typeof resources, value: number}
+type ProgressProps = {
+    resource: keyof Resources
+    value: number
+    cost: number
+}
 
-const CostProgess: FC<ProgressProps> = ({resource, value}) => (
+const CostProgess: FC<ProgressProps> = ({resource, value, cost}) => (
+    <Tooltip title={prettify(cost)}>
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress variant="determinate" value={value} />
       <Box
@@ -94,4 +100,5 @@ const CostProgess: FC<ProgressProps> = ({resource, value}) => (
           {resources[resource].icon({size: "medium", style:{paddingTop: "4px"}})}
         </Typography>
       </Box>
-    </Box>)
+    </Box>
+    </Tooltip>)
