@@ -1,6 +1,6 @@
 import { calculateAchievements, calculateProductions, calculateProductionsPerResource, calculateProductionsWithUpgrades, calculateUnlockedUpgrades } from "./system/updateFunctions"
 import { walls } from "./data/walls"
-import { setLastUpdate } from "./redux/appSlice"
+import { addCurrentFlag, setLastUpdate } from "./redux/appSlice"
 import { AppDispatch, store } from "./redux/store"
 import { addAchievements, addUnlockedUpgrades, createSystemObject, decreaseResource, increaseResource } from "./redux/systemSlice"
 import { increaseWall, updateResourcesPerSecond } from "./redux/systemAdditionsSlice"
@@ -55,6 +55,8 @@ export const destroyWall = (dispatch: AppDispatch) => {
         .forEach(reward => dispatch(increaseResource([reward, wall.reward[reward]])))
 
     dispatch(increaseWall())
+    //@ts-expect-error
+    dispatch(addCurrentFlag("destroyedWall" + wallNum))
 }
 
 export const calculateBuildingCost = (producer: keyof typeof producers) => {

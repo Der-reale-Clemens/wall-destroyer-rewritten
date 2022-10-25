@@ -61,6 +61,25 @@ export const producers = asType({
         description: "Some question the use of swords on a brick wall. Those guys are lame.",
         img: "http://i.imgur.com/aPQuEKp.png"
     },
+    gunshooter: {
+        costScaling: 1.2,
+        cost: {
+            damage: 0,
+            money: 40,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        production: {
+            damage: 70000.5,
+            money: 5000,
+            bricks: 10,
+            cosmicKnowledge: 0
+        },
+        name: "Gunshooter",
+        type: "Meele",
+        description: "Shoots his gun",
+        img: "http://i.imgur.com/gCp304H.png"
+    },
     blackObliterator: {
         costScaling: 1.1,
         cost: {
