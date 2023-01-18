@@ -5,8 +5,10 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 //@ts-expect-error
 import buildingsTabImg from "../images/buildingsTab.png"
 //@ts-expect-error
+import upgradesTabImg from "../images/upgradesTab.png";
+//@ts-expect-error
 import achievementsTabImg from "../images/achievementsTab.png"
-import { MoneyIcon } from "./Icons";
+import { MoneyIcon, BrickIcon } from "./Icons";
 
 export const Modals: FC = () => {
     return (
@@ -23,7 +25,8 @@ export const Modals: FC = () => {
                 </Typography>
             </Box>
             <Typography>
-                One of the main resources, used to buy the majority of things. Be sure to produce a lot of this
+                <i>~Pretty nice that you get paid just for attacking a wall~</i><br/>
+                One of the main resources, used to buy the majority of things, make sure to produce a lot of this.
             </Typography>
             <Divider/>
             <Box sx={{display: "flex", alignItems: "center"}}>
@@ -33,8 +36,9 @@ export const Modals: FC = () => {
                 </Typography>
             </Box>
             <Typography>
-                They are buyable producers that produce much needed resources, mostly damage and money. 
-                They do this at different effiencies and rates, so make sure to check out the details of the buildings
+                <i>~Time to get some help, this a not a task that you can finish by yourself~</i><br/>
+                Buy producers that produce much needed resources, mostly damage and money. 
+                They do this at different effiencies and rates, so make sure to check out the details of all the buildings.
             </Typography>
             <Divider/>
             <Box sx={{display: "flex", alignItems: "center"}}>
@@ -44,12 +48,33 @@ export const Modals: FC = () => {
                 </Typography>
             </Box>
             <Typography>
+                <i>~You gotta have something to show off afterall~</i><br/>
                 Mark your milestones
             </Typography>
         </Modal>
-        <Modal flag="destroyedWall1" title="Destroyed the Drywall">
+        <Modal flag="destroyedWall0" title="Destroyed the Drywall">
             <Typography>
                 Good Job
+            </Typography>
+            <Divider/>
+            <Box sx={{display: "flex", alignItems: "center"}}>
+                <img src={upgradesTabImg} style={{marginRight: "5px"}}/>
+                <Typography>
+                    Upgrades
+                </Typography>
+            </Box>
+            <Typography>
+                <i>~The Realistic Upgrade Corporation opens its doors~</i><br/>
+                Unlock and buy upgrades that improve the effiency and production of your producers.
+            </Typography>
+            <Divider/>
+            <Box sx={{display: "flex", alignItems: "center"}}>
+                <BrickIcon size="large" style={{marginTop: "5px", marginRight: "5px"}}/>
+                <Typography>Bricks</Typography>
+            </Box>
+            <Typography>
+                <i>~These aren't ordinary bricks, they are Bricks™~</i><br/>
+                Bricks are a rare but strong resource, they can't be produced and can only be gathered by destroying walls.
             </Typography>
         </Modal>
         </>
