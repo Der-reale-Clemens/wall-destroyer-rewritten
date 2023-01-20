@@ -1,4 +1,4 @@
-import { Box, Divider, Grid } from "@mui/material"
+import { Box, Divider, Grid, Typography } from "@mui/material"
 import { FC } from "react"
 import { Pane } from "./Pane"
 import { keyframes } from "@emotion/react";
@@ -20,9 +20,19 @@ export const Wall: FC = () => {
                 <br/>
                 <i>{walls[wall].description}</i>
                 <br/>
-                Rewards:
+                <Box sx={{display: "flex", justifyContent: "space-between"}}>
+                    <Typography>
+                        Rewards:
+                    </Typography>
+                    <Typography sx={{marginRight: "30px"}}>
+                        Health:
+                    </Typography>
+                </Box>
                 <Divider style={{marginBottom: "5px"}}/>
-                <RewardsGrid wall={wall}/>
+                <Box sx={{display: "flex", justifyContent: "space-between"}}>
+                    <RewardsGrid wall={wall}/>
+                    <ResourceCard name="damage" amount={walls[wall].requirement}/>
+                </Box>
                 Unlocks:
                 <Divider style={{marginBottom: "5px"}}/>
                 {walls[wall].unlocks

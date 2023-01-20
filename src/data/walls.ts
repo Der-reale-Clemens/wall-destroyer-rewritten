@@ -40,7 +40,7 @@ export const walls: Array<Wall> = [
         img: paperWallImg
     },
     {
-        requirement: 5000,
+        requirement: 5,
         reward: {
             damage: 0,
             money: 1000,
