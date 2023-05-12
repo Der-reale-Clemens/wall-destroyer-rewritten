@@ -3,18 +3,20 @@ import { createObjectFromKeys } from "../util"
 
 const asType = <T extends {[key: string]: ProducerExtended}>(arg: T): T =>arg;
 
+const scaling = 1.2
+
 export const producers = asType({
     puncher: {
-        costScaling: 1.2,
+        costScaling: scaling,
         cost: {
             damage: 0,
-            money: 10,
+            money: 15,
             bricks: 0,
             cosmicKnowledge: 0
         },
         production: {
-            damage: 1,
-            money: 0.2,
+            damage: 10_000.05,
+            money: 1,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -24,16 +26,16 @@ export const producers = asType({
         img: "http://i.imgur.com/amBI8wT.png"
     },
     clubber: {
-        costScaling: 1.2,
+        costScaling: scaling,
         cost: {
             damage: 0,
-            money: 50,
+            money: 150,
             bricks: 0,
             cosmicKnowledge: 0
         },
         production: {
-            damage: 2,
-            money: 1,
+            damage: 1,
+            money: 5,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -43,16 +45,16 @@ export const producers = asType({
         img: "http://i.imgur.com/HVaisVj.png"
     },
     swordsman: {
-        costScaling: 1.2,
+        costScaling: scaling,
         cost: {
             damage: 0,
-            money: 400,
+            money: 1200,
             bricks: 0,
             cosmicKnowledge: 0
         },
         production: {
-            damage: 7.5,
-            money: 5,
+            damage: 10,
+            money: 25,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -62,17 +64,17 @@ export const producers = asType({
         img: "http://i.imgur.com/aPQuEKp.png"
     },
     gunshooter: {
-        costScaling: 1.2,
+        costScaling: scaling,
         cost: {
             damage: 0,
-            money: 40,
+            money: 40_000,
             bricks: 0,
             cosmicKnowledge: 0
         },
         production: {
-            damage: 70000.5,
-            money: 5000,
-            bricks: 10,
+            damage: 400,
+            money: 600,
+            bricks: 0,
             cosmicKnowledge: 0
         },
         name: "Gunshooter",
@@ -81,7 +83,7 @@ export const producers = asType({
         img: "http://i.imgur.com/gCp304H.png"
     },
     blackObliterator: {
-        costScaling: 1.1,
+        costScaling: scaling,
         cost: {
             damage: 1,
             money: 100,

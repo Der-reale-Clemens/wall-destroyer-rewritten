@@ -34,20 +34,20 @@ export const walls: Array<Wall> = [
             bricks: 0,
             cosmicKnowledge: 0
         },
-        unlocks: [buildingsTabImg, achievementsTabImg, moneyImg],
+        unlocks: [buildingsTabImg, moneyImg],
         name: "Wall of A4 Printing Paper",
         description: "I don't think this actually counts as a wall",
         img: paperWallImg
     },
     {
-        requirement: 5,
+        requirement: 1e5,
         reward: {
             damage: 0,
-            money: 1000,
-            bricks: 1,
+            money: 100_000,
+            bricks: 0,
             cosmicKnowledge: 0
         },
-        unlocks: [upgradesTabImg, brickImg],
+        unlocks: [upgradesTabImg, achievementsTabImg],
         name: "Drywall",
         description: "I guess your name is Kyle now",
         img: dryWallImg

@@ -5,6 +5,7 @@ import { prettify } from "../functions";
 import { BrickIcon, ImaginaryBrickIcon, MoneyIcon, DamageIcon, UnknownIcon} from "./Icons";
 import { Pane } from "./Pane";
 import { walls } from "../data/walls";
+import { LockedContent } from "./util/LockedContent";
 
 export const Resources: FC = () => {
     const damage = useAppSelector(s => s.systemReducer.resources.damage)
@@ -28,7 +29,9 @@ export const Resources: FC = () => {
                     </Box>
                 </Box>
                 <Box sx={{display: "flex", alignItems:"center", justifyContent:"left", width:"15vw", padding:"0px"}}>
-                    {wall >=1 ? <MoneyIcon size="large"/> : <UnknownIcon/>}
+                    <LockedContent flag="destroyedWall0">
+                        <MoneyIcon size="large"/>
+                    </LockedContent>
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
                             {prettify(money)}
@@ -39,7 +42,9 @@ export const Resources: FC = () => {
                     </Box>
                 </Box>
                 <Box sx={{display: "flex", alignItems:"center", justifyContent:"left", width:"15vw", margin:"0px"}}>
-                    {wall >= 2 ? <BrickIcon size="large"/> : <UnknownIcon/>}
+                    <LockedContent flag="destroyedWall1">
+                        <BrickIcon size="large"/>
+                    </LockedContent>
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
                             {prettify(bricks)}
@@ -50,7 +55,9 @@ export const Resources: FC = () => {
                     </Box>
                 </Box>
                 <Box sx={{display: "flex", alignItems:"center", justifyContent:"left", width:"15vw", padding:"0px"}}>
-                    {false ? <ImaginaryBrickIcon size="large"/> : <UnknownIcon/>}
+                    <LockedContent flag="destroyedWall3">
+                        <ImaginaryBrickIcon size="large"/>
+                    </LockedContent>
                     <Box sx={{display: "flex", flexDirection: "column", marginLeft: "3px"}}>
                         <Typography variant="h6" sx={{marginBottom: "-10px"}}>
                             {prettify(0)}

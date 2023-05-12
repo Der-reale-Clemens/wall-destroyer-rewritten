@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type Flags = "destroyedWall0" | "destroyedWall1" | "destroyedWall2" | "destroyedWall3"
+export type Flags = "destroyedWall0" | "destroyedWall00" | "destroyedWall1" | "destroyedWall2" | "destroyedWall3"
 
 const initialState = {
     lastUpdate: 0,

@@ -1,7 +1,18 @@
-import { UpgradeExtended } from "../system/types";
+import { UpgradeEffect, UpgradeExtended } from "../system/types";
 import { createObjectFromKeys } from "../util";
 
 const asType = <T extends {[key: string]: UpgradeExtended}>(arg: T): T => arg;
+
+const makeEffect = (effect: Partial<UpgradeEffect>) => {
+    const baseEffect = {
+        puncher: 1,
+        clubber: 1,
+        swordsman: 1,
+        gunshooter: 1,
+        blackObliterator: 1,
+    }
+    return () => ({...baseEffect, ...effect})
+}
 
 export const upgrades = asType({
     gloves: {
@@ -12,12 +23,7 @@ export const upgrades = asType({
             bricks: 0,
             cosmicKnowledge: 0
         },
-        effect: () => ({
-            puncher: 10.5,
-            clubber: 1,
-            swordsman: 1,
-            blackObliterator: 1,
-        }),
+        effect: makeEffect({puncher: 10}),
         name: "Gloves",
         description: "A little padding",
         img: "http://i.imgur.com/tzwF920.png"
@@ -30,12 +36,7 @@ export const upgrades = asType({
             bricks: 0,
             cosmicKnowledge: 0
         },
-        effect: () => ({
-            puncher: 2,
-            clubber: 1,
-            swordsman: 1,
-            blackObliterator: 1
-        }),
+        effect: makeEffect({puncher: 2}),
         name: "Padded Gloves",
         description: "Actually significant padding",
         img: "http://i.imgur.com/uwEoJ22.png"
@@ -48,12 +49,7 @@ export const upgrades = asType({
             bricks: 0,
             cosmicKnowledge: 0
         },
-        effect: () => ({
-            puncher: 1,
-            clubber: 1.5,
-            swordsman: 1,
-            blackObliterator: 1,
-        }),
+        effect: makeEffect({clubber: 2}),
         name: "Better Clubs",
         description: "Simply feels better to hold",
         img: "http://i.imgur.com/k6W8MW9.png"

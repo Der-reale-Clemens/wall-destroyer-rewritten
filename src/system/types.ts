@@ -13,6 +13,7 @@ export type UpgradesTrimmed = typeof upgradesTrimmed
 export type Achievements = typeof achievements
 export type AchievementsTrimmed = typeof achievementsTrimmed
 
+export type UpgradeEffect = Record<keyof Producers, number>;
 
 
 export type SystemType = {
@@ -44,7 +45,7 @@ export type Producer = {
 export type Upgrade = {
     isUnlocked: (system: SystemType) => boolean
     cost: Record<keyof Resources, number>
-    effect: () => Record<keyof Producers, number>
+    effect: () => UpgradeEffect
 }
 
 export type Achievement = {

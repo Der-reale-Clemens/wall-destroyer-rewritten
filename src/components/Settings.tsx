@@ -70,8 +70,6 @@ export const Settings: FC = () => {
                             description="Initial MVP release containing balancing up to the end of the tutorial"/>
                     </DialogContent>
                 </Dialog>
-                <br/>
-                <Button onClick={() => window.open("https://forms.gle/KdtTVMontuL2FVSD8", '_blank')}>Give Feedback</Button>
             </div>
         </div>
     </div>)

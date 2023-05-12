@@ -10,6 +10,7 @@ import { Panels, PanelsProps } from './Panels';
 import { Resources } from './Resources';
 import { WallIcon, BuildingsIcon, UpgradesIcon, AchievementsIcon, StatsIcon, SettingsIcon, LabIcon} from './Icons';
 import { useAppSelector } from '../redux/hooks';
+import { LockedContent } from './util/LockedContent';
 
 const closedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
@@ -46,6 +47,7 @@ const Drawer = styled(MuiDrawer)(({ theme }) => ({
 export const Sidebar: FC = () => {
     const [panel, setPanel] = useState<PanelsProps["panel"]>("wall")
     const wall = useAppSelector(s => s.systemAdditionsReducer.wall)
+    const flags = useAppSelector(s => s.appReducer.flags)
 
     return (
         <Box sx={{ display: 'flex'}}>
@@ -56,26 +58,34 @@ export const Sidebar: FC = () => {
                             <WallIcon/>
                         </ListItemIcon>
                     </ListItem>
-                    {wall >= 1 && <ListItem button onClick={() => setPanel("buildings")}>
-                        <ListItemIcon>
-                            <BuildingsIcon/>
-                        </ListItemIcon>
-                    </ListItem>}
-                    {wall >= 2 && <ListItem button onClick={() => setPanel("upgrades")}>
-                        <ListItemIcon>
-                            <UpgradesIcon/>
-                        </ListItemIcon>
-                    </ListItem>}
-                    {wall >= 3 && <ListItem button onClick={() => setPanel("lab")}>
-                        <ListItemIcon>
-                            <LabIcon/>
-                        </ListItemIcon>
-                    </ListItem>}
-                    {wall >= 1 && <ListItem button onClick={() => setPanel("achievements")}>
-                        <ListItemIcon>
-                            <AchievementsIcon/>
-                        </ListItemIcon>
-                    </ListItem>}
+                    <LockedContent flag="destroyedWall0" hidden>
+                        <ListItem button onClick={() => setPanel("buildings")}>
+                            <ListItemIcon>
+                                <BuildingsIcon/>
+                            </ListItemIcon>
+                        </ListItem>
+                    </LockedContent>
+                    <LockedContent flag="destroyedWall00" hidden>
+                        <ListItem button onClick={() => setPanel("upgrades")}>
+                            <ListItemIcon>
+                                <UpgradesIcon/>
+                            </ListItemIcon>
+                        </ListItem>
+                    </LockedContent>
+                    <LockedContent flag="destroyedWall1" hidden>
+                        <ListItem button onClick={() => setPanel("lab")}>
+                            <ListItemIcon>
+                                <LabIcon/>
+                            </ListItemIcon>
+                        </ListItem>
+                    </LockedContent>
+                    <LockedContent flag="destroyedWall00" hidden>
+                        <ListItem button onClick={() => setPanel("achievements")}>
+                            <ListItemIcon>
+                                <AchievementsIcon/>
+                            </ListItemIcon>
+                        </ListItem>
+                    </LockedContent>
                     <ListItem button onClick={() => setPanel("stats")}>
                         <ListItemIcon>
                             <StatsIcon/>

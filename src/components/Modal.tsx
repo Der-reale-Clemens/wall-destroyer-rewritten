@@ -40,21 +40,11 @@ export const Modals: FC = () => {
                 Buy producers that produce much needed resources, mostly damage and money. 
                 They do this at different effiencies and rates, so make sure to check out the details of all the buildings.
             </Typography>
-            <Divider/>
-            <Box sx={{display: "flex", alignItems: "center"}}>
-                <img src={achievementsTabImg} style={{marginRight: "5px"}}/>
-                <Typography>
-                    Achievements
-                </Typography>
-            </Box>
-            <Typography>
-                <i>~You gotta have something to show off afterall~</i><br/>
-                Mark your milestones
-            </Typography>
+            
         </Modal>
-        <Modal flag="destroyedWall0" title="Destroyed the Drywall">
+        <Modal flag="destroyedWall1" title="Destroyed the Drywall">
             <Typography>
-                Good Job
+                Congratulations you destroyed the Drywall, now you're able to move on to the actual wall and you also unlocked: 
             </Typography>
             <Divider/>
             <Box sx={{display: "flex", alignItems: "center"}}>
@@ -67,19 +57,32 @@ export const Modals: FC = () => {
                 <i>~The Realistic Upgrade Corporation opens its doors~</i><br/>
                 Unlock and buy upgrades that improve the effiency and production of your producers.
             </Typography>
+            
             <Divider/>
             <Box sx={{display: "flex", alignItems: "center"}}>
-                <BrickIcon size="large" style={{marginTop: "5px", marginRight: "5px"}}/>
-                <Typography>Bricks</Typography>
+                <img src={achievementsTabImg} style={{marginRight: "5px"}}/>
+                <Typography>
+                    Achievements
+                </Typography>
             </Box>
             <Typography>
-                <i>~These aren't ordinary bricks, they are Bricks™~</i><br/>
-                Bricks are a rare but strong resource, they can't be produced and can only be gathered by destroying walls.
+                <i>~You gotta have something to show off afterall~</i><br/>
+                Mark your milestones
             </Typography>
         </Modal>
         </>
     )
 }
+
+// <Divider/>
+// <Box sx={{display: "flex", alignItems: "center"}}>
+//<BrickIcon size="large" style={{marginTop: "5px", marginRight: "5px"}}/>
+//<Typography>Bricks</Typography>
+//</Box>
+//<Typography>
+//<i>~These aren't ordinary bricks, they are Bricks™~</i><br/>
+//Bricks are a rare but strong resource, they can't be produced and can only be gathered by destroying walls.
+//</Typography> 
 
 
 type Props = {
