@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type Flags = "destroyedWall0" | "destroyedWall00" | "destroyedWall1" | "destroyedWall2" | "destroyedWall3"
+export type Flags = "destroyedWall0" | "destroyedWall1" | "destroyedWall2" | "destroyedWall3"
 
 const initialState = {
     lastUpdate: 0,
     theme: "dark",
     format: "standard",
+    gameMode: '',
     flags: [] as Array<Flags>, //Persistent store of all already triggered flags
     currentFlags: [] as Array<Flags> //Currently active flags, after use should be removed
 }
@@ -23,6 +24,9 @@ const appSlice = createSlice({
         setFormat: (state, {payload: format}: PayloadAction<string>) => {
             state.format = format
         },
+        setGameMode: (state, {payload: gameMode}: PayloadAction<string>) => {
+            state.gameMode = gameMode
+        },
         addCurrentFlag: (state, {payload: event}: PayloadAction<Flags>) => {
             state.flags.push(event)
             state.currentFlags.push(event)
@@ -39,6 +43,7 @@ export const {
     setLastUpdate,
     setTheme,
     setFormat,
+    setGameMode,
     addCurrentFlag,
     removeCurrentFlag
 } = appSlice.actions

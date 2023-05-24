@@ -8,7 +8,7 @@ import buildingsTabImg from "../images/buildingsTab.png"
 import upgradesTabImg from "../images/upgradesTab.png";
 //@ts-expect-error
 import achievementsTabImg from "../images/achievementsTab.png"
-import { MoneyIcon, BrickIcon } from "./Icons";
+import { MoneyIcon, BrickIcon } from "./util/Icons";
 
 export const Modals: FC = () => {
     return (

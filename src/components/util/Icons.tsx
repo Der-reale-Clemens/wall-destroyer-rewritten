@@ -2,11 +2,11 @@
 import { useTheme } from "@emotion/react";
 import { Theme } from "@mui/material";
 import React, { FC } from "react";
-import damageIcon from "../images/damage.png"
-import moneyImg from "../images/money.png"
-import brickImg from "../images/brick.png"
-import imaginaryBrickImg from "../images/imaginaryBrick.png"
-import cosmicKnowledgeImg from "../images/cosmicKnowledge.png"
+import damageIcon from "../../images/damage.png"
+import moneyImg from "../../images/money.png"
+import brickImg from "../../images/brick.png"
+import imaginaryBrickImg from "../../images/imaginaryBrick.png"
+import cosmicKnowledgeImg from "../../images/cosmicKnowledge.png"
 
 type IconProps = {color?: string, path: string}
 

@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { Achievements } from "./Achievements";
-import { Buildings } from "./Buildings";
-import { Settings } from "./Settings";
-import { Upgrades } from "./Upgrades";
-import { Wall } from "./Wall";
+import { Achievements } from "./AchievementsScreen/Achievements";
+import { Buildings } from "./BuildingsScreen/Buildings";
+import { Settings } from "./SettingsScreen/Settings";
+import { Upgrades } from "./UpgradesScreen/Upgrades";
+import { Wall } from "./WallScreen/Wall";
 
 export type PanelsProps = {
     panel: "wall" | "buildings" | "upgrades" | "lab" | "achievements" | "stats" | "settings"

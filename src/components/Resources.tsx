@@ -2,8 +2,8 @@ import { Box, LinearProgress, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { prettify } from "../functions";
-import { BrickIcon, ImaginaryBrickIcon, MoneyIcon, DamageIcon, UnknownIcon} from "./Icons";
-import { Pane } from "./Pane";
+import { BrickIcon, ImaginaryBrickIcon, MoneyIcon, DamageIcon, UnknownIcon} from "./util/Icons";
+import { Pane } from "./util/Pane";
 import { walls } from "../data/walls";
 import { LockedContent } from "./util/LockedContent";
 

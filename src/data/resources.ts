@@ -1,4 +1,4 @@
-import { BrickIcon, CosmicKnowledgeIcon, DamageIcon, MoneyIcon } from "../components/Icons"
+import { BrickIcon, CosmicKnowledgeIcon, DamageIcon, MoneyIcon } from "../components/util/Icons"
 import { createObjectFromKeys } from "../util"
 import type { ResourceExtended } from "../system/types"
 

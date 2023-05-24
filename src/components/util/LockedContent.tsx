@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import { Flags } from "../../redux/appSlice";
 import { useAppSelector } from "../../redux/hooks";
-import { UnknownIcon } from "../Icons";
+import { UnknownIcon } from "./Icons";
 
 type Props = {
     children: ReactNode,

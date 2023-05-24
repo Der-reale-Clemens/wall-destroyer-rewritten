@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogContent, DialogTitle, Divider, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
 import { FC, useState } from "react";
-import { setFormat, setTheme } from "../redux/appSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setFormat, setTheme } from "../../redux/appSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 export const Settings: FC = () => {
     const theme = useAppSelector(s => s.appReducer.theme)

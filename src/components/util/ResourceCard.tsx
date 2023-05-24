@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material"
 import { FC } from "react"
-import { resources } from "../data/resources"
-import { prettify } from "../functions"
+import { resources } from "../../data/resources"
+import { prettify } from "../../functions"
 
 type Props = {
     name: keyof typeof resources,

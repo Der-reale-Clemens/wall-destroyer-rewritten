@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { FC, useState } from "react";
-import { achievements } from "../data/achievements";
-import { useAppSelector } from "../redux/hooks";
-import { Pane } from "./Pane";
+import { achievements } from "../../data/achievements";
+import { useAppSelector } from "../../redux/hooks";
+import { Pane } from "../util/Pane";
 
 export const Achievements: FC = () => {
     const achievementsUnlocked = useAppSelector(s => s.systemReducer.achievements) as Array<keyof typeof achievements>

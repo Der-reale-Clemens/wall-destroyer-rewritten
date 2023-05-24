@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme } from "@mui/material"
 import { FC } from "react"
-import { producers } from "../data/producers"
-import { prettify } from "../functions"
-import { Producers } from "../system/types"
+import { producers } from "../../data/producers"
+import { prettify } from "../../functions"
+import { Producers } from "../../system/types"
 
 type Props = {
     name: keyof Producers

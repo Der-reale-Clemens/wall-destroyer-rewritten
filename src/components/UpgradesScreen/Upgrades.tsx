@@ -1,12 +1,12 @@
 import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Typography } from "@mui/material";
 import { FC, useState } from "react";
-import { upgrades } from "../data/upgrades";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { buyUpgrade } from "../redux/systemSlice";
-import { Upgrades as UpgradesType} from "../system/types";
-import { everyMatch, objectKeys } from "../util";
-import { BuildingCard } from "./BuildingCard";
-import { ResourceCard } from "./ResourceCard";
+import { upgrades } from "../../data/upgrades";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { buyUpgrade } from "../../redux/systemSlice";
+import { Upgrades as UpgradesType} from "../../system/types";
+import { everyMatch, objectKeys } from "../../util";
+import { BuildingCard } from "../BuildingsScreen/BuildingCard";
+import { ResourceCard } from "../util/ResourceCard";
 
 export const Upgrades: FC = () => {
     const unlockedUpgrades = useAppSelector(s => s.systemReducer.unlockedUpgrades)

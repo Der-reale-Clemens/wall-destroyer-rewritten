@@ -1,13 +1,13 @@
 import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, Typography, Box, useTheme, Tooltip} from "@mui/material";
-import { buyProducer } from "../redux/systemSlice";
+import { buyProducer } from "../../redux/systemSlice";
 import { FC } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { BuildingMoreInfoButton } from "./BuildingMoreInfoButton";
-import { calculateBuildingCost, prettify } from "../functions";
-import { producers } from "../data/producers";
-import { resources } from "../data/resources"
-import { objectKeys } from "../util";
-import { Resources } from "../system/types";
+import { calculateBuildingCost, prettify } from "../../functions";
+import { producers } from "../../data/producers";
+import { resources } from "../../data/resources"
+import { objectKeys } from "../../util";
+import { Resources } from "../../system/types";
 
 export const Buildings: FC = () => (
     <List sx={{width: "80vw"}}>

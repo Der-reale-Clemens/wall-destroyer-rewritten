@@ -1,7 +1,7 @@
 import { achievements, achievementsTrimmed } from "../data/achievements"
 import { producers, producersTrimmed } from "../data/producers"
 import { resources, resourcesTrimmed } from "../data/resources"
-import { DamageIcon } from "../components/Icons"
+import { DamageIcon } from "../components/util/Icons"
 import { upgrades, upgradesTrimmed } from "../data/upgrades"
 
 export type Resources = typeof resources

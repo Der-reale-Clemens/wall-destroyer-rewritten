@@ -1,12 +1,12 @@
 import { Box, Divider, Grid, Typography } from "@mui/material"
 import { FC } from "react"
-import { Pane } from "./Pane"
+import { Pane } from "../util/Pane"
 import { keyframes } from "@emotion/react";
-import { walls } from "../data/walls"
-import { destroyWall } from "../functions"
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { ResourceCard } from "./ResourceCard";
-import { objectKeys } from "../util";
+import { walls } from "../../data/walls"
+import { destroyWall } from "../../functions"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { ResourceCard } from "../util/ResourceCard";
+import { objectKeys } from "../../util";
 
 export const Wall: FC = () => {
     const wall = useAppSelector(s => s.systemAdditionsReducer.wall)

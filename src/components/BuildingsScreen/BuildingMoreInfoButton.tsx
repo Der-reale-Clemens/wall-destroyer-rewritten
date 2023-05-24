@@ -1,13 +1,13 @@
 import { Dialog, DialogContent, DialogTitle, IconButton, Chip, Typography, Divider, Box } from "@mui/material";
 import { FC, useState } from "react";
-import { producers } from "../data/producers";
-import { upgrades } from "../data/upgrades";
-import { calculateBuildingCost } from "../functions";
-import { useAppSelector } from "../redux/hooks";
-import { Resources } from "../system/types";
-import { createObjectFromKeys, objectKeys } from "../util";
-import { InfoIcon } from "./Icons"
-import { ResourceCard } from "./ResourceCard";
+import { producers } from "../../data/producers";
+import { upgrades } from "../../data/upgrades";
+import { calculateBuildingCost } from "../../functions";
+import { useAppSelector } from "../../redux/hooks";
+import { Resources } from "../../system/types";
+import { createObjectFromKeys, objectKeys } from "../../util";
+import { InfoIcon } from "../util/Icons"
+import { ResourceCard } from "../util/ResourceCard";
 
 type Props = {name: keyof typeof producers}
 
