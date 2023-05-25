@@ -67,7 +67,7 @@ export type ProducerExtended = Producer & {
 export type UpgradeExtended = Upgrade & {
     name: string
     description: string
-    img: string
+    img: string,
 }
 
 export type AchievementExtended = Achievement & {

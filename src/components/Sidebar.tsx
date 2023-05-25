@@ -27,7 +27,7 @@ const Drawer: FC<any> = ({setPanel}) => {
                         </ListItemIcon>
                     </ListItem>
                 </LockedContent>
-                <LockedContent flag="destroyedWall1" hidden>
+                <LockedContent flag="destroyedWall0" hidden>
                     <ListItem button onClick={() => setPanel("upgrades")}>
                         <ListItemIcon>
                             <UpgradesIcon/>
