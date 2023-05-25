@@ -3,11 +3,11 @@ import { FC, useEffect, useState } from "react";
 import { Flags, removeCurrentFlag } from "../redux/appSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 //@ts-expect-error
-import buildingsTabImg from "../images/buildingsTab.png"
+import buildingsTabImg from "../images/icons/buildingsTab.png"
 //@ts-expect-error
-import upgradesTabImg from "../images/upgradesTab.png";
+import upgradesTabImg from "../images/icons/upgradesTab.png";
 //@ts-expect-error
-import achievementsTabImg from "../images/achievementsTab.png"
+import achievementsTabImg from "../images/icons/achievementsTab.png"
 import { MoneyIcon, BrickIcon } from "./util/Icons";
 
 export const Modals: FC = () => {

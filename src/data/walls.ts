@@ -4,17 +4,17 @@ import paperWallImg from "../images/paperWall.png"
 //@ts-expect-error
 import dryWallImg from "../images/dryWall.png"
 //@ts-expect-error
-import buildingsTabImg from "../images/buildingsTab.png"
+import buildingsTabImg from "../images/icons/buildingsTab.png"
 //@ts-expect-error
-import achievementsTabImg from "../images/achievementsTab.png"
+import achievementsTabImg from "../images/icons/achievementsTab.png"
 //@ts-expect-error
-import upgradesTabImg from "../images/upgradesTab.png"
+import upgradesTabImg from "../images/icons/upgradesTab.png"
 //@ts-expect-error
-import labTabImg from "../images/labTab.png"
+import labTabImg from "../images/icons/labTab.png"
 //@ts-expect-error
-import moneyImg from "../images/money.png"
+import moneyImg from "../images/icons/money.png"
 //@ts-expect-error
-import brickImg from "../images/brick.png"
+import brickImg from "../images/icons/brick.png"
 
 type Wall = {
     requirement: number,
