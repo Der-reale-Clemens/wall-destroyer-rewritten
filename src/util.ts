@@ -2,6 +2,13 @@
 export const objectKeys = <T extends {}>(obj: T): Array<keyof T> => 
     Object.keys(obj) as Array<keyof T>
 
+export const objectEntries = <
+    T extends Record<PropertyKey, unknown>,
+    K extends keyof T,
+    V extends T[K]
+  >(o: T) => 
+    Object.entries(o) as [K, V][];
+
 export const createObjectFromKeys = <T extends {[key:string]: any}, R>(keys: T, initilizer: (_:keyof T) => R): Record<keyof T, R> => 
     Object.keys(keys)
     .reduce((acc:any, cur:string) => ({...acc, [cur]: initilizer(cur)}), {})

@@ -27,7 +27,9 @@ export const update = (dispatch: AppDispatch) => {
     dispatch(increaseResource(["bricks", productions.bricks]))
 
     const newUnlockedUpgrades = calculateUnlockedUpgrades(createSystemObject(state.systemReducer))
-    dispatch(addUnlockedUpgrades(newUnlockedUpgrades))
+    //Only update if it is actually usefull
+    if(newUnlockedUpgrades.length !== 0)
+        dispatch(addUnlockedUpgrades(newUnlockedUpgrades))
 
     const newAchievements = calculateAchievements(createSystemObject(state.systemReducer))
     dispatch(addAchievements(newAchievements))

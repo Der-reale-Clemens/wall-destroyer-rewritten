@@ -23,7 +23,7 @@ export const createSystem = (producers: ProducersTrimmed, resources: ResourcesTr
 export const update = (system: SystemType, deltaTime: number) => {
     const systemShallowClone = {...system}
     //Clone the player data so we don't modify the original
-    const systemPlayerClone = JSON.parse(JSON.stringify(system.player)) as typeof system.player
+    const systemPlayerClone = JSON.parse(JSON.stringify(system.player)) as SystemType["player"]
     systemShallowClone.player = systemPlayerClone
 
     const productionsPerProducer = calculateProductions(system, deltaTime)
