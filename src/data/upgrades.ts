@@ -30,14 +30,14 @@ export const upgrades = asType({
         isUnlocked: () => true,
         cost: {
             damage: 0,
-            money: 100,
-            bricks: 1,
+            money: 1,
+            bricks: 0,
             cosmicKnowledge: 0
         },
         effect: makeEffect({}),
         name: 'Beginning',
         description: 'Gotta start somewhere',
-        img: Beginning
+        img: Beginning,
     },
     magicMining: {
         isUnlocked: () => true,
@@ -50,7 +50,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Magic Mining',
         description: 'We need bricks to trade with the underground wizards for their secrets. Bricks are their most valuable resource.',
-        img: MagicMining
+        img: MagicMining,
     },
     deepMagicMining: {
         isUnlocked: () => true,
@@ -58,12 +58,12 @@ export const upgrades = asType({
             damage: 0,
             money: 1,
             bricks: 0,
-            cosmicKnowledge: 100
+            cosmicKnowledge: 0
         },
         effect: makeEffect({puncher: 100}),
         name: 'Deep Magic Mining',
         description: 'The wizards are saying we shouldn\'t go this deep, but we found these cool dark magic tablets.',
-        img: DeepMagicMining
+        img: DeepMagicMining,
     },
     darkMagicMining: {
         isUnlocked: () => true,
@@ -76,7 +76,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Dark Magic Mining',
         description: 'We need to mine into hell with dark magic so we can make a deal with the devil to destroy the wall. Everything about this plan is excellent.',
-        img: DarkMagicMining
+        img: DarkMagicMining,
     },
     realityResearch: {
         isUnlocked: () => true,
@@ -89,7 +89,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Reality Research',
         description: 'We have discovered with the breaking of the 4th wall that we are all inside a stupid idle game. Not even a real game! But we can use this knowledge to our advantage...',
-        img: RealityResearch
+        img: RealityResearch,
     },
     timeResearch: {
         isUnlocked: () => true,
@@ -102,7 +102,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Time Research',
         description: 'We can rewind time and keep our knowledge.',
-        img: TimeResearch
+        img: TimeResearch,
     },
     blackResearch: {
         isUnlocked: () => true,
@@ -115,7 +115,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Black Research',
         description: 'We have discovered a substance in [REDACTED] that holds more power than anything we have ever encountered. We call it The Black because it is pitch black.',
-        img: BlackResearch
+        img: BlackResearch,
     },
     gloves: {
         isUnlocked: (system) => system.player.producers.puncher >= 1,
@@ -128,7 +128,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 10}),
         name: "Gloves",
         description: "A little padding",
-        img: "http://i.imgur.com/tzwF920.png"
+        img: "http://i.imgur.com/tzwF920.png",
     },
     betterClubs: {
         isUnlocked: (system) => system.player.producers.clubber >= 1,
@@ -141,11 +141,12 @@ export const upgrades = asType({
         effect: makeEffect({clubber: 10}),
         name: "Better Clubs",
         description: "A little padding",
-        img: BetterClubs
+        img: BetterClubs,
     }
 })
 
 export const connections = {
+    root: [],
     magicMining: ['root'],
     deepMagicMining: ['magicMining'],
     darkMagicMining: ['deepMagicMining'],
@@ -154,6 +155,18 @@ export const connections = {
     blackResearch: ['realityResearch', 'timeResearch'],
     gloves: ['root'],
     betterClubs: ['root']
+}
+
+export const positions = {
+    root: [0,0],
+    magicMining: [0,-100],
+    deepMagicMining: [0, -200],
+    darkMagicMining: [0, -300],
+    realityResearch: [50, -400],
+    timeResearch: [-50, -400],
+    blackResearch: [0,-500],
+    gloves: [-100, 0],
+    betterClubs: [100, 0]
 }
 
 export const upgradesTrimmed = createObjectFromKeys(upgrades, u => ({

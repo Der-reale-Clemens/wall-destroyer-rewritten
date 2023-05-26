@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { DataSet, Network, Options } from 'vis-network/standalone/esm/vis-network';
-import {upgrades, connections} from '../../data/upgrades'
+import {upgrades, connections, positions} from '../../data/upgrades'
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { buyUpgrade } from "../../redux/systemSlice";
-import { objectEntries, objectKeys } from "../../util";
+import { everyMatch, objectEntries, objectKeys } from "../../util";
 import { UpgradeDisplay } from "./UpgradeDisplay";
 
 const idTable = new Map(Object.keys(upgrades)
@@ -21,7 +21,9 @@ const upgradeNodes = objectEntries(upgrades)
         color: {border: 'grey'} , 
         opacity: 0.5,
         hidden: true,
-        size: 30
+        size: 30,
+        x: positions[key][0],
+        y: positions[key][1]
     }))
     
 const upgradeEdges = Object.entries(connections)
@@ -78,14 +80,14 @@ export const UpgradeTree = () => {
 
     useEffect(() => {
         const newData = upgradeNodes.filter(u => unlockedUpgrades.includes(u.key))
-            //.filter((u) => connections[u.key])
             .filter(u => !boughtUpgrades.includes(u.key))
+            .filter(u => everyMatch(connections[u.key], c => boughtUpgrades.includes(c)))
             .map(u => ({
                 ...u,
                 hidden: false
             }))
         data.nodes.update(newData)
-    }, [unlockedUpgrades])
+    }, [unlockedUpgrades, boughtUpgrades])
 
     //Handle clicking of upgrades
     //Needs to be so complex as the network can only 'emit' a click event and 
