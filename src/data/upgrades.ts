@@ -30,8 +30,8 @@ export const upgrades = asType({
         isUnlocked: () => true,
         cost: {
             damage: 0,
-            money: 0,
-            bricks: 0,
+            money: 100,
+            bricks: 1,
             cosmicKnowledge: 0
         },
         effect: makeEffect({}),
@@ -58,11 +58,11 @@ export const upgrades = asType({
             damage: 0,
             money: 1,
             bricks: 0,
-            cosmicKnowledge: 0
+            cosmicKnowledge: 100
         },
         effect: makeEffect({puncher: 100}),
         name: 'Deep Magic Mining',
-        description: 'We need bricks to trade with the underground wizards for their secrets. Bricks are their most valuable resource.',
+        description: 'The wizards are saying we shouldn\'t go this deep, but we found these cool dark magic tablets.',
         img: DeepMagicMining
     },
     darkMagicMining: {
@@ -75,7 +75,7 @@ export const upgrades = asType({
         },
         effect: makeEffect({puncher: 100}),
         name: 'Dark Magic Mining',
-        description: 'We need bricks to trade with the underground wizards for their secrets. Bricks are their most valuable resource.',
+        description: 'We need to mine into hell with dark magic so we can make a deal with the devil to destroy the wall. Everything about this plan is excellent.',
         img: DarkMagicMining
     },
     realityResearch: {
@@ -88,7 +88,7 @@ export const upgrades = asType({
         },
         effect: makeEffect({puncher: 100}),
         name: 'Reality Research',
-        description: 'We need bricks to trade with the underground wizards for their secrets. Bricks are their most valuable resource.',
+        description: 'We have discovered with the breaking of the 4th wall that we are all inside a stupid idle game. Not even a real game! But we can use this knowledge to our advantage...',
         img: RealityResearch
     },
     timeResearch: {
@@ -101,7 +101,7 @@ export const upgrades = asType({
         },
         effect: makeEffect({puncher: 100}),
         name: 'Time Research',
-        description: 'We need bricks to trade with the underground wizards for their secrets. Bricks are their most valuable resource.',
+        description: 'We can rewind time and keep our knowledge.',
         img: TimeResearch
     },
     blackResearch: {
@@ -114,7 +114,7 @@ export const upgrades = asType({
         },
         effect: makeEffect({puncher: 100}),
         name: 'Black Research',
-        description: 'We need bricks to trade with the underground wizards for their secrets. Bricks are their most valuable resource.',
+        description: 'We have discovered a substance in [REDACTED] that holds more power than anything we have ever encountered. We call it The Black because it is pitch black.',
         img: BlackResearch
     },
     gloves: {

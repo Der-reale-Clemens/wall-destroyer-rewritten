@@ -4,6 +4,7 @@ import {upgrades, connections} from '../../data/upgrades'
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { buyUpgrade } from "../../redux/systemSlice";
 import { objectEntries } from "../../util";
+import { UpgradeDisplay } from "./UpgradeDisplay";
 
 const idTable = new Map(Object.keys(upgrades)
     .map((key, id) => [key, id]))
@@ -20,7 +21,7 @@ const upgradeNodes = objectEntries(upgrades)
         color: {border: 'grey'} , 
         opacity: 0.5,
         hidden: true,
-        size: 28
+        size: 30
     }))
     
 const upgradeEdges = Object.entries(connections)
@@ -55,7 +56,7 @@ const data = {
 
 export const UpgradeTree = () => {
     const container = useRef<HTMLDivElement>(null)
-    const [network, setNetwork ]= useState<Network | null>(null)
+    const [network, setNetwork]= useState<Network | null>(null)
     const unlockedUpgrades = useAppSelector(s => s.systemReducer.unlockedUpgrades)
     const boughtUpgrades = useAppSelector(s => s.systemReducer.boughtUpgrades)
     const [currentNode, setCurrentNode] = useState<Array<number>>([])
@@ -104,6 +105,10 @@ export const UpgradeTree = () => {
     }, [container]);
     
     return (
-        <div ref={container} style={{ height: '90vh', width: '90vw' }}/>
+        <>
+            <div ref={container} style={{ height: '90vh', width: '90vw' }}/>
+            {currentNode.length !== 0 ? <UpgradeDisplay upgrade={inverseIdTable.get(currentNode[0])}/> : null}
+        </>
+        
     );
 }
