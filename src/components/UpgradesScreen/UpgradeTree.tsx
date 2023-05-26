@@ -3,7 +3,7 @@ import { DataSet, Network, Options } from 'vis-network/standalone/esm/vis-networ
 import {upgrades, connections} from '../../data/upgrades'
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { buyUpgrade } from "../../redux/systemSlice";
-import { objectEntries } from "../../util";
+import { objectEntries, objectKeys } from "../../util";
 import { UpgradeDisplay } from "./UpgradeDisplay";
 
 const idTable = new Map(Object.keys(upgrades)
@@ -25,10 +25,12 @@ const upgradeNodes = objectEntries(upgrades)
     }))
     
 const upgradeEdges = Object.entries(connections)
-    .map(([from, to]) => ({
-        from: idTable.get(from) as number,
-        to: idTable.get(to) as number
-    }))
+    .flatMap(([from, tos]) => 
+        tos.map(to => ({
+            from: idTable.get(from) as number,
+            to: idTable.get(to) as number
+        }))
+    )
 
 const options: Options = {
     layout: {
@@ -64,8 +66,8 @@ export const UpgradeTree = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        const newData = upgradeNodes.filter((u) => boughtUpgrades.includes(u.key))
-            .map((u) => ({
+        const newData = upgradeNodes.filter(u => boughtUpgrades.includes(u.key))
+            .map(u => ({
                 ...u,
                 opacity: 1,
                 size: 25,
@@ -75,9 +77,10 @@ export const UpgradeTree = () => {
     }, [boughtUpgrades])
 
     useEffect(() => {
-        const newData = upgradeNodes.filter((u) => unlockedUpgrades.includes(u.key))
-            .filter((u) => !boughtUpgrades.includes(u.key))
-            .map((u) => ({
+        const newData = upgradeNodes.filter(u => unlockedUpgrades.includes(u.key))
+            //.filter((u) => connections[u.key])
+            .filter(u => !boughtUpgrades.includes(u.key))
+            .map(u => ({
                 ...u,
                 hidden: false
             }))

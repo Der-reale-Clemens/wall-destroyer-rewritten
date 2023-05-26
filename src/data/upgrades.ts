@@ -146,14 +146,14 @@ export const upgrades = asType({
 })
 
 export const connections = {
-    magicMining: 'root',
-    deepMagicMining: 'magicMining',
-    darkMagicMining: 'deepMagicMining',
-    realityResearch: 'darkMagicMining',
-    timeResearch: 'realityResearch',
-    blackResearch: 'realityResearch',
-    gloves: 'root',
-    betterClubs: 'root'
+    magicMining: ['root'],
+    deepMagicMining: ['magicMining'],
+    darkMagicMining: ['deepMagicMining'],
+    realityResearch: ['darkMagicMining'],
+    timeResearch: ['realityResearch'],
+    blackResearch: ['realityResearch', 'timeResearch'],
+    gloves: ['root'],
+    betterClubs: ['root']
 }
 
 export const upgradesTrimmed = createObjectFromKeys(upgrades, u => ({
