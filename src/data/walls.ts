@@ -37,7 +37,7 @@ export const walls: Array<Wall> = [
         unlocks: [buildingsTabImg, moneyImg],
         name: "Wall of A4 Printing Paper",
         description: "I don't think this actually counts as a wall",
-        img: paperWallImg
+        img: new URL( `../images/Wall1_alt.png`, import.meta.url).href
     },
     {
         requirement: 1e5,
@@ -50,7 +50,7 @@ export const walls: Array<Wall> = [
         unlocks: [upgradesTabImg, achievementsTabImg],
         name: "Drywall",
         description: "I guess your name is Kyle now",
-        img: dryWallImg
+        img: new URL( `../images/Wall1_alt.png`, import.meta.url).href//dryWallImg
     },
     {
         requirement: 1e9,

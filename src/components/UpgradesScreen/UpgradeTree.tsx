@@ -129,7 +129,7 @@ export const UpgradeTree = () => {
         <>
             <div ref={container} style={{ height: '90vh', width: '90vw' }}/>
             {//@ts-ignore
-                currentNode.length !== 0 ? <UpgradeDisplay upgrade={inverseIdTable.get(currentNode[0])}/> : null
+                currentNode.length !== 0 && <UpgradeDisplay upgrade={inverseIdTable.get(currentNode[0])}/> 
             }
         </>
         
