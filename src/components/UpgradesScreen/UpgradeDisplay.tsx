@@ -2,20 +2,23 @@ import { FC } from "react"
 import { Pane } from "../util/Pane"
 import { upgrades } from "../../data/upgrades"
 import { Box, Divider, Typography } from "@mui/material"
-import { UpgradeExtended } from "../../system/types"
+import { UpgradeExtended, Upgrades } from "../../system/types"
 import { objectEntries } from "../../util"
 import { ResourceCard } from "../util/ResourceCard"
+import { useAppSelector } from "../../redux/hooks"
 
 type Props = {
-    upgrade: string
+    upgrade: keyof Upgrades
 }
 
 export const UpgradeDisplay: FC<Props> = ({upgrade}) => {
+    const boughtUpgrades = useAppSelector(s => s.systemReducer.boughtUpgrades)
     const u = upgrades[upgrade] as UpgradeExtended
+    const showCost = !boughtUpgrades.includes(upgrade)
 
     return (
     <Box sx={{position: 'fixed', bottom: 0, right: 0, display: 'flex', flexDirection: 'row', alignItems: 'end', m: '1em'}}>
-        {objectEntries(u.cost)
+        {showCost && objectEntries(u.cost)
             .filter(([key, cost]) => cost !== 0)
             .map(([key, cost]) => 
                 <Box sx={{mb: '3px'}}>

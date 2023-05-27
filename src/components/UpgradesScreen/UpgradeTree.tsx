@@ -3,7 +3,7 @@ import { DataSet, Network, Options } from 'vis-network/standalone/esm/vis-networ
 import {upgrades, connections, positions} from '../../data/upgrades'
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { buyUpgrade } from "../../redux/systemSlice";
-import { everyMatch, objectEntries, objectKeys } from "../../util";
+import { everyMatch, objectEntries} from "../../util";
 import { UpgradeDisplay } from "./UpgradeDisplay";
 
 const idTable = new Map(Object.keys(upgrades)
@@ -22,8 +22,8 @@ const upgradeNodes = objectEntries(upgrades)
         opacity: 0.5,
         hidden: true,
         size: 30,
-        x: positions[key][0],
-        y: positions[key][1]
+        x: positions[key][0] * 100,
+        y: positions[key][1] * -100
     }))
     
 const upgradeEdges = Object.entries(connections)
@@ -81,6 +81,7 @@ export const UpgradeTree = () => {
     useEffect(() => {
         const newData = upgradeNodes.filter(u => unlockedUpgrades.includes(u.key))
             .filter(u => !boughtUpgrades.includes(u.key))
+            //@ts-ignore
             .filter(u => everyMatch(connections[u.key], c => boughtUpgrades.includes(c)))
             .map(u => ({
                 ...u,
@@ -106,13 +107,30 @@ export const UpgradeTree = () => {
         //@ts-ignore
         const net = new Network(container.current, data, options)
         net.on('click', (params) => setCurrentNode(params.nodes))
+
+        let lastZoomPos = net.getViewPosition()
+        net.on('zoom', (params) => {
+            const clampedScale = Math.max( 0.2, Math.min(params.scale, 1) )
+            net.moveTo({ 
+                scale: clampedScale,
+                position: lastZoomPos
+            });
+            if (params.scale !== clampedScale) {
+                lastZoomPos = net.getViewPosition()
+            }
+        })
+        net.on("dragEnd",function(){
+            lastZoomPos = net.getViewPosition()
+        });
         setNetwork(net)
     }, [container]);
     
     return (
         <>
             <div ref={container} style={{ height: '90vh', width: '90vw' }}/>
-            {currentNode.length !== 0 ? <UpgradeDisplay upgrade={inverseIdTable.get(currentNode[0])}/> : null}
+            {//@ts-ignore
+                currentNode.length !== 0 ? <UpgradeDisplay upgrade={inverseIdTable.get(currentNode[0])}/> : null
+            }
         </>
         
     );

@@ -82,6 +82,7 @@ export const buyUpgrade = (system: SystemType, upgrade: keyof Upgrades)
 
     const canBuy = () => 
         everyMatch(objectKeys(resources), r => resources[r] >= costs[r])
+        && !system.player.boughtUpgrades.includes(upgrade)
 
     if(!canBuy()) {
         return [system.player.boughtUpgrades, resources]

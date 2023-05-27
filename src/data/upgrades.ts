@@ -1,17 +1,7 @@
-//@ts-ignore
-import MagicMining from '../images/upgrades/MagicMining.png'
-//@ts-ignore
-import DeepMagicMining from '../images/upgrades/DeepMagicMining.png'
-import DarkMagicMining from '../images/upgrades/DarkMagicMining.png'
-import RealityResearch from '../images/upgrades/RealityResearch.png'
-import BlackResearch from '../images/upgrades/BlackResearch.png'
-import TimeResearch from '../images/upgrades/TimeResearch.png'
-import Beginning from '../images/upgrades/Beginning.png'
-import BetterClubs from '../images/upgrades/BetterClubs.png'
 import { UpgradeEffect, UpgradeExtended } from '../system/types';
 import { createObjectFromKeys } from '../util';
 
-
+const img = (name: string) =>  new URL( `../images/upgrades/${name}.png`, import.meta.url).href
 const asType = <T extends {[key: string]: UpgradeExtended}>(arg: T): T => arg;
 
 const makeEffect = (effect: Partial<UpgradeEffect>) => {
@@ -37,7 +27,7 @@ export const upgrades = asType({
         effect: makeEffect({}),
         name: 'Beginning',
         description: 'Gotta start somewhere',
-        img: Beginning,
+        img: img('Beginning'),
     },
     magicMining: {
         isUnlocked: () => true,
@@ -50,7 +40,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Magic Mining',
         description: 'We need bricks to trade with the underground wizards for their secrets. Bricks are their most valuable resource.',
-        img: MagicMining,
+        img: img('MagicMining'),
     },
     deepMagicMining: {
         isUnlocked: () => true,
@@ -63,7 +53,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Deep Magic Mining',
         description: 'The wizards are saying we shouldn\'t go this deep, but we found these cool dark magic tablets.',
-        img: DeepMagicMining,
+        img: img('DeepMagicMining'),
     },
     darkMagicMining: {
         isUnlocked: () => true,
@@ -76,7 +66,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Dark Magic Mining',
         description: 'We need to mine into hell with dark magic so we can make a deal with the devil to destroy the wall. Everything about this plan is excellent.',
-        img: DarkMagicMining,
+        img: img('DarkMagicMining'),
     },
     realityResearch: {
         isUnlocked: () => true,
@@ -89,7 +79,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Reality Research',
         description: 'We have discovered with the breaking of the 4th wall that we are all inside a stupid idle game. Not even a real game! But we can use this knowledge to our advantage...',
-        img: RealityResearch,
+        img: img('RealityResearch'),
     },
     timeResearch: {
         isUnlocked: () => true,
@@ -102,7 +92,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Time Research',
         description: 'We can rewind time and keep our knowledge.',
-        img: TimeResearch,
+        img: img('TimeResearch'),
     },
     blackResearch: {
         isUnlocked: () => true,
@@ -115,7 +105,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 100}),
         name: 'Black Research',
         description: 'We have discovered a substance in [REDACTED] that holds more power than anything we have ever encountered. We call it The Black because it is pitch black.',
-        img: BlackResearch,
+        img: img('BlackResearch'),
     },
     gloves: {
         isUnlocked: (system) => system.player.producers.puncher >= 1,
@@ -141,7 +131,7 @@ export const upgrades = asType({
         effect: makeEffect({clubber: 10}),
         name: "Better Clubs",
         description: "A little padding",
-        img: BetterClubs,
+        img: img('BetterClubs'),
     }
 })
 
@@ -157,16 +147,19 @@ export const connections = {
     betterClubs: ['root']
 }
 
+//Positions of where the upgrades should be displayed in the upgrade tree
+//One unit is the size of one upgrade image
+//Uses mathematical y-axis
 export const positions = {
     root: [0,0],
-    magicMining: [0,-100],
-    deepMagicMining: [0, -200],
-    darkMagicMining: [0, -300],
-    realityResearch: [50, -400],
-    timeResearch: [-50, -400],
-    blackResearch: [0,-500],
-    gloves: [-100, 0],
-    betterClubs: [100, 0]
+    magicMining: [0,1],
+    deepMagicMining: [0, 2],
+    darkMagicMining: [0, 3],
+    realityResearch: [0.5, 4],
+    timeResearch: [-0.5, 4],
+    blackResearch: [0,5],
+    gloves: [-1, 0],
+    betterClubs: [1, 0]
 }
 
 export const upgradesTrimmed = createObjectFromKeys(upgrades, u => ({
