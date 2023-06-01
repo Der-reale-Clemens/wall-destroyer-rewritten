@@ -11,7 +11,7 @@ import { Resources } from "../../system/types";
 
 export const Buildings: FC = () => (
     <List sx={{width: "80vw"}}>
-        {objectKeys(producers).map(p => <BuildingRow name={p}/>)}
+        {objectKeys(producers).map(p => <BuildingRow key={p} name={p}/>)}
     </List>
 )
 
@@ -66,7 +66,7 @@ const CostProgresses: FC<Props> = ({name}) => {
     const progress = (n) => (resources[n]/costs[n])*100 >= 100 ? 100 : (resources[n]/costs[n])*100
 
     return <>
-        {objectKeys(costs).map(r => costs[r] > 0 ? <CostProgess resource={r} value={progress(r)} cost={costs[r]}/> : <EmptyProgrss/>)} 
+        {objectKeys(costs).map(r => costs[r] > 0 ? <CostProgess key={r} resource={r} value={progress(r)} cost={costs[r]}/> : <EmptyProgrss key={r}/>)} 
     </>
 }
 

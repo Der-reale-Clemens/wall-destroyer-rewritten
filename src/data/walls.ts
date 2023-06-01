@@ -1,9 +1,5 @@
 import { resources } from "./resources"
 //@ts-expect-error
-import paperWallImg from "../images/paperWall.png"
-//@ts-expect-error
-import dryWallImg from "../images/dryWall.png"
-//@ts-expect-error
 import buildingsTabImg from "../images/icons/buildingsTab.png"
 //@ts-expect-error
 import achievementsTabImg from "../images/icons/achievementsTab.png"
@@ -13,8 +9,8 @@ import upgradesTabImg from "../images/icons/upgradesTab.png"
 import labTabImg from "../images/icons/labTab.png"
 //@ts-expect-error
 import moneyImg from "../images/icons/money.png"
-//@ts-expect-error
-import brickImg from "../images/icons/brick.png"
+
+const img = (name: string) =>  new URL( `../images/walls/${name}.png`, import.meta.url).href
 
 type Wall = {
     requirement: number,
@@ -37,7 +33,7 @@ export const walls: Array<Wall> = [
         unlocks: [buildingsTabImg, moneyImg],
         name: "Wall of A4 Printing Paper",
         description: "I don't think this actually counts as a wall",
-        img: new URL( `../images/Wall1_alt.png`, import.meta.url).href
+        img: img('Paperwall')
     },
     {
         requirement: 1e5,
@@ -50,7 +46,7 @@ export const walls: Array<Wall> = [
         unlocks: [upgradesTabImg, achievementsTabImg],
         name: "Drywall",
         description: "I guess your name is Kyle now",
-        img: new URL( `../images/Wall1_alt.png`, import.meta.url).href//dryWallImg
+        img: img('Drywall')
     },
     {
         requirement: 1e9,
@@ -63,7 +59,7 @@ export const walls: Array<Wall> = [
         unlocks: [labTabImg, "http://i.imgur.com/3C1bIXe.png", "http://i.imgur.com/zqNeRti.png", "http://i.imgur.com/93tCmIj.png"],
         name: "Wall",
         description: "Destroy the wall and move on to a bigger one",
-        img: "https://i.imgur.com/KfG2xNP.png",
+        img:img('Wall_1'),
     },
     {
         requirement: 1e11,
@@ -76,7 +72,7 @@ export const walls: Array<Wall> = [
         unlocks: ["http://i.imgur.com/F4FwhJe.png", "http://i.imgur.com/3C1bIXe.png", "http://i.imgur.com/YYCAyYr.png"],
         name: "Big 2nd Wall",
         description: "Something feels off about this wall",
-        img: "https://i.imgur.com/KfG2xNP.png",
+        img: img('Wall_1'),
     },
     {
         requirement: 1e13,
@@ -89,7 +85,7 @@ export const walls: Array<Wall> = [
         unlocks: ["http://i.imgur.com/tHUohS4.png", "http://i.imgur.com/Z4p4G7T.png"],
         name: "Huge 3rd Wall",
         description: "Something feels off about this wall",
-        img: "https://i.imgur.com/KfG2xNP.png",
+        img: img('Wall_1'),
     }
 ]
 

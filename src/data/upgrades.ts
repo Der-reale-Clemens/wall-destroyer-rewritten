@@ -118,7 +118,20 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 10}),
         name: "Gloves",
         description: "A little padding",
-        img: "http://i.imgur.com/tzwF920.png",
+        img: img('puncher/1'),
+    },
+    paddedGloves: {
+        isUnlocked: (system) => system.player.producers.puncher >= 5,
+        cost: {
+            damage: 0,
+            money: 400,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        effect: makeEffect({puncher: 2}),
+        name: "Padded Gloves",
+        description: "Actually significant padding",
+        img: img('puncher/2')
     },
     betterClubs: {
         isUnlocked: (system) => system.player.producers.clubber >= 1,
@@ -130,8 +143,8 @@ export const upgrades = asType({
         },
         effect: makeEffect({clubber: 10}),
         name: "Better Clubs",
-        description: "A little padding",
-        img: img('BetterClubs'),
+        description: "Simply feels better to hold.",
+        img: img('clubber/1'),
     }
 })
 
@@ -144,6 +157,7 @@ export const connections = {
     timeResearch: ['realityResearch'],
     blackResearch: ['realityResearch', 'timeResearch'],
     gloves: ['root'],
+    paddedGloves: ['gloves'],
     betterClubs: ['root']
 }
 
@@ -159,6 +173,7 @@ export const positions = {
     timeResearch: [-0.5, 4],
     blackResearch: [0,5],
     gloves: [-1, 0],
+    paddedGloves: [-2, 0],
     betterClubs: [1, 0]
 }
 

@@ -2,6 +2,7 @@ import type { ProducerExtended } from "../system/types"
 import { createObjectFromKeys } from "../util"
 
 const asType = <T extends {[key: string]: ProducerExtended}>(arg: T): T =>arg;
+const img = (name: string) =>  new URL( `../images/producers/${name}.png`, import.meta.url).href
 
 const scaling = 1.2
 
@@ -23,7 +24,7 @@ export const producers = asType({
         name: "Puncher",
         type: "Meele",
         description: "Punches the wall for you",
-        img: "http://i.imgur.com/amBI8wT.png"
+        img: img('Puncher')
     },
     clubber: {
         costScaling: scaling,
@@ -42,7 +43,7 @@ export const producers = asType({
         name: "Clubber",
         type: "Meele",
         description: "Not to be confused with the other kind of clubbing.",
-        img: "http://i.imgur.com/HVaisVj.png"
+        img: img('Clubber')
     },
     swordsman: {
         costScaling: scaling,
@@ -61,7 +62,7 @@ export const producers = asType({
         name: "Swordsman",
         type: "Meele",
         description: "Some question the use of swords on a brick wall. Those guys are lame.",
-        img: "http://i.imgur.com/aPQuEKp.png"
+        img: img('Swordsman')
     },
     gunshooter: {
         costScaling: scaling,
@@ -80,7 +81,7 @@ export const producers = asType({
         name: "Gunshooter",
         type: "Meele",
         description: "Shoots his gun",
-        img: "http://i.imgur.com/gCp304H.png"
+        img: img('Gunshooter')
     },
     blackObliterator: {
         costScaling: scaling,
