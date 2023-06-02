@@ -4,7 +4,7 @@ import type { ResourceExtended } from "../system/types"
 
 const asType = <T extends {[key: string]: ResourceExtended}>(arg: T): T => arg;
 
-export const resources = asType({
+export const resources = {
     damage: {
         name: "Damage",
         backgroundColor: "rgb(253, 163, 17, 0.5)",
@@ -25,7 +25,7 @@ export const resources = asType({
         backgroundColor: "rgb(116, 91, 193, 0.5)",
         icon: CosmicKnowledgeIcon
     }
-})
+} satisfies {[key: string]: ResourceExtended}
 
 export const resourcesTrimmed = createObjectFromKeys(resources, r => ({
     name: resources[r].name

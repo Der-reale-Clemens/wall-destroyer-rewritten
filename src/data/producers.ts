@@ -1,12 +1,11 @@
 import type { ProducerExtended } from "../system/types"
 import { createObjectFromKeys } from "../util"
 
-const asType = <T extends {[key: string]: ProducerExtended}>(arg: T): T =>arg;
 const img = (name: string) =>  new URL( `../images/producers/${name}.png`, import.meta.url).href
 
 const scaling = 1.2
 
-export const producers = asType({
+export const producers = {
     puncher: {
         costScaling: scaling,
         cost: {
@@ -102,7 +101,7 @@ export const producers = asType({
         description: "Robots covered in The Black. They're really cool, so no one questions mixing the most dangerous & evil thing ever with cold, unfeeling robots.",
         img: "http://i.imgur.com/mSWDezW.png"
     }
-})
+} satisfies {[key: string]: ProducerExtended}
 
 export const producersTrimmed = createObjectFromKeys(producers, p => ({
     costScaling: producers[p].costScaling,

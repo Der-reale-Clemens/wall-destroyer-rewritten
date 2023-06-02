@@ -2,7 +2,7 @@ import { UpgradeEffect, UpgradeExtended } from '../system/types';
 import { createObjectFromKeys } from '../util';
 
 const img = (name: string) =>  new URL( `../images/upgrades/${name}.png`, import.meta.url).href
-const asType = <T extends {[key: string]: UpgradeExtended}>(arg: T): T => arg;
+const imgPuncher = (name: string) =>  new URL( `../images/upgrades/puncher/${name}.png`, import.meta.url).href
 
 const makeEffect = (effect: Partial<UpgradeEffect>) => {
     const baseEffect = {
@@ -15,7 +15,7 @@ const makeEffect = (effect: Partial<UpgradeEffect>) => {
     return () => ({...baseEffect, ...effect})
 }
 
-export const upgrades = asType({
+export const upgrades = {
     root: {
         isUnlocked: () => true,
         cost: {
@@ -118,7 +118,7 @@ export const upgrades = asType({
         effect: makeEffect({puncher: 10}),
         name: "Gloves",
         description: "A little padding",
-        img: img('puncher/1'),
+        img: imgPuncher('1'),
     },
     paddedGloves: {
         isUnlocked: (system) => system.player.producers.puncher >= 5,
@@ -146,7 +146,7 @@ export const upgrades = asType({
         description: "Simply feels better to hold.",
         img: img('clubber/1'),
     }
-})
+} satisfies {[key: string]: UpgradeExtended}
 
 export const connections = {
     root: [],

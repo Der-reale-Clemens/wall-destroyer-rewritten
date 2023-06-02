@@ -1,9 +1,7 @@
 import type { AchievementExtended } from "../system/types"
 import { createObjectFromKeys } from "../util"
 
-const asType = <T extends {[key: string]: AchievementExtended}>(arg: T): T => arg;
-
-export const achievements = asType({
+export const achievements = {
     overnab: {
         isUnlocked: (system) => system.player.resources.damage >= 1,
         name: "Overnab",
@@ -28,7 +26,7 @@ export const achievements = asType({
         description: "Deal 10,000 Damage to the wall",
         img: "http://i.imgur.com/aBSHBRg.png"
     }
-})
+} satisfies {[key: string]: AchievementExtended}
 
 export const achievementsTrimmed = createObjectFromKeys(achievements, a => ({
     isUnlocked: achievements[a].isUnlocked
