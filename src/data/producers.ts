@@ -22,7 +22,7 @@ export const producers = {
         },
         name: "Puncher",
         type: "Meele",
-        description: "Punches the wall for you",
+        description: "Punches the wall for you.",
         img: img('Puncher')
     },
     clubber: {
@@ -78,9 +78,85 @@ export const producers = {
             cosmicKnowledge: 0
         },
         name: "Gunshooter",
-        type: "Meele",
-        description: "Shoots his gun",
+        type: "Ranged",
+        description: "Shoots his gun.",
         img: img('Gunshooter')
+    },
+    grenademan: {
+        costScaling: scaling,
+        cost: {
+            damage: 0,
+            money: 40_000,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        production: {
+            damage: 400,
+            money: 600,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Grenademan",
+        type: "Ranged",
+        description: "A man with grenades. I am a master of descriptions",
+        img: img('Grenademan')
+    },
+    wreckingBall: {
+        costScaling: scaling,
+        cost: {
+            damage: 0,
+            money: 40_000,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        production: {
+            damage: 400,
+            money: 600,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Wrecking Ball",
+        type: "Heavy Duty",
+        description: "Something actually meant for destroying walls.",
+        img: img('WreckingBall')
+    },
+    bulldozer: {
+        costScaling: scaling,
+        cost: {
+            damage: 0,
+            money: 40_000,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        production: {
+            damage: 400,
+            money: 600,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Bulldozer",
+        type: "Heavy Duty",
+        description: "Rams the wall. So good.",
+        img: img('Bulldozer')
+    },
+    airstrikeCaller: {
+        costScaling: scaling,
+        cost: {
+            damage: 0,
+            money: 40_000,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        production: {
+            damage: 400,
+            money: 600,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Airstrike Caller",
+        type: "Heavy Duty",
+        description: "You know, the guy that calls airstrikes.",
+        img: img('AirstrikeCaller')
     },
     blackObliterator: {
         costScaling: scaling,

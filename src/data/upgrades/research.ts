@@ -1,19 +1,7 @@
-import { UpgradeEffect, UpgradeExtended } from '../system/types';
-import { createObjectFromKeys } from '../util';
+import { UpgradeExtended } from "../../system/types";
+import { makeEffect } from "../util";
 
-const img = (name: string) =>  new URL( `../images/upgrades/${name}.png`, import.meta.url).href
-const imgPuncher = (name: string) =>  new URL( `../images/upgrades/puncher/${name}.png`, import.meta.url).href
-
-const makeEffect = (effect: Partial<UpgradeEffect>) => {
-    const baseEffect = {
-        puncher: 1,
-        clubber: 1,
-        swordsman: 1,
-        gunshooter: 1,
-        blackObliterator: 1,
-    }
-    return () => ({...baseEffect, ...effect})
-}
+const img = (name: string) =>  new URL( `../../images/upgrades/${name}.png`, import.meta.url).href
 
 export const upgrades = {
     root: {
@@ -107,78 +95,4 @@ export const upgrades = {
         description: 'We have discovered a substance in [REDACTED] that holds more power than anything we have ever encountered. We call it The Black because it is pitch black.',
         img: img('BlackResearch'),
     },
-    gloves: {
-        isUnlocked: (system) => system.player.producers.puncher >= 1,
-        cost: {
-            damage: 0,
-            money: 100,
-            bricks: 0,
-            cosmicKnowledge: 0
-        },
-        effect: makeEffect({puncher: 10}),
-        name: "Gloves",
-        description: "A little padding",
-        img: imgPuncher('1'),
-    },
-    paddedGloves: {
-        isUnlocked: (system) => system.player.producers.puncher >= 5,
-        cost: {
-            damage: 0,
-            money: 400,
-            bricks: 0,
-            cosmicKnowledge: 0
-        },
-        effect: makeEffect({puncher: 2}),
-        name: "Padded Gloves",
-        description: "Actually significant padding",
-        img: img('puncher/2')
-    },
-    betterClubs: {
-        isUnlocked: (system) => system.player.producers.clubber >= 1,
-        cost: {
-            damage: 0,
-            money: 100,
-            bricks: 0,
-            cosmicKnowledge: 0
-        },
-        effect: makeEffect({clubber: 10}),
-        name: "Better Clubs",
-        description: "Simply feels better to hold.",
-        img: img('clubber/1'),
-    }
 } satisfies {[key: string]: UpgradeExtended}
-
-export const connections = {
-    root: [],
-    magicMining: ['root'],
-    deepMagicMining: ['magicMining'],
-    darkMagicMining: ['deepMagicMining'],
-    realityResearch: ['darkMagicMining'],
-    timeResearch: ['realityResearch'],
-    blackResearch: ['realityResearch', 'timeResearch'],
-    gloves: ['root'],
-    paddedGloves: ['gloves'],
-    betterClubs: ['root']
-}
-
-//Positions of where the upgrades should be displayed in the upgrade tree
-//One unit is the size of one upgrade image
-//Uses mathematical y-axis
-export const positions = {
-    root: [0,0],
-    magicMining: [0,1],
-    deepMagicMining: [0, 2],
-    darkMagicMining: [0, 3],
-    realityResearch: [0.5, 4],
-    timeResearch: [-0.5, 4],
-    blackResearch: [0,5],
-    gloves: [-1, 0],
-    paddedGloves: [-2, 0],
-    betterClubs: [1, 0]
-}
-
-export const upgradesTrimmed = createObjectFromKeys(upgrades, u => ({
-    isUnlocked: upgrades[u].isUnlocked,
-    cost: upgrades[u].cost,
-    effect: upgrades[u].effect
-}))
