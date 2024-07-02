@@ -9,13 +9,10 @@ export const producers = {
     puncher: {
         costScaling: scaling,
         cost: {
-            damage: 0,
             money: 15,
-            bricks: 0,
-            cosmicKnowledge: 0
         },
         production: {
-            damage: 10_000.05,
+            damage: 0.05,
             money: 1,
             bricks: 0,
             cosmicKnowledge: 0
@@ -28,10 +25,7 @@ export const producers = {
     clubber: {
         costScaling: scaling,
         cost: {
-            damage: 0,
             money: 150,
-            bricks: 0,
-            cosmicKnowledge: 0
         },
         production: {
             damage: 1,
@@ -47,10 +41,7 @@ export const producers = {
     swordsman: {
         costScaling: scaling,
         cost: {
-            damage: 0,
             money: 1200,
-            bricks: 0,
-            cosmicKnowledge: 0
         },
         production: {
             damage: 10,
@@ -66,10 +57,7 @@ export const producers = {
     gunshooter: {
         costScaling: scaling,
         cost: {
-            damage: 0,
             money: 40_000,
-            bricks: 0,
-            cosmicKnowledge: 0
         },
         production: {
             damage: 400,
@@ -85,14 +73,11 @@ export const producers = {
     grenademan: {
         costScaling: scaling,
         cost: {
-            damage: 0,
-            money: 40_000,
-            bricks: 0,
-            cosmicKnowledge: 0
+            money: 800_000,
         },
         production: {
-            damage: 400,
-            money: 600,
+            damage: 10_000,
+            money: 8_000,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -104,14 +89,11 @@ export const producers = {
     wreckingBall: {
         costScaling: scaling,
         cost: {
-            damage: 0,
-            money: 40_000,
-            bricks: 0,
-            cosmicKnowledge: 0
+            money: 20_000_000,
         },
         production: {
-            damage: 400,
-            money: 600,
+            damage: 500_000,
+            money: 180_000,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -123,14 +105,11 @@ export const producers = {
     bulldozer: {
         costScaling: scaling,
         cost: {
-            damage: 0,
-            money: 40_000,
-            bricks: 0,
-            cosmicKnowledge: 0
+            money: 250_000_000,
         },
         production: {
-            damage: 400,
-            money: 600,
+            damage: 8_000_000,
+            money: 2_000_000,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -142,14 +121,11 @@ export const producers = {
     airstrikeCaller: {
         costScaling: scaling,
         cost: {
-            damage: 0,
-            money: 40_000,
-            bricks: 0,
-            cosmicKnowledge: 0
+            money: 5_000_000_000,
         },
         production: {
-            damage: 400,
-            money: 600,
+            damage: 200_000_000,
+            money: 30_000_000,
             bricks: 0,
             cosmicKnowledge: 0
         },
@@ -157,6 +133,70 @@ export const producers = {
         type: "Heavy Duty",
         description: "You know, the guy that calls airstrikes.",
         img: img('AirstrikeCaller')
+    },
+    necromancer: {
+        costScaling: scaling,
+        cost: {
+            money: 0,
+        },
+        production: {
+            damage: 0,
+            money: 0,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Necromancer",
+        type: "Magic",
+        description: "Raises dead wizards to destroy the wall with their dark magic",
+        img: img("Necromancer")
+    },
+    titan: {
+        costScaling: scaling,
+        cost: {
+            money: 0,
+        },
+        production: {
+            damage: 0,
+            money: 0,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Titan",
+        type: "Magic",
+        description: "We got the necromancers to raise ancient titans from the dead. They smash the wall with their giant fists.",
+        img: img("Titan")
+    },
+    demon: {
+        costScaling: scaling,
+        cost: {
+            money: 0,
+        },
+        production: {
+            damage: 0,
+            money: 0,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Demon",
+        type: "Magic",
+        description: "Defiles the wall with the darkest magic of all.",
+        img: img("Demon")
+    },
+    realityCompromiser: {
+        costScaling: scaling,
+        cost: {
+            money: 0,
+        },
+        production: {
+            damage: 0,
+            money: 0,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Reality Compromiser",
+        type: "Dream",
+        description: "Enters reality code and removes the wall from existence.",
+        img: img("RealityCompromiser")
     },
     blackObliterator: {
         costScaling: scaling,
@@ -175,8 +215,24 @@ export const producers = {
         name: "Black Obliterator",
         type: "Dream",
         description: "Robots covered in The Black. They're really cool, so no one questions mixing the most dangerous & evil thing ever with cold, unfeeling robots.",
-        img: "http://i.imgur.com/mSWDezW.png"
-    }
+        img: img("BlackObliterator")
+    },
+    brickFactory: {
+        costScaling: scaling,
+        cost: {
+            money: 0,
+        },
+        production: {
+            damage: 0,
+            money: 0,
+            bricks: 0,
+            cosmicKnowledge: 0
+        },
+        name: "Brick Factory",
+        type: "Special",
+        description: "Creates artificial bricks with dark magic. The wizards will never know.",
+        img: img("BrickFactory")
+    },
 } satisfies {[key: string]: ProducerExtended}
 
 export const producersTrimmed = createObjectFromKeys(producers, p => ({

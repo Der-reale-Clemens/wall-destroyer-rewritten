@@ -1,104 +1,123 @@
-import { List, ListItem, ListItemIcon, ListItemText, Button, CircularProgress, Typography, Box, useTheme, Tooltip} from "@mui/material";
-import { buyProducer } from "../../redux/systemSlice";
-import { FC } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { BuildingMoreInfoButton } from "./BuildingMoreInfoButton";
-import { calculateBuildingCost, prettify } from "../../functions";
-import { producers } from "../../data/producers";
-import { resources } from "../../data/resources"
-import { objectKeys } from "../../util";
-import { Resources } from "../../system/types";
-
-export const Buildings: FC = () => (
-    <List sx={{width: "80vw"}}>
-        {objectKeys(producers).map(p => <BuildingRow key={p} name={p}/>)}
-    </List>
-)
+import {Text, Tooltip} from '@mantine/core'
+import { Pane } from "../util/Pane"
+import { ResourcePill } from '../util/ResourcePill'
+import { producers } from '../../data/producers'
+import { Producers } from '../../system/types'
+import { objectEntries } from '../../util'
+import { FC} from 'react'
+import classes from './Buildings.module.css'
+import { useSystemStore } from '../../store/systemStore'
 
 type Props = {
-    name: keyof typeof producers
-}
-
-const BuildingRow: FC<Props> = ({name}) => {
-    const theme = useTheme()
-    const amount = useAppSelector(s => s.systemReducer.producers[name])
-
-    const style = {
-        background: theme.extra.resourceBackgroundColor,
-        marginBottom:2,
-        borderRadius:"10px",
-        border:"1px",
-        borderStyle:"solid",
-        borderColor: theme.extra.resourceBorderColor,
-    }
-
-    return (
-    <ListItem sx={style} secondaryAction={<BuyButton name={name}/>}>
-        <ListItemIcon>
-            <img src={producers[name].img} alt=""/>
-        </ListItemIcon>
-        <ListItemText sx={{width: "13vw"}} primary={<b>{producers[name].name}</b>} secondary={amount}/>
-        <ListItemText primary={<CostProgresses name={name}/>}/>
-        <ListItemText/>
-    </ListItem>)
+    name: keyof Producers
 }
 
 
-const BuyButton: FC<Props> = ({name}) => {
-    const dispatch = useAppDispatch()
-    const onClick = () => dispatch(buyProducer(name))
 
+export const Buildings = () => {
     return (
-        <Box>
-            <BuildingMoreInfoButton name={name}/>
-            <Button variant="contained" onClick={onClick}>
-                Buy
-            </Button>
-        </Box>
+        <div className={classes.row}>
+            <div className={classes.column}> 
+                <BuildingPane name='puncher'/>
+                <BuildingPane name='clubber'/>
+                <BuildingPane name='swordsman'/>
+                <BuildingPane name='gunshooter'/>
+            </div>
+            <div className={classes.column}> 
+                <BuildingPane name='grenademan'/>
+                <BuildingPane name='wreckingBall'/>
+                <BuildingPane name='bulldozer'/>
+                <BuildingPane name='airstrikeCaller'/>
+            </div>
+            <div className={classes.column}> 
+                <BuildingPane name='necromancer'/>
+                <BuildingPane name='titan'/>
+                <BuildingPane name='demon'/>
+                <BuildingPane name='brickFactory'/>
+            </div>
+        </div>
     )
 }
 
-const CostProgresses: FC<Props> = ({name}) => {
-    const resources = useAppSelector(s => s.systemReducer.resources)
-    const costs = calculateBuildingCost(name)
-    
-    //@ts-ignore
-    const progress = (n) => (resources[n]/costs[n])*100 >= 100 ? 100 : (resources[n]/costs[n])*100
-
-    return <>
-        {objectKeys(costs).map(r => costs[r] > 0 ? <CostProgess key={r} resource={r} value={progress(r)} cost={costs[r]}/> : <EmptyProgrss key={r}/>)} 
-    </>
+const BuildingPane: FC<Props> = ({name}) => {
+    const amount = useSystemStore(s => s.data.producers[name])
+    return (
+        <Tooltip label={<BuildingTooltip name={name}/>} color='dark.4'>
+            <Pane>
+                <div className={classes.building}>
+                    <div className={classes.imageContainer}>
+                        <img src={producers[name].img} className={classes.image}/>
+                        <div className={classes.imageText}>{amount}x</div>
+                    </div>
+                    <div>
+                        <div className={classes.row}>
+                            {objectEntries(producers[name].cost).map(([n,a]) => <ResourcePill key={n} size='sm' name={n} amount={a}/>)}
+                        </div>
+                        
+                        <div className={classes.productionDisplay}>
+                            {objectEntries(producers[name].production)
+                                .filter(([_,a]) => a !== 0)
+                                .map(([n,a]) => <ResourcePill size='sm' key={n} name={n} amount={a} perS/>)}
+                        </div>
+                    </div>
+                </div>
+            </Pane>
+        </Tooltip>
+    )
 }
 
-const EmptyProgrss = () => 
-    <Box sx={{ position: 'relative', display: 'inline-flex', width: '40px'}}/>
+
+// export const BuildingsOld = () => {
+//     return (
+//         <div className={classes.buildings}>
+//         <div className={classes.buildingClass}>
+//             <BuildingPane name='puncher'/>
+//             <BuildingPane name='clubber'/>
+//             <BuildingPane name='swordsman'/>
+//         </div>
+//         <div className={classes.buildingClass}>
+//             <BuildingPane name='gunshooter'/>
+//             <BuildingPane name='grenademan'/>
+//         </div>
+//         <div className={classes.buildingClass}>
+//             <BuildingPane name='wreckingBall'/>
+//             <BuildingPane name='bulldozer'/>
+//             <BuildingPane name='airstrikeCaller'/>
+//         </div>
+//         <div className={classes.buildingClass}>
+//             <BuildingPane name='blackObliterator'/>
+//         </div>
+//         </div>
+//     )
+// }
 
 
-type ProgressProps = {
-    resource: keyof Resources
-    value: number
-    cost: number
+
+
+// const BuildingPane: FC<Props> = ({name}) => {
+//     return (
+//         <Tooltip label={<BuildingTooltip name={name}/>} color='dark.4'>
+//             <Pane style={{ width: '225px', display: 'flex', flexDirection: 'column'}}>
+//                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
+//                     <img src={producers[name].img} className={classes.image}/>
+//                     <div>
+//                         {objectEntries(producers[name].cost).map(([n,a]) => <ResourcePill size='sm' name={n} amount={a}/>)}
+//                     </div>
+//                 </div>
+//                 <div className={classes.productionDisplay}>
+//                     {objectEntries(producers[name].production)
+//                         .filter(([_,a]) => a !== 0)
+//                         .map(([n,a]) => <ResourcePill size='sm' name={n} amount={a}/>)}
+//                 </div>
+//              </Pane>
+//         </Tooltip>)
+// }
+
+const BuildingTooltip: FC<Props> = ({name}) => {
+    return (
+        <div style={{width: '300px'}}>
+            <Text fw={700}>{producers[name].name}</Text>
+            <Text style={{width: '300px', whiteSpace: 'normal'}}>{producers[name].description}</Text>
+        </div>
+    )
 }
-
-const CostProgess: FC<ProgressProps> = ({resource, value, cost}) => (
-    <Tooltip title={prettify(cost)}>
-    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      <CircularProgress variant="determinate" value={value} />
-      <Box
-        sx={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography variant="caption" component="div" color="text.secondary">
-          {resources[resource].icon({size: "medium", style:{paddingTop: "4px"}})}
-        </Typography>
-      </Box>
-    </Box>
-    </Tooltip>)

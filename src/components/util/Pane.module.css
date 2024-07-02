@@ -1,0 +1,13 @@
+.pane {
+    margin: var(--mantine-spacing-xs);
+   
+    @mixin dark {
+        background-color: var(--mantine-color-dark-6);
+        box-shadow: 0 4px 0 #000000;
+    }
+
+    @mixin light {
+        box-shadow: 0 4px 0 var(--mantine-color-dark-0);
+        background-color: var(--mantine-color-gray-0);
+    }
+}

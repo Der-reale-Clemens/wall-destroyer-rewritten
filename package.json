@@ -1,32 +1,39 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "wall-destroyer-rewritten-new",
   "private": true,
-  "homepage": "https://der-reale-clemens.github.io/wall-destroyer-rewritten/",
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "build:prod": "vite --config vite.prod.config.ts build",
-    "serve": "vite preview",
-    "check": "tsc"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
-    "@mui/material": "^5.10.2",
-    "@reduxjs/toolkit": "^1.8.5",
+    "@mantine/core": "^7.5.1",
+    "@mantine/hooks": "^7.5.1",
+    "@mantine/modals": "^7.5.1",
+    "@mantine/notifications": "^7.5.1",
+    "immer": "^10.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.2",
     "swarm-numberformat": "^0.4.0",
-    "vis-network": "^9.1.6"
+    "vis-network": "^9.1.9",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "@types/node": "^20.2.5",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^5.1.3",
-    "vite": "^4.3.9"
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.35",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0"
   }
 }

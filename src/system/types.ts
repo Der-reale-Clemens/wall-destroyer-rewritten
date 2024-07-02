@@ -38,7 +38,7 @@ export type Resource = {
 
 export type Producer = {
     costScaling: number
-    cost: Record<keyof Resources, number>
+    cost: Partial<Record<keyof Resources, number>>
     production: Record<keyof Resources, number>
 }
 
@@ -53,7 +53,6 @@ export type Achievement = {
 }
 
 export type ResourceExtended = Resource & {
-    backgroundColor: string
     icon: typeof DamageIcon
 }
 

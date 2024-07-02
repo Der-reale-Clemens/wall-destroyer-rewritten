@@ -1,0 +1,8 @@
+
+path {
+    fill: var(--mantine-color-gray-0);
+
+    @mixin light {
+        fill: var(--mantine-color-gray-9);
+    }
+}

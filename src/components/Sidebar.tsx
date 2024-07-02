@@ -1,85 +1,63 @@
-import {FC, useState} from 'react';
-import { keyframes } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import { Panels, PanelsProps } from './Panels';
-import { Resources } from './Resources';
-import { WallIcon, BuildingsIcon, UpgradesIcon, AchievementsIcon, StatsIcon, SettingsIcon, LabIcon} from './util/Icons';
-import { LockedContent } from './util/LockedContent';
+import { Divider, AppShell, UnstyledButton } from "@mantine/core"
+import { AchievementsIcon, BuildingsIcon, LabIcon, SettingsIcon, StatsIcon, UpgradesIcon, WallIcon } from "./util/Icons"
+import { FC, useState } from "react"
+import cx from 'clsx';
+import { Wall } from "./WallScreen/Wall"
 
-const Drawer: FC<any> = ({setPanel}) => {
+import classes from './Sidebar.module.css'
+import { Settings } from "./SettingsScreen/Settings"
+import { ResourceBar } from "./ResourceBar";
+import { Buildings } from "./BuildingsScreen/Buildings";
+import { Upgrades } from "./UpgradeScreen/Upgrades";
+
+type SidebarButtonProps = {
+    icon: FC<any>,
+    id: number,
+    active: number,
+    onClick: (_:number) => void
+}
+
+const SidebarButton : FC<SidebarButtonProps> = ({icon: Icon, id, active, onClick}) => {
     return (
-        <MuiDrawer variant='permanent' sx={{'& .MuiDrawer-paper': {width: '56px'}}}>
-            <List>
-                <ListItem button onClick={() => setPanel("wall")}>
-                    <ListItemIcon>
-                        <WallIcon/>
-                    </ListItemIcon>
-                </ListItem>
-                <LockedContent flag="destroyedWall0" hidden>
-                    <ListItem button onClick={() => setPanel("buildings")}>
-                        <ListItemIcon>
-                            <BuildingsIcon/>
-                        </ListItemIcon>
-                    </ListItem>
-                </LockedContent>
-                <LockedContent flag="destroyedWall0" hidden>
-                    <ListItem button onClick={() => setPanel("upgrades")}>
-                        <ListItemIcon>
-                            <UpgradesIcon/>
-                        </ListItemIcon>
-                    </ListItem>
-                </LockedContent>
-                <LockedContent flag="destroyedWall2" hidden>
-                    <ListItem button onClick={() => setPanel("lab")}>
-                        <ListItemIcon>
-                            <LabIcon/>
-                        </ListItemIcon>
-                    </ListItem>
-                </LockedContent>
-                <LockedContent flag="destroyedWall1" hidden>
-                    <ListItem button onClick={() => setPanel("achievements")}>
-                        <ListItemIcon>
-                            <AchievementsIcon/>
-                        </ListItemIcon>
-                    </ListItem>
-                </LockedContent>
-                <ListItem button onClick={() => setPanel("stats")}>
-                    <ListItemIcon>
-                        <StatsIcon/>
-                    </ListItemIcon>
-                </ListItem>
-                <ListItem button onClick={() => setPanel("settings")}>
-                    <ListItemIcon>
-                        <SettingsIcon/>
-                    </ListItemIcon>
-                </ListItem>
-            </List>
-            <Divider/>
-        </MuiDrawer>
+        <UnstyledButton style={{textAlign: 'center'}} onClick={() => onClick(id)} className={cx({[classes.active]: id === active}, classes.link)}>
+            <Icon/>
+        </UnstyledButton>
     )
 }
 
+const Tabs: FC<{tab: number}> = ({tab}) => {
+    switch(tab) {
+        case 1: return <Wall/>
+        case 2: return <Buildings/>
+        case 3: return <Upgrades/>
+        case 4: return null
+        case 5: return null
+        case 6: return null
+        case 7: return <Settings/>
+        default: return null
+    }
+}
 
-export const Sidebar: FC = () => {
-    const [panel, setPanel] = useState<PanelsProps["panel"]>("wall")
-
-    const explode = keyframes`
-      0% {transform:scale(0); filter:blur(5pxpx)}
-      100% {transform:scale(1); filter:blur(0px)}
-    `
-
+export const Sidebar = () => {
+    const [activeTab, setActiveTab] = useState(1)
+    
+    const clickHandler = (activeTab: number) => setActiveTab(activeTab)
+    
     return (
-        <Box sx={{ display: 'flex', animation: `${explode} 1s 1`}}>
-            <Drawer setPanel={setPanel}/>
-            <Box component="main" sx={{ flexGrow: 1, p: 1, display: "flex", alignItems: "center", flexDirection: "column"}}>
-                <Resources/>
-                <Panels panel={panel}/>
-            </Box>
-        </Box>
-    );
+    <AppShell navbar={{width: 50, breakpoint:'sm'}}>
+        <AppShell.Navbar className={classes.navbar} style={{paddingTop: '1rem'}}>
+            <SidebarButton icon={WallIcon} id={1} active={activeTab} onClick={clickHandler}/>
+            <SidebarButton icon={BuildingsIcon} id={2} active={activeTab} onClick={clickHandler}/>
+            <SidebarButton icon={UpgradesIcon} id={3} active={activeTab} onClick={clickHandler}/>
+            <SidebarButton icon={LabIcon} id={4} active={activeTab} onClick={clickHandler}/>
+            <SidebarButton icon={AchievementsIcon} id={5} active={activeTab} onClick={clickHandler}/>
+            <SidebarButton icon={StatsIcon} id={6} active={activeTab} onClick={clickHandler}/>
+            <SidebarButton icon={SettingsIcon} id={7} active={activeTab} onClick={clickHandler}/>
+            <Divider/>
+        </AppShell.Navbar>
+        <AppShell.Main style={{flexGrow: 1, display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
+            <ResourceBar/>
+            <Tabs tab={activeTab}/>
+        </AppShell.Main>
+    </AppShell>)
 }

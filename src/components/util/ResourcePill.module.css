@@ -1,0 +1,81 @@
+.pill {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 10rem;
+    border-radius: var(--mantine-radius-xl);
+    border: 2px solid gray;
+    /*margin-right: var(--mantine-spacing-xs);*/
+    height: max-content;
+    background-color: gray;
+    @mixin dark {
+        box-shadow: 0 3px 0 var(--mantine-color-dark-9);
+    }
+    @mixin light {
+        box-shadow: 0 3px 0 var(--mantine-color-dark-0);
+    }
+    &[data-size="md"] {
+        width: 8rem;
+    }
+    &[data-size="sm"] {
+        width: 6.2rem;
+    }
+    &[data-type="money"] {
+        border-color:var(--wd-money-border);
+        background-color: var(--wd-money-color);
+    }
+    &[data-type="damage"] {
+        border-color:var(--wd-damage-border);
+        background-color: var(--wd-damage-color);
+    }
+    &[data-type="bricks"] {
+        border-color:var(--wd-brick-border);
+        background-color: var(--wd-brick-color);
+    }
+    &[data-type="cosmicKnowledge"] {
+        border-color:var(--wd-cosmic-border);
+        background-color: var(--wd-cosmic-color);
+    }
+}
+
+.pillContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    &[data-size="md"] {
+        width: 4.5rem;
+    }
+    &[data-size="sm"] {
+        width: 3.2rem;
+    }
+}
+
+.card {
+    background: rgb(17, 99, 0, 0.5);
+    border-radius: var(--mantine-radius-md);
+    border: 2px solid gray;
+    width: 4.5em;
+    height: 5.3em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: var(--mantine-spacing-xs);
+    @mixin dark {
+        box-shadow: 0 3px 0 #000000;
+    }
+
+    @mixin light {
+        box-shadow: 0 3px 0 var(--mantine-color-dark-0);
+    }
+}
+
+.amountDisplay {
+    width: 4.5em;
+    border-top: 2px solid gray;
+    display: flex;
+    justify-content: center;
+}
+
+
+

@@ -35,8 +35,13 @@ export const connections: Record<keyof Upgrades, Array<keyof Upgrades>> = {
 
     gloves: ['root'],
     paddedGloves: ['gloves'],
+    steelPlatedGloves: ['paddedGloves'],
+    brassKnuckles: ['steelPlatedGloves'],
 
     betterClubs: ['root'],
+    ironClubs: ['betterClubs'],
+    titaniumClubs: ['ironClubs'],
+    spikedClubs: ['titaniumClubs'],
 
     sharpening: ['root'],
     biggerSwords: ['sharpening'],
@@ -72,8 +77,13 @@ export const positions: Record<keyof Upgrades, [number, number]> = {
 
     gloves: [-1, -1],
     paddedGloves: [-1, -2],
+    steelPlatedGloves: [-1, -3],
+    brassKnuckles: [-1, -4],
 
     betterClubs: [0, -1],
+    ironClubs: [0, -2],
+    titaniumClubs: [0, -3],
+    spikedClubs: [0, -4],
 
     sharpening: [1, -1],
     biggerSwords: [1, -2],

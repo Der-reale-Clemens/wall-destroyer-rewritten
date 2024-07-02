@@ -1,0 +1,52 @@
+.image {
+    width: 100px;
+    height: 85px;
+    background-color: gray;
+    border: 2px solid darkgray;
+    image-rendering: pixelated;
+    border-radius: var(--mantine-radius-lg);
+    transition: filter 0.3s ease;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.building {
+    display: flex;
+    flex-direction: row;
+    *:has(> &):hover .imageText {
+        opacity: 1;
+    }
+    *:has(> &):hover .image{
+        filter: brightness(0.5)
+    }
+}
+
+.productionDisplay {
+    display: flex;
+    flex-direction: row;
+    margin-top: var(--mantine-spacing-xs);
+}
+
+.imageContainer {
+    position: relative;
+    text-align: center;
+    
+}
+
+.imageText {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42px;
+    transition: opacity 0.3s ease;
+}

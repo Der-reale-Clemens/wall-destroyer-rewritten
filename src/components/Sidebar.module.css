@@ -1,0 +1,30 @@
+.link {
+    width: 50px;
+    height: rem(40);
+    border-radius: var(--mantine-radius-md);
+    
+    &:hover {
+        background-color: var(--mantine-color-dark-5);
+
+        @mixin light {
+            background-color: var(--mantine-color-gray-3)
+        }
+    } 
+}
+.active {
+    &, &:hover {
+        background-color: var(--mantine-color-teal-9) !important;
+        @mixin light {
+            background-color: var(--mantine-color-teal-3) !important;
+        }
+    }
+}
+.navbar {
+    border-color: var(--mantine-color-teal-9) !important;
+    background-color: hsl(162, 10%, 13%) !important;
+
+    @mixin light {
+        border-color: var(--mantine-color-teal-3) !important;
+        background-color: hsl(161, 30%, 95%) !important;
+    }
+}

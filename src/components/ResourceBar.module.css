@@ -1,0 +1,16 @@
+.resourceDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 10rem;
+    border-radius: var(--mantine-radius-xl);
+    border: 2px solid gray;
+    margin-right: var(--mantine-spacing-xs);
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 6rem;
+}

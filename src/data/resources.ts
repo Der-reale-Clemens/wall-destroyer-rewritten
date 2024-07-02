@@ -2,27 +2,21 @@ import { BrickIcon, CosmicKnowledgeIcon, DamageIcon, MoneyIcon } from "../compon
 import { createObjectFromKeys } from "../util"
 import type { ResourceExtended } from "../system/types"
 
-const asType = <T extends {[key: string]: ResourceExtended}>(arg: T): T => arg;
-
 export const resources = {
     damage: {
         name: "Damage",
-        backgroundColor: "rgb(253, 163, 17, 0.5)",
         icon: DamageIcon
     },
     money: {
         name: "Money",
-        backgroundColor: "rgb(17, 99, 0, 0.5)",
         icon: MoneyIcon
     },
     bricks: {
         name: "Bricks",
-        backgroundColor: "rgb(161, 58, 40, 0.5)",
         icon: BrickIcon
     },
     cosmicKnowledge: {
         name: "Cosmic Knowledge",
-        backgroundColor: "rgb(116, 91, 193, 0.5)",
         icon: CosmicKnowledgeIcon
     }
 } satisfies {[key: string]: ResourceExtended}

@@ -1,13 +1,8 @@
 import { resources } from "./resources"
-//@ts-expect-error
 import buildingsTabImg from "../images/icons/buildingsTab.png"
-//@ts-expect-error
 import achievementsTabImg from "../images/icons/achievementsTab.png"
-//@ts-expect-error
 import upgradesTabImg from "../images/icons/upgradesTab.png"
-//@ts-expect-error
 import labTabImg from "../images/icons/labTab.png"
-//@ts-expect-error
 import moneyImg from "../images/icons/money.png"
 
 const img = (name: string) =>  new URL( `../images/walls/${name}.png`, import.meta.url).href
