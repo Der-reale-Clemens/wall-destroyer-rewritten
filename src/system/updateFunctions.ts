@@ -1,5 +1,5 @@
-import { Achievements, Producers, Productions, Resources, SystemType, Upgrades } from "./types"
-import { createObjectFromKeys, everyMatch, objectKeys, setDifference, sum } from "../util"
+import { Achievements, Producer, Producers, Productions, Resources, SystemType, Upgrades } from "./types"
+import { createObjectFromKeys, everyMatch, objectKeys, objectMap, setDifference, sum } from "../util"
 
 export const calculateProductions = (system: SystemType, deltaTime: number): Productions => {
     //Calculate the production of all resources of a single producer
@@ -41,26 +41,26 @@ export const calculateProductionsPerResource = (system: SystemType, productions:
 export const addResources = (system: SystemType, productions: Record<keyof Resources, number>) => 
     createObjectFromKeys(system.player.resources, r => system.player.resources[r] + productions[r])
 
+
+export const calculateProducerCost = (producer: Producer, amount: number) => {
+    const calc = (c: number) => c*Math.pow(producer.costScaling, amount)
+
+    return objectMap(producer.cost, calc)
+}
+
 export const buyProducer = (system: SystemType, producer: keyof Producers)
     : [Record<keyof Producers, number>, Record<keyof Resources, number>] => {
-    const costs = system.data.producers[producer].cost
+    const costs = calculateProducerCost(system.data.producers[producer], system.player.producers[producer])
     const resources = system.player.resources
 
-    const calcCost = (resource: keyof typeof costs) => {
-        const producerAmount = system.player.producers[producer]
-        const producerScaling = system.data.producers[producer].costScaling
-
-        return costs[resource]*Math.pow(producerScaling,producerAmount)
-    }
     const canBuy = () => 
-        everyMatch(objectKeys(resources), r => resources[r] >= calcCost(r))
+        everyMatch(objectKeys(resources), r => resources[r] >= costs[r])
 
     if(!canBuy()) {
         return [system.player.producers, resources];
     }
 
-    const newResources: Record<keyof Resources, number> = 
-        objectKeys(costs).reduce((acc: any, cur) => ({...acc, [cur]: resources[cur]-calcCost(cur)}), {})
+    const newResources = createObjectFromKeys(resources, r => resources[r] - costs[r])
     //Create a copy to edit
     const newProducers = {...system.player.producers}
     newProducers[producer] += 1
@@ -93,7 +93,7 @@ export const buyUpgrade = (system: SystemType, upgrade: keyof Upgrades)
     return [newUpgrades, newResources]
 }
 
-export const calculateAchievements = (system: SystemType): Array<keyof Achievements> => {
+export const calculateNewAchievements = (system: SystemType): Array<keyof Achievements> => {
     const data = objectKeys(system.data.achievements)
     const player = system.player.achievements
 

@@ -2,7 +2,7 @@
 import * as swarmNumberformat from "swarm-numberformat"
 import { useAppStore } from "./store/store";
 import { createSystemObject, useSystemStore } from "./store/systemStore";
-import { calculateProductions, calculateProductionsWithUpgrades, calculateProductionsPerResource } from "./system/updateFunctions";
+import { calculateProductions, calculateProductionsWithUpgrades, calculateProductionsPerResource, calculateNewAchievements } from "./system/updateFunctions";
 
 const DEBUG = true
 
@@ -19,6 +19,11 @@ export const update = () => {
     const productions = calculateProductionsPerResource(createSystemObject(systemState), productionsWithUpgrades)
 
     useSystemStore.getState().increaseResource("damage", productions.damage)
+    useSystemStore.getState().increaseResource("money", productions.money)
+    useSystemStore.getState().increaseResource("bricks", productions.bricks)
+
+    const newAchievements = calculateNewAchievements(createSystemObject(systemState))
+    useSystemStore.getState().addAchievements(newAchievements)
 }
 
 export const prettify = (num: number): string => {

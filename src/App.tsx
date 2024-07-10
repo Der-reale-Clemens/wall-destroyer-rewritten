@@ -11,6 +11,7 @@ import './global.css'
 
 
 const themeOverride = createTheme({
+    //fontFamilyMonospace: 'Roboto Mono, monospace',
     other: {
         damageColor: 'rgb(253, 163, 17, 0.5)',
         moneyColor: 'rgb(17, 99, 0, 0.5)',

@@ -26,10 +26,10 @@ export const Wall = () => {
       </div>
       <Text>
         Unlocks:
-        <Divider />
-        {wall.unlocks
-          .map((src) => <img alt="" key={src} style={{ filter: "grayscale(100%)", margin: "2px", width: "50px", height: "50px" }} src={src} />)}
       </Text>
+      <Divider />
+      {wall.unlocks
+        .map((src) => <img alt="" key={src} style={{ filter: "grayscale(100%)", margin: "2px", width: "50px", height: "50px" }} src={src} />)}
     </Pane>
   </div>
 }

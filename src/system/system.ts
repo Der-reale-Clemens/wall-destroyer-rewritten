@@ -1,5 +1,5 @@
 import { AchievementsTrimmed, ProducersTrimmed, ResourcesTrimmed, SystemType, UpgradesTrimmed } from "./types"
-import { addResources, calculateProductions, calculateProductionsPerResource, calculateAchievements } from "./updateFunctions"
+import { addResources, calculateProductions, calculateProductionsPerResource, calculateNewAchievements } from "./updateFunctions"
 import { createObjectFromKeys } from "../util"
 
 export const createSystem = (producers: ProducersTrimmed, resources: ResourcesTrimmed, upgrades: UpgradesTrimmed, achievements: AchievementsTrimmed): SystemType => {
@@ -33,7 +33,7 @@ export const update = (system: SystemType, deltaTime: number) => {
 
     
     
-    const unlockedAchievements = calculateAchievements(systemShallowClone)
+    const unlockedAchievements = calculateNewAchievements(systemShallowClone)
 
     systemShallowClone.player.achievements = systemShallowClone.player.achievements.concat(unlockedAchievements)
 

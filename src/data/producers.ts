@@ -1,5 +1,6 @@
 import type { ProducerExtended } from "../system/types"
 import { createObjectFromKeys } from "../util"
+import { makeCost } from "./util"
 
 const img = (name: string) =>  new URL( `../images/producers/${name}.png`, import.meta.url).href
 
@@ -8,9 +9,9 @@ const scaling = 1.2
 export const producers = {
     puncher: {
         costScaling: scaling,
-        cost: {
-            money: 15,
-        },
+        cost: makeCost({
+            money: 15
+        }),
         production: {
             damage: 0.05,
             money: 1,
@@ -24,9 +25,9 @@ export const producers = {
     },
     clubber: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 150,
-        },
+        }),
         production: {
             damage: 1,
             money: 5,
@@ -40,9 +41,9 @@ export const producers = {
     },
     swordsman: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 1200,
-        },
+        }),
         production: {
             damage: 10,
             money: 25,
@@ -56,9 +57,9 @@ export const producers = {
     },
     gunshooter: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 40_000,
-        },
+        }),
         production: {
             damage: 400,
             money: 600,
@@ -72,9 +73,9 @@ export const producers = {
     },
     grenademan: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 800_000,
-        },
+        }),
         production: {
             damage: 10_000,
             money: 8_000,
@@ -88,9 +89,9 @@ export const producers = {
     },
     wreckingBall: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 20_000_000,
-        },
+        }),
         production: {
             damage: 500_000,
             money: 180_000,
@@ -104,9 +105,9 @@ export const producers = {
     },
     bulldozer: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 250_000_000,
-        },
+        }),
         production: {
             damage: 8_000_000,
             money: 2_000_000,
@@ -120,9 +121,9 @@ export const producers = {
     },
     airstrikeCaller: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 5_000_000_000,
-        },
+        }),
         production: {
             damage: 200_000_000,
             money: 30_000_000,
@@ -136,9 +137,9 @@ export const producers = {
     },
     necromancer: {
         costScaling: scaling,
-        cost: {
-            money: 0,
-        },
+        cost: makeCost({
+            bricks: 500,
+        }),
         production: {
             damage: 0,
             money: 0,
@@ -152,9 +153,9 @@ export const producers = {
     },
     titan: {
         costScaling: scaling,
-        cost: {
-            money: 0,
-        },
+        cost: makeCost({
+            money:500000000000,
+        }),
         production: {
             damage: 0,
             money: 0,
@@ -168,9 +169,9 @@ export const producers = {
     },
     demon: {
         costScaling: scaling,
-        cost: {
-            money: 0,
-        },
+        cost: makeCost({
+            bricks: 6666,
+        }),
         production: {
             damage: 0,
             money: 0,
@@ -184,9 +185,9 @@ export const producers = {
     },
     realityCompromiser: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             money: 0,
-        },
+        }),
         production: {
             damage: 0,
             money: 0,
@@ -200,12 +201,12 @@ export const producers = {
     },
     blackObliterator: {
         costScaling: scaling,
-        cost: {
+        cost: makeCost({
             damage: 1,
             money: 100,
             bricks: 1,
             cosmicKnowledge: 1
-        },
+        }),
         production: {
             damage: 1e8,
             money: 1e8,
@@ -219,13 +220,13 @@ export const producers = {
     },
     brickFactory: {
         costScaling: scaling,
-        cost: {
-            money: 0,
-        },
+        cost: makeCost({
+            money: 10,
+        }),
         production: {
             damage: 0,
-            money: 0,
-            bricks: 0,
+            money: 1,
+            bricks: 100,
             cosmicKnowledge: 0
         },
         name: "Brick Factory",

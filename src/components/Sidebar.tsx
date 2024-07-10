@@ -9,6 +9,7 @@ import { Settings } from "./SettingsScreen/Settings"
 import { ResourceBar } from "./ResourceBar";
 import { Buildings } from "./BuildingsScreen/Buildings";
 import { Upgrades } from "./UpgradeScreen/Upgrades";
+import { Achievements } from "./AchievementsScreen/Achievements";
 
 type SidebarButtonProps = {
     icon: FC<any>,
@@ -31,7 +32,7 @@ const Tabs: FC<{tab: number}> = ({tab}) => {
         case 2: return <Buildings/>
         case 3: return <Upgrades/>
         case 4: return null
-        case 5: return null
+        case 5: return <Achievements/>
         case 6: return null
         case 7: return <Settings/>
         default: return null
