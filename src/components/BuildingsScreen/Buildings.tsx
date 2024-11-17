@@ -1,9 +1,9 @@
 import { Pane } from "../util/Pane"
 import { ResourcePill } from '../util/ResourcePill'
 import { producers } from '../../data/producers'
-import { Producers } from '../../system/types'
+import type { Producers } from '../../system/types'
 import { objectEntries } from '../../util'
-import { FC} from 'react'
+import type { FC} from 'react'
 import classes from './Buildings.module.css'
 import { useSystemStore } from '../../store/systemStore'
 import { calculateProducerCost } from '../../system/updateFunctions'

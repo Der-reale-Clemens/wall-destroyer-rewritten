@@ -1,4 +1,4 @@
-import { Resources, UpgradeEffect } from "../system/types"
+import type { Resources, UpgradeEffect } from "../system/types"
 
 export const makeEffect = (effect: Partial<UpgradeEffect>) => {
     const baseEffect = {

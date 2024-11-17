@@ -1,4 +1,4 @@
-import { MantineColorScheme, SegmentedControl, useMantineColorScheme, Text } from "@mantine/core"
+import { type MantineColorScheme, SegmentedControl, useMantineColorScheme, Text } from "@mantine/core"
 import { useAppStore } from "../../store/store";
 import { Pane } from "../util/Pane";
 import classes from './Settings.module.css'

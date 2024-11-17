@@ -1,5 +1,5 @@
 import { Paper } from "@mantine/core"
-import {  HTMLAttributes, forwardRef } from "react"
+import {  type HTMLAttributes, forwardRef } from "react"
 import classes from './Pane.module.css'
 
 interface Props {

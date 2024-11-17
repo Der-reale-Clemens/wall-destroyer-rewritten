@@ -1,6 +1,6 @@
 import { Divider, AppShell, UnstyledButton } from "@mantine/core"
 import { AchievementsIcon, BuildingsIcon, LabIcon, SettingsIcon, StatsIcon, UpgradesIcon, WallIcon } from "./util/Icons"
-import { FC, useState } from "react"
+import { type FC, useState } from "react"
 import cx from 'clsx';
 import { Wall } from "./WallScreen/Wall"
 

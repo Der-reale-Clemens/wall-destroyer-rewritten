@@ -1,4 +1,4 @@
-import { resources } from "./resources"
+import type { resources } from "./resources"
 import buildingsTabImg from "../images/icons/buildingsTab.png"
 import achievementsTabImg from "../images/icons/achievementsTab.png"
 import upgradesTabImg from "../images/icons/upgradesTab.png"

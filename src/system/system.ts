@@ -1,4 +1,4 @@
-import { AchievementsTrimmed, ProducersTrimmed, ResourcesTrimmed, SystemType, UpgradesTrimmed } from "./types"
+import type { AchievementsTrimmed, ProducersTrimmed, ResourcesTrimmed, SystemType, UpgradesTrimmed } from "./types"
 import { addResources, calculateProductions, calculateProductionsPerResource, calculateNewAchievements } from "./updateFunctions"
 import { createObjectFromKeys } from "../util"
 

@@ -1,4 +1,4 @@
-import { Achievements, Producer, Producers, Productions, Resources, SystemType, Upgrades } from "./types"
+import type { Achievements, Producer, Producers, Productions, Resources, SystemType, Upgrades } from "./types"
 import { createObjectFromKeys, everyMatch, objectKeys, objectMap, setDifference, sum } from "../util"
 
 export const calculateProductions = (system: SystemType, deltaTime: number): Productions => {

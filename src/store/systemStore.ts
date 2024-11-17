@@ -5,7 +5,7 @@ import { producersTrimmed } from '../data/producers'
 import { resourcesTrimmed } from '../data/resources'
 import { upgradesTrimmed } from '../data/upgrades'
 import { createSystem } from '../system/system'
-import { Achievements, Producers, Resources, Upgrades } from '../system/types'
+import type { Achievements, Producers, Resources, Upgrades } from '../system/types'
 import { buyProducer as buyProducerSystem, buyUpgrade as buyUpgradeSystem } from "../system/updateFunctions"
 
 type State = {

@@ -4,8 +4,8 @@ import {Text} from '@mantine/core'
 import classes from './ResourceBar.module.css'
 import { prettify } from '../functions'
 import { useSystemStore } from '../store/systemStore'
-import { resources } from '../data/resources'
-import { FC } from 'react'
+import type { resources } from '../data/resources'
+import type { FC } from 'react'
 import { ResourcePill } from './util/ResourcePill'
 
 type Props = {

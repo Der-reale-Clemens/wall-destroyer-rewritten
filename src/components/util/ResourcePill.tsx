@@ -1,4 +1,4 @@
-import { FC } from "react"
+import type { FC } from "react"
 import { resources } from "../../data/resources"
 import { Text } from "@mantine/core"
 import { prettify } from "../../functions"

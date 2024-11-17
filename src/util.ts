@@ -41,7 +41,7 @@ export const sum = (array: Array<number>) =>
  */
 export const objectMap = <O extends {[key: string]: T}, T, R>(obj: O, map: (_:T) => R) 
     : Record<keyof O, R> => {
-    let temp: any = {}
+    const temp: any = {}
     objectKeys(obj)
         .forEach(key => temp[key] = map(obj[key]))
     return temp

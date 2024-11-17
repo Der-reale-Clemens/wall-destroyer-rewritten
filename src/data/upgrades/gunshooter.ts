@@ -1,4 +1,4 @@
-import { UpgradeExtended } from "../../system/types"
+import type { UpgradeExtended } from "../../system/types"
 import { makeCost, makeEffect } from "../util"
 
 const img = (name: string) =>  new URL( `../../images/upgrades/gunshooter/${name}.png`, import.meta.url).href

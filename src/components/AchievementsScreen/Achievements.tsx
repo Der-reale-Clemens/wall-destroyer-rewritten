@@ -1,7 +1,7 @@
 import { useSystemStore } from "../../store/systemStore"
 import { achievements } from "../../data/achievements"
-import { Achievements as AchievementsType } from "../../system/types"
-import { FC } from "react"
+import type { Achievements as AchievementsType } from "../../system/types"
+import type { FC } from "react"
 import { SimpleTooltip } from "../util/Tooltip"
 import { Pane } from "../util/Pane"
 
@@ -11,10 +11,6 @@ export const Achievements = () => {
     return <Pane style={{width: '50vw', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         {unlockedAchievements.map(a => <Achievement key={a} name={a}/>)}
     </Pane>
-
-    // return <div style={{display: 'flex', flexWrap: 'wrap', width: '50vw'}}>
-    //     {unlockedAchievements.map(a => <Achievement key={a} name={a}/>)}
-    // </div>
 }
 
 type Props = {

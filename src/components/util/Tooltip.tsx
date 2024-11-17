@@ -1,4 +1,4 @@
-import { HTMLAttributes, forwardRef } from "react"
+import { type HTMLAttributes, forwardRef } from "react"
 import classes from "./Tooltip.module.css"
 import { Text, Tooltip as MantineTooltip } from "@mantine/core"
 

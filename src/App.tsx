@@ -1,4 +1,4 @@
-import { CSSVariablesResolver, MantineProvider, createTheme, darken, lighten } from '@mantine/core';
+import { type CSSVariablesResolver, MantineProvider, createTheme, darken, lighten } from '@mantine/core';
 import { Sidebar } from './components/Sidebar';
 import { useEffect } from 'react';
 import { update } from './functions';

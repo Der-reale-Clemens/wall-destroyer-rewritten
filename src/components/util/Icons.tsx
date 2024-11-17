@@ -1,4 +1,4 @@
-import { FC } from "react"
+import type { FC } from "react"
 import damageIcon from "../../images/icons/damage.png"
 import moneyImg from "../../images/icons/money.png"
 import brickImg from "../../images/icons/brick.png"

@@ -1,4 +1,4 @@
-import { UpgradeExtended, Upgrades } from '../../system/types';
+import type { UpgradeExtended, Upgrades } from '../../system/types';
 import { createObjectFromKeys } from '../../util';
 import * as research from './research';
 import * as puncher from './puncher';
